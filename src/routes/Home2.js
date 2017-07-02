@@ -20,19 +20,23 @@ export default class Home extends React.Component {
 
   render() {
     return (
-      <PanelContainer>
-        <Panel>
-          <PanelBody>
-            <Grid>
-              <Row>
-                <Col xs={12}>
+      <Grid>
+        <Row>
+          <Col xs={1} sm={1} md={1}>
+          </Col>
+          <Col xs={10} sm={10} md={10}>
+            <PanelContainer>
+              <Panel>
+                <PanelBody>
                   <p>{this.props.greetings.hello}</p>
-                </Col>
-              </Row>
-            </Grid>
-          </PanelBody>
-        </Panel>
-      </PanelContainer>
+                </PanelBody>
+              </Panel>
+            </PanelContainer>
+          </Col>
+          <Col xs={1} sm={1} md={1}>
+          </Col>
+        </Row>
+      </Grid>
     );
   }
 }

@@ -15,24 +15,28 @@ import {
 @connect((state) => state)
 export default class Home extends React.Component {
   static fetchData(store) {
-    return store.dispatch(actions.getGreeting('Hello, World!'));
+    return store.dispatch(actions.getGreeting('asdf, World!'));
   }
 
   render() {
     return (
-      <PanelContainer>
-        <Panel>
-          <PanelBody>
-            <Grid>
-              <Row>
-                <Col xs={12}>
+      <Grid>
+        <Row>
+          <Col xs={2} sm={2} md={3}>
+          </Col>          
+          <Col xs={8} sm={8} md={6}>
+            <PanelContainer>
+              <Panel>
+                <PanelBody>
                   <p>{this.props.greetings.hello}</p>
-                </Col>
-              </Row>
-            </Grid>
-          </PanelBody>
-        </Panel>
-      </PanelContainer>
+                </PanelBody>
+              </Panel>
+            </PanelContainer>
+          </Col>
+          <Col xs={2} sm={2} md={3}>
+          </Col>
+        </Row>
+      </Grid>
     );
   }
 }

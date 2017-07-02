@@ -22,7 +22,8 @@ import {
   Grid,
   Row,
   Radio,
-  Col } from '@sketchpixy/rubix';
+  Col
+} from '@sketchpixy/rubix';
 
 class Brand extends React.Component {
   render() {
@@ -43,12 +44,75 @@ class HeaderNavigation extends React.Component {
   render() {
     return (
       <Nav pullRight>
+        <Nav className='hidden-xs'>
+          <NavItem>
+            <Icon bundle='fontello' glyph='search-8' />
+          </NavItem>
+          <NavItem>
+            <Icon bundle='fontello' glyph='star-1' />
+          </NavItem>
+          {/*<NavItem>
+            <Icon bundle='fontello' glyph='user-female' />
+          </NavItem>*/}
+          <ProfileMenu />
+        </Nav>
         <Nav>
           <NavItem className='logout' href='#'>
             <Icon bundle='fontello' glyph='off-1' />
           </NavItem>
         </Nav>
       </Nav>
+    );
+  }
+}
+
+@withRouter
+class TopicNavigation extends React.Component {
+  render() {
+    return (
+      <Nav bsStyle="pills" className='nav-orange75 hidden-xs' activeKey={1} pullLeft >
+        <NavItem active eventKey={1} href="#">Home</NavItem>
+        <NavItem eventKey={2} href="#">Latest News</NavItem>
+        <NavItem className='hidden-sm' eventKey={3} href="#">Technology</NavItem>
+      </Nav>
+    );
+  }
+}
+
+class ProfileMenu extends React.Component {
+  render() {
+    const bullhornIcon = (
+      <span>
+        <Icon bundle='fontello' glyph='user-female' />
+        <Badge className='fg-darkbrown bg-orange notification-badge'>3</Badge>
+      </span>
+    );
+    return (
+      <NavDropdownHover noCaret eventKey={3} title={bullhornIcon} id='notifications-menu' className='header-menu'>
+        <MenuItem href='#'>
+          <Grid>
+            <Row>
+              <Col xs={2} className='avatar-container' collapseRight>
+                <div><img src='/imgs/app/avatars/avatar22.png' width='40' height='40' alt='sarah_patchett' /></div>
+                <div className='text-center'>
+                  <Label bsStyle='info'>NEW</Label>
+                </div>
+              </Col>
+              <Col xs={10} className='notification-container' collapseLeft collapseRight>
+                <div className='time'>
+                  <strong className='fg-darkgray50'><Icon bundle='fontello' glyph='chat-5'/></strong>
+                </div>
+                <div className='message-header'>
+                  <strong className='fg-darkgreen45'>Sarah Patchett sent you a private message</strong>
+                </div>
+                <div className='message-details fg-text'>
+                  <span>{"Hey Anna! Sorry for delayed response. I've just finished reading the mail you sent couple of days ago..."}</span>
+                </div>
+              </Col>
+            </Row>
+          </Grid>
+        </MenuItem>
+      </NavDropdownHover>
     );
   }
 }
@@ -62,12 +126,13 @@ export default class Header extends React.Component {
             <Navbar fixedTop fluid id='rubix-nav-header'>
               <Row>
                 <Col xs={3} visible='xs'>
-                  <SidebarBtn />
+                  {/*<SidebarBtn />*/}
                 </Col>
-                <Col xs={6} sm={4}>
+                <Col xs={6} sm={8}>
                   <Brand />
+                  <TopicNavigation />
                 </Col>
-                <Col xs={3} sm={8} collapseRight className='text-right'>
+                <Col xs={3} sm={4} collapseRight className='text-right'>
                   <HeaderNavigation />
                 </Col>
               </Row>

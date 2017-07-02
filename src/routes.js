@@ -19,18 +19,23 @@ class App extends React.Component {
   render() {
     return (
       <MainContainer {...this.props}>
-        <Sidebar />
+        {/*<Sidebar />*/}
         <Header />
         <div id='body'>
           <Grid>
             <Row>
-              <Col xs={12}>
+              {/*<Col xs={2} s={2} md={2}>
+              </Col>
+              <Col xs={8} s={8} md={8}>
                 {this.props.children}
               </Col>
+              <Col xs={2} s={2} md={2}>
+              </Col>*/}
+              {this.props.children}
             </Row>
           </Grid>
         </div>
-        <Footer />
+        {/*<Footer />*/}
       </MainContainer>
     );
   }
