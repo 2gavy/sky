@@ -14,6 +14,7 @@ import Footer from './common/footer';
 
 import Home from './routes/Home';
 import Home2 from './routes/Home2';
+import List from './routes/usermanagement/List';
 
 class App extends React.Component {
   render() {
@@ -45,6 +46,7 @@ const routes = (
   <Route path='/' component={App}>
     <IndexRoute component={Home} />
     <Route path='/home2' component={Home2} />
+    <Route path='/usermanagement/list' component={List} />
   </Route>
 );
 

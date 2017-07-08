@@ -15,7 +15,7 @@ import {
 @connect((state) => state)
 export default class Home extends React.Component {
   static fetchData(store) {
-    return store.dispatch(actions.getGreeting('asdf, World!'));
+    return store.dispatch(actions.getGreeting('Hello World!'));
   }
 
   render() {
