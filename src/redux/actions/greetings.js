@@ -20,9 +20,9 @@ function getGreeting(inputMessage) {
       }
     }
   `;
-
+  
+  
   let variables = { inputMessage };
-
   return dispatch => {
     return axios.post(GraphQLEndpoint, {
       query,

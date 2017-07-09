@@ -3,9 +3,11 @@ import {
 } from '../actions/actionTypes';
 
 function greetings(state = [], action) {
+  
   switch(action.type) {
     case GET_GREETING:
-      return action.result.data.greetings;
+      return action.result.data.greetings
+
     default:
       return state;
   }
