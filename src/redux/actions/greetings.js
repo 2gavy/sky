@@ -13,7 +13,6 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 function getGreeting(inputMessage) {
-  console.log(inputMessage);
   let query = `
     query echoGreeting($inputMessage: String) {
       greetings {
@@ -21,21 +20,19 @@ function getGreeting(inputMessage) {
       }
     }
   `;
-
+  
+  
   let variables = { inputMessage };
-  console.log(query, variables);
   return dispatch => {
     return axios.post(GraphQLEndpoint, {
       query,
       variables
     }).then((result) => {
-      console.log('result', result)
       dispatch({
         type: GET_GREETING,
         result: result.data,
       });
     }).catch((error) => {
-      console.log('error', error)
       dispatch({
         type: GET_GREETING,
         error,

@@ -1,12 +1,13 @@
 import {
-  GET_GREETINGS
+  GET_GREETING
 } from '../actions/actionTypes';
 
 function greetings(state = [], action) {
-	console.log(state, action);
+  
   switch(action.type) {
-    case GET_GREETINGS:
-      return action.result.data.greetings;
+    case GET_GREETING:
+      return action.result.data.greetings
+
     default:
       return state;
   }
