@@ -10,30 +10,72 @@ import {
   Panel,
   PanelBody,
   PanelContainer,
+  LoremIpsum,
+  TimelineBody,
+  TimelineIcon,
+  TimelineView,
+  TimelineItem,
+  TimelineTitle,
+  TimelineHeader,
 } from '@sketchpixy/rubix';
 
 @connect((state) => state)
 class Home extends React.Component {
   static fetchData(store) {
-    return store.dispatch(actions.getGreeting('Hello World!'));
+    // return store.dispatch(actions.getGreeting('Hello World!'));
+  }
+
+  _getPosts() {
+    var now = new Date();
+    var weekday = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
+    var month = ['January', 'Feburary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    var posts = ['blue', 'green', 'yellow', 'black', 'red'];
+
+    return posts.map((post, index) => {
+      return (
+        <TimelineView withHeader className={'border-hoverblue tl-' + post} key={index}>
+          <TimelineItem>
+            <TimelineHeader className={'bg-hover' + post}>
+              <TimelineIcon className={'bg-' + post + ' fg-white'} glyph='icon-fontello-chat-1' />
+              <TimelineTitle>
+                {now.getDate() + " " + month[now.getMonth()] + " " + now.getFullYear() + " " + now.getHours() + ":" + now.getMinutes()}
+              </TimelineTitle>
+            </TimelineHeader>
+            <TimelineBody>
+              <ul>
+                <li>
+                  <LoremIpsum query='2s' />
+                </li>
+              </ul>
+            </TimelineBody>
+          </TimelineItem>
+        </TimelineView>
+      );
+    });
   }
 
   render() {
     return (
       <Grid>
         <Row>
-          <Col xs={2} sm={2} md={3}>
-          </Col>          
-          <Col xs={8} sm={8} md={6}>
+          <Col xs={4} sm={3} md={2}>
             <PanelContainer>
               <Panel>
                 <PanelBody>
-                  <p>{this.props.greetings.hello}</p>
                 </PanelBody>
               </Panel>
             </PanelContainer>
           </Col>
-          <Col xs={2} sm={2} md={3}>
+          <Col xs={4} sm={6} md={8}>
+            <PanelContainer>
+              <Panel>
+                <PanelBody>
+                  {this._getPosts()}
+                </PanelBody>
+              </Panel>
+            </PanelContainer>
+          </Col>
+          <Col xs={4} sm={3} md={2}>
           </Col>
         </Row>
       </Grid>
