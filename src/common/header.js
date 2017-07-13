@@ -30,7 +30,7 @@ class Brand extends React.Component {
     return (
       <Navbar.Header {...this.props}>
         <Navbar.Brand tabIndex='-1'>
-          <a href='#'>
+          <a href='/'>
             <img src='/imgs/common/logo.png' alt='rubix' width='111' height='28' />
           </a>
         </Navbar.Brand>
@@ -67,13 +67,26 @@ class HeaderNavigation extends React.Component {
 }
 
 @withRouter
+class DirectNavItem extends React.Component {
+  render() {
+    var currentLocation = this.props.location.pathname;
+
+    return (
+      <NavItem className={this.props.className} href={this.props.path} to={this.props.path} componentClass={Link}>
+        {this.props.children}
+      </NavItem>
+    );
+  }
+}
+
+@withRouter
 class TopicNavigation extends React.Component {
   render() {
     return (
-      <Nav bsStyle="pills" className='nav-orange75 hidden-xs' activeKey={1} pullLeft >
-        <NavItem active eventKey={1} href="#">Home</NavItem>
-        <NavItem eventKey={2} href="#">Latest News</NavItem>
-        <NavItem className='hidden-sm' eventKey={3} href="#">Technology</NavItem>
+      <Nav bsStyle="pills" className='nav-orange75 hidden-xs' pullLeft>
+        <DirectNavItem eventKey={1} path="/">Home</DirectNavItem>
+        <DirectNavItem eventKey={2} path="/report">Latest News</DirectNavItem>
+        <DirectNavItem className='hidden-sm' eventKey={3} path="/home2">Technology</DirectNavItem>
       </Nav>
     );
   }

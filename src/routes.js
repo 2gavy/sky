@@ -13,6 +13,7 @@ import Footer from './common/footer';
 /* Pages */
 import Home from './routes/Home';
 import Home2 from './routes/Home2';
+import Report from './routes/Report';
 import List from './routes/usermanagement/List';
 
 class App extends React.Component {
@@ -37,6 +38,7 @@ class App extends React.Component {
 const routes = (
   <Route path='/' component={App}>
     <IndexRoute component={Home} />
+    <Route path='/report' component={Report} />
     <Route path='/home2' component={Home2} />
     <Route path='/usermanagement/list' component={List} />
   </Route>
