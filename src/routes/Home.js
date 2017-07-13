@@ -21,10 +21,6 @@ import {
 
 @connect((state) => state)
 class Home extends React.Component {
-  static fetchData(store) {
-    // return store.dispatch(actions.getGreeting('Hello World!'));
-  }
-
   _getPosts() {
     var now = new Date();
     var weekday = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
