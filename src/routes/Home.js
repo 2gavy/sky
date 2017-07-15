@@ -58,6 +58,7 @@ class Home extends React.Component {
             <PanelContainer>
               <Panel>
                 <PanelBody>
+                  Faceted Browsing
                 </PanelBody>
               </Panel>
             </PanelContainer>

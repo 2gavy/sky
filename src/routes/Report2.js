@@ -39,7 +39,7 @@ class Report2 extends React.Component {
 
     // Should pass in params.id of report
     _renderReport = () => {
-        console.log(this.props.reports);
+        // console.log(this.props.reports);
         return this.props.reports.map((report, index) => {
             return (
                 <Grid key={index}>

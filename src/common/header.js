@@ -22,7 +22,8 @@ import {
   Grid,
   Row,
   Radio,
-  Col
+  Col,
+  FormControl
 } from '@sketchpixy/rubix';
 
 class Brand extends React.Component {
@@ -46,14 +47,19 @@ class HeaderNavigation extends React.Component {
       <Nav pullRight>
         <Nav className='hidden-xs'>
           <NavItem>
-            <Icon bundle='fontello' glyph='search-8' />
+            <div className="input-group" >
+              <input className="form-control" placeholder="Search" />
+              <div className="input-group-addon plain" style={{ width: '35%' }}>
+                <button role="button" className="btn btn-default" type="button">
+                  <span>Search </span>
+                  <Icon bundle='fontello' glyph='search' />
+                </button>
+              </div>
+            </div>
           </NavItem>
-          <NavItem>
+          <NavItem className='hidden-xs'>
             <Icon bundle='fontello' glyph='star-1' />
           </NavItem>
-          {/*<NavItem>
-            <Icon bundle='fontello' glyph='user-female' />
-          </NavItem>*/}
           <ProfileMenu />
         </Nav>
         <Nav>
@@ -70,7 +76,6 @@ class HeaderNavigation extends React.Component {
 class DirectNavItem extends React.Component {
   render() {
     var currentLocation = this.props.location.pathname;
-
     return (
       <NavItem className={this.props.className} href={this.props.path} to={this.props.path} componentClass={Link}>
         {this.props.children}
@@ -85,8 +90,8 @@ class TopicNavigation extends React.Component {
     return (
       <Nav bsStyle="pills" className='nav-orange75 hidden-xs' pullLeft>
         <DirectNavItem eventKey={1} path="/">Home</DirectNavItem>
-        <DirectNavItem eventKey={2} path="/report">Latest News</DirectNavItem>
-        <DirectNavItem className='hidden-sm' eventKey={3} path="/home2">Technology</DirectNavItem>
+        <DirectNavItem className='hidden-sm' eventKey={2} path="/report2">Single Report</DirectNavItem>
+        {/* <DirectNavItem className='hidden-sm' eventKey={3} path="/home2">Technology</DirectNavItem> */}
       </Nav>
     );
   }
@@ -113,7 +118,7 @@ class ProfileMenu extends React.Component {
               </Col>
               <Col xs={10} className='notification-container' collapseLeft collapseRight>
                 <div className='time'>
-                  <strong className='fg-darkgray50'><Icon bundle='fontello' glyph='chat-5'/></strong>
+                  <strong className='fg-darkgray50'><Icon bundle='fontello' glyph='chat-5' /></strong>
                 </div>
                 <div className='message-header'>
                   <strong className='fg-darkgreen45'>Sarah Patchett sent you a private message</strong>
@@ -135,17 +140,16 @@ export default class Header extends React.Component {
     return (
       <Grid id='navbar' {...this.props}>
         <Row>
-          <Col xs={12}>
+          <Col md={12} sm={12} xs={12}>
             <Navbar fixedTop fluid id='rubix-nav-header'>
               <Row>
                 <Col xs={3} visible='xs'>
-                  {/*<SidebarBtn />*/}
                 </Col>
-                <Col xs={6} sm={8}>
+                <Col md={6} sm={5} xs={6}>
                   <Brand />
                   <TopicNavigation />
                 </Col>
-                <Col xs={3} sm={4} collapseRight className='text-right'>
+                <Col md={6} sm={7} xs={3} collapseRight className='text-right'>
                   <HeaderNavigation />
                 </Col>
               </Row>
