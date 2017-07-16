@@ -26,6 +26,10 @@ import {
   FormControl
 } from '@sketchpixy/rubix';
 
+import {
+  SearchBox
+} from 'searchkit'
+
 class Brand extends React.Component {
   render() {
     return (
@@ -39,7 +43,6 @@ class Brand extends React.Component {
     );
   }
 }
-
 @withRouter
 class HeaderNavigation extends React.Component {
   render() {
@@ -47,7 +50,7 @@ class HeaderNavigation extends React.Component {
       <Nav pullRight>
         <Nav className='hidden-xs'>
           <NavItem>
-            <div className="input-group" >
+            {/* <div className="input-group" >
               <input className="form-control" placeholder="Search" />
               <div className="input-group-addon plain" style={{ width: '35%' }}>
                 <button role="button" className="btn btn-default" type="button">
@@ -55,7 +58,8 @@ class HeaderNavigation extends React.Component {
                   <Icon bundle='fontello' glyph='search' />
                 </button>
               </div>
-            </div>
+            </div> */}
+            <SearchBox placeholder="Search" autofocus={true} searchOnChange={true} prefixQueryFields={["actors^1", "type^2", "languages", "title^10"]} />
           </NavItem>
           <NavItem className='hidden-xs'>
             <Icon bundle='fontello' glyph='star-1' />
@@ -138,6 +142,7 @@ class ProfileMenu extends React.Component {
 export default class Header extends React.Component {
   render() {
     return (
+
       <Grid id='navbar' {...this.props}>
         <Row>
           <Col md={12} sm={12} xs={12}>

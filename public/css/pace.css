@@ -236,3 +236,20 @@ body.pace-small .pace .pace-progress {
   -o-transition: width 1s;
   transition: width 1s;
 }
+
+.sk-search-box {
+      display: block;
+    width: 100%;
+    font-size: 14px;
+    line-height: 1.78571;
+    background-image: none;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    color: #444;
+    height: 30px;
+    padding: 0 12px;
+    box-shadow: none !important;
+    border-width: 2px;
+    letter-spacing: 0.5px;
+    border-radius: 0 !important;
+}
+
