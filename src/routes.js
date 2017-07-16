@@ -17,21 +17,30 @@ import Report from './routes/Report';
 import Report2 from './routes/Report2';
 import List from './routes/usermanagement/List';
 
+import { extend } from 'lodash'
+import { SearchkitManager, SearchkitProvider} from 'searchkit'
+
+const host = "http://demo.searchkit.co/api/movies"
+const searchkit = new SearchkitManager(host)
+
 class App extends React.Component {
   render() {
     return (
-      <MainContainer {...this.props}>
-        {/*<Sidebar />*/}
-        <Header />
-        <div id='body'>
-          <Grid>
-            <Row>
-              {this.props.children}
-            </Row>
-          </Grid>
-        </div>
-        {/*<Footer />*/}
-      </MainContainer>
+      <SearchkitProvider searchkit={searchkit}>
+        <MainContainer {...this.props}>
+          {/*<Sidebar />*/}
+          <Header />
+          <div id='body'>
+            <Grid>
+              <Row>
+                {this.props.children}
+              </Row>
+            </Grid>
+          </div>
+          {/*<Footer />*/}
+        </MainContainer>
+      </SearchkitProvider>
+
     );
   }
 }
