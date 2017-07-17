@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link, withRouter } from 'react-router';
 
 import actions from '../redux/actions';
 
@@ -28,7 +29,8 @@ const reports = [{
     publisher: "Channel News Asia",
     link: "http://www.channelnewsasia.com/news/singapore/singapore-s-smart-nation-vision-enters-build-phase-focus-on-infr-8281958",
     content: '"Building the world\'s first Smart Nation is only the beginning of the next phase of Singapore\'s development in information and communications technology," says Minister for Communications and Information Yaacob Ibrahim. SINGAPORE: The Republic\'s Smart Nation vision has entered its "build" phase, which will focus on the infrastructure and services that will serve as the framework for future development. Minister for Communications and Information Yaacob Ibrahim announced this as part of his keynote speech at the Infocomm Media Business Exchange (imbX) opening ceremony on Tuesday (Jun 2). He fleshed out how the Infocomm Media Masterplan - under which the private and public sector cooperates to exploit converging areas in the infocomm and media sectors - will put in place the necessary infrastructure, and touched on three areas of focus: Smart Logistics, Smart Nation Tech Challenges and Smart Health-Assist. Smart Logistics leverage technologies such as the Internet of Things to provide near real-time actionable visibility and improve decision-making capabilities for businesses large and small. "With the intelligence of our devices and the visual images from the camera, we can tell that a machine has broken down, whether due to temperature or vibrations, and maybe that there\'s a fire," said Mr Terry Teh, director Advinno Technologies.',
-    date: '02 Jun 2015 11:12AM'
+    date: '02 Jun 2015 11:12AM',
+    tags: ['Singapore', 'Yaacob Ibrahim']
 }];
 
 @connect((state) => state)
@@ -42,13 +44,13 @@ class Report2 extends React.Component {
         // console.log(this.props.reports);
         return this.props.reports.map((report, index) => {
             return (
-                <Grid key={index}>
-                    <Row>
-                        <Col sm={12}>
-                            <PanelContainer>
-                                <Panel>
-                                    <PanelBody>
-                                        <h3 className='fg-black50' style={{ margin: 25, marginTop: 0 }}>{report.title}</h3>
+                <PanelContainer>
+                    <Panel>
+                        <PanelBody>
+                            <Grid>
+                                <Row>
+                                    <Col xs={12}>
+                                        <h3 className='fg-black50' style={{ marginTop: 0 }}>{report.title}</h3>
                                         <Grid>
                                             <Row>
                                                 <Col xs={6} collapseLeft collapseRight>
@@ -63,35 +65,35 @@ class Report2 extends React.Component {
                                                 </Col>
                                             </Row>
                                         </Grid>
-                                        {report.content}
-                                    </PanelBody>
-                                    <hr style={{ margin: '0' }} />
+                                        <p style={{ marginTop: 25 }}>{report.content}</p>
+                                    </Col>
+                                </Row>
+                            </Grid>
+                        </PanelBody>
+                        <hr style={{ margin: '0' }} />
 
-                                    <PanelFooter>
-                                        <Grid>
-                                            <Row>
-                                                <Col xs={4} style={{ paddingTop: 12.5, paddingBottom: 12.5 }}>
-                                                    <div><small><Icon glyph='icon-ikons-hashtag' style={{ position: 'relative', top: 1 }} /> ENTERTAINMENT</small></div>
-                                                </Col>
-                                                <Col xs={8} className='text-right' style={{ paddingTop: 12.5, paddingBottom: 12.5 }}>
-                                                    <div style={{ display: 'inline-block', marginLeft: 25 }}>
-                                                        <Icon style={{ position: 'relative', lineHeight: 0, top: 2 }} glyph='icon-ikons-speech-3' />
-                                                    </div>{' '}
-                                                    <div style={{ display: 'inline-block', marginLeft: 25 }}>
-                                                        <Icon style={{ position: 'relative', lineHeight: 0 }} glyph='icon-fontello-share' />
-                                                    </div>
-                                                    <div className='fg-pink' style={{ display: 'inline-block', marginLeft: 25 }}>
-                                                        <Icon style={{ position: 'relative', lineHeight: 0, top: 2 }} glyph='icon-ikons-heart' /><span> 0</span>
-                                                    </div>
-                                                </Col>
-                                            </Row>
-                                        </Grid>
-                                    </PanelFooter>
-                                </Panel>
-                            </PanelContainer>
-                        </Col>
-                    </Row>
-                </Grid>
+                        <PanelFooter>
+                            <Grid>
+                                <Row>
+                                    <Col xs={4} style={{ paddingTop: 12.5, paddingBottom: 12.5 }}>
+                                        <div><small><Icon glyph='icon-ikons-hashtag' style={{ position: 'relative', top: 1 }} /> ENTERTAINMENT</small></div>
+                                    </Col>
+                                    <Col xs={8} className='text-right' style={{ paddingTop: 12.5, paddingBottom: 12.5 }}>
+                                        <div style={{ display: 'inline-block', marginLeft: 25 }}>
+                                            <Icon style={{ position: 'relative', lineHeight: 0, top: 2 }} glyph='icon-ikons-speech-3' />
+                                        </div>{' '}
+                                        <div style={{ display: 'inline-block', marginLeft: 25 }}>
+                                            <Icon style={{ position: 'relative', lineHeight: 0 }} glyph='icon-fontello-share' />
+                                        </div>
+                                        <div className='fg-pink' style={{ display: 'inline-block', marginLeft: 25 }}>
+                                            <Icon style={{ position: 'relative', lineHeight: 0, top: 2 }} glyph='icon-ikons-heart' /><span> 0</span>
+                                        </div>
+                                    </Col>
+                                </Row>
+                            </Grid>
+                        </PanelFooter>
+                    </Panel>
+                </PanelContainer>
             )
         })
     };
@@ -132,7 +134,6 @@ class Report2 extends React.Component {
                                                 </PanelRight>
                                             </Panel>
                                         </PanelContainer>
-
                                         <PanelContainer controls={false}>
                                             <PanelBody style={{ paddingBottom: 25, verticalAlign: 'middle', display: 'block' }}>
                                                 <div className='text-center'>
@@ -146,6 +147,68 @@ class Report2 extends React.Component {
                                                         <Icon glyph='icon-fontello-print' />
                                                     </Button>
                                                 </div>
+                                            </PanelBody>
+                                        </PanelContainer>
+
+                                        <PanelContainer controls={false}>
+                                            <PanelBody style={{ paddingBottom: 12.5 }}>
+                                                <Grid>
+                                                    <Row>
+                                                        <Col xs={12} className='text-center'>
+                                                            <div className='text-left'>
+                                                                <div className='text-uppercase blog-sidebar-heading'>
+                                                                    <small>Related Reports</small>
+                                                                </div>
+                                                                <div style={{ marginBottom: 12.5 }}>
+                                                                    <Link to='#'>
+                                                                        <LoremIpsum className='text-capitalize' query='3w' />. <LoremIpsum className='text-capitalize' query='2w' />
+                                                                    </Link>
+                                                                    <div><small className='fg-darkgray50'><em>2 minutes ago</em> - <span className='fg-lightgreen'>Jordyn Ouellet</span></small></div>
+                                                                </div>
+                                                                <div style={{ marginBottom: 12.5 }}>
+                                                                    <Link to='#'>
+                                                                        <LoremIpsum className='text-capitalize' query='3w' />
+                                                                    </Link>
+                                                                    <div><small className='fg-darkgray50'><em>5 hours ago</em> - <span className='fg-lightgreen'>Toby King</span></small></div>
+                                                                </div>
+                                                                <div style={{ marginBottom: 12.5 }}>
+                                                                    <Link to='#'>
+                                                                        <LoremIpsum className='text-capitalize' query='3w' />
+                                                                    </Link>
+                                                                    <div><small className='fg-darkgray50'><em>3 days ago</em> - <span className='fg-lightgreen'>Angelina Mills</span></small></div>
+                                                                </div>
+                                                                <div>
+                                                                    <Link to='#'>
+                                                                        <LoremIpsum className='text-capitalize' query='3w' />
+                                                                    </Link>
+                                                                    <div><small className='fg-darkgray50'><em>4 months ago</em> - <span className='fg-lightgreen'>Anna Sanchez</span></small></div>
+                                                                </div>
+                                                            </div>
+                                                        </Col>
+                                                    </Row>
+                                                </Grid>
+                                                <hr />
+                                                <Grid>
+                                                    <Row>
+                                                        <Col xs={12} className='text-center'>
+                                                            <div className='text-uppercase text-left blog-sidebar-heading'>
+                                                                <small>Tags</small>
+                                                            </div>
+                                                            <Tag>web</Tag>{' '}
+                                                            <Tag>travel</Tag>{' '}
+                                                            <Tag>w3c</Tag>{' '}
+                                                            <Tag>semantic</Tag>{' '}
+                                                            <Tag>mac</Tag>{' '}
+                                                            <Tag>music</Tag>{' '}
+                                                            <Tag>html</Tag>{' '}
+                                                            <Tag>javascript</Tag>{' '}
+                                                            <Tag>css3</Tag>{' '}
+                                                            <Tag>nodejs</Tag>{' '}
+                                                            <Tag>linux</Tag>{' '}
+                                                            <Tag>reactjs</Tag>{' '}
+                                                        </Col>
+                                                    </Row>
+                                                </Grid>
                                             </PanelBody>
                                         </PanelContainer>
                                     </Col>
