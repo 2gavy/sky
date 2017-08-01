@@ -9,4 +9,4 @@ EXPOSE 8080 8079
 
 WORKDIR "/app"
 
-CMD npm run dev -s
+CMD npm run prod
