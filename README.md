@@ -1,4 +1,4 @@
-## If you are using Visual Studio Code
+## If you are using Visual Studio Code ok
 1. Open New Window
 2. At Home page > Start > Clone Git repository
 3. Enter URL (https://github.com/2gavy/sky)
