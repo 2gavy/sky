@@ -101,25 +101,22 @@ class TopicNavigation extends React.Component {
   }
 }
 
+@withRouter
 class ProfileMenu extends React.Component {
   render() {
     const bullhornIcon = (
       <span>
         <Icon bundle='fontello' glyph='user-female' />
-        <Badge className='fg-darkbrown bg-orange notification-badge'>3</Badge>
+        <Badge className='fg-darkbrown bg-orange notification-badge'></Badge>
       </span>
     );
     return (
       <NavDropdownHover noCaret eventKey={3} title={bullhornIcon} id='notifications-menu' className='header-menu'>
-        <MenuItem href='#'>
-          <div className='message-header'>
-            <strong className='fg-darkgreen45'>Edit Profile</strong>
-          </div>
+        <MenuItem>
+          Edit Profile
         </MenuItem>
         <MenuItem>
-          <div className='message-header'>
-            <strong className='fg-darkgreen45'>Edit Feed Preference</strong>
-          </div>
+          Edit Feed Preference
             {/* <Row>
               <Col xs={2} className='avatar-container' collapseRight>
                 <div><img src='/imgs/app/avatars/avatar22.png' width='40' height='40' alt='sarah_patchett' /></div>
@@ -141,15 +138,13 @@ class ProfileMenu extends React.Component {
             </Row> */}
 
         </MenuItem>
-        <MenuItem href='/usermanagement/List'>
-          <div className='message-header'>
-            <strong className='fg-darkgreen45'>Admin</strong>
-          </div>
+        
+        <MenuItem onClick={() => {this.props.router.push("/usermanagement/list") }}>
+          Admin
         </MenuItem>
-        <MenuItem href='#'>
-          <div className='message-header'>
-            <strong className='fg-darkgreen45'>Log Out</strong>
-          </div>
+        
+        <MenuItem>
+            Log Out
         </MenuItem>
       </NavDropdownHover>
     );

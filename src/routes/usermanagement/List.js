@@ -15,11 +15,13 @@ import {
 
 
  const users = [{
-    name: 'ong ting wei1',
+    profilePic: '/imgs/app/avatars/avatar16.png',
+    name: 'ong ting wei',
     department: 'IT',
     accessRights: ['admin','read','write'],
     isUserRemoved: false,
   }, {
+    profilePic: '/imgs/app/avatars/avatar22.png',
     name: 'ong ting wei',
     department: 'IT',
     accessRights: ['admin','read','write'],
@@ -38,6 +40,7 @@ export default class Home extends React.Component {
     return (
         <tr>
           <th>#</th>
+          <th>Profile Picture</th>
           <th>User Name</th>
           <th>Department</th>
           <th>Access Rights</th>
@@ -51,6 +54,7 @@ export default class Home extends React.Component {
       return (
         <tr key={idx}>
           <td>{idx+1}</td>
+          <td><img src={user.profilePic} width='40' height='40'/></td>
           <td>{user.name}</td>
           <td>{user.department}</td>
           <td>{user.accessRights.join(', ')}</td>
