@@ -112,8 +112,15 @@ class ProfileMenu extends React.Component {
     return (
       <NavDropdownHover noCaret eventKey={3} title={bullhornIcon} id='notifications-menu' className='header-menu'>
         <MenuItem href='#'>
-          <Grid>
-            <Row>
+          <div className='message-header'>
+            <strong className='fg-darkgreen45'>Edit Profile</strong>
+          </div>
+        </MenuItem>
+        <MenuItem>
+          <div className='message-header'>
+            <strong className='fg-darkgreen45'>Edit Feed Preference</strong>
+          </div>
+            {/* <Row>
               <Col xs={2} className='avatar-container' collapseRight>
                 <div><img src='/imgs/app/avatars/avatar22.png' width='40' height='40' alt='sarah_patchett' /></div>
                 <div className='text-center'>
@@ -131,8 +138,18 @@ class ProfileMenu extends React.Component {
                   <span>{"Hey Anna! Sorry for delayed response. I've just finished reading the mail you sent couple of days ago..."}</span>
                 </div>
               </Col>
-            </Row>
-          </Grid>
+            </Row> */}
+
+        </MenuItem>
+        <MenuItem href='/usermanagement/List'>
+          <div className='message-header'>
+            <strong className='fg-darkgreen45'>Admin</strong>
+          </div>
+        </MenuItem>
+        <MenuItem href='#'>
+          <div className='message-header'>
+            <strong className='fg-darkgreen45'>Log Out</strong>
+          </div>
         </MenuItem>
       </NavDropdownHover>
     );
