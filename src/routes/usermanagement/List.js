@@ -70,7 +70,7 @@ export default class Home extends React.Component {
           <Col xs={1} sm={1} md={1}>
           </Col>
           <Col xs={10} sm={10} md={10}>
-            <PanelContainer>
+            <PanelContainer controls={false}>
               <Panel>
                 <PanelBody>
                   <Table responsive>
