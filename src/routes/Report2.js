@@ -76,7 +76,8 @@ class Report2 extends React.Component {
                             <Grid>
                                 <Row>
                                     <Col xs={4} style={{ paddingTop: 12.5, paddingBottom: 12.5 }}>
-                                        <div><small><Icon glyph='icon-ikons-hashtag' style={{ position: 'relative', top: 1 }} /> ENTERTAINMENT</small></div>
+                                        {/* Commented away hashtag */}
+                                        {/* <div><small><Icon glyph='icon-ikons-hashtag' style={{ position: 'relative', top: 1 }} /> ENTERTAINMENT</small></div> */}
                                     </Col>
                                     <Col xs={8} className='text-right' style={{ paddingTop: 12.5, paddingBottom: 12.5 }}>
                                         <div style={{ display: 'inline-block', marginLeft: 25 }}>
@@ -114,26 +115,28 @@ class Report2 extends React.Component {
                             <Grid>
                                 <Row>
                                     <Col xs={12} collapseRight>
-                                        <PanelContainer controls={false}>
+                                        {/* Comment away Pikachu */}
+                                        {/* <PanelContainer controls={false}>
                                             <Panel horizontal>
+
                                                 <PanelLeft style={{ verticalAlign: 'middle' }}>
-                                                    <Grid>
+                                                      <Grid>
                                                         <Row>
                                                             <Col xs={12}>
                                                                 <div>
                                                                     <div style={{ paddingTop: 12.5, paddingBottom: 12.5 }}>
-                                                                        {"Hi! My name is Pikachu and I can chuuuuu!"}
+                                                                        {"Hi! My name is Pikachu."}
                                                                     </div>
                                                                 </div>
                                                             </Col>
                                                         </Row>
-                                                    </Grid>
+                                                    </Grid> 
                                                 </PanelLeft>
                                                 <PanelRight className='bg-orange' style={{ verticalAlign: 'middle', padding: 12.5, width: 80 }}>
                                                     <div className='text-center'><Image src='/imgs/app/avatars/avatar12.png' width='40' height='40' style={{ borderRadius: 100 }} /></div>
                                                 </PanelRight>
-                                            </Panel>
-                                        </PanelContainer>
+                                            </Panel> 
+                                        </PanelContainer>*/}
                                         <PanelContainer controls={false}>
                                             <PanelBody style={{ paddingBottom: 25, verticalAlign: 'middle', display: 'block' }}>
                                                 <div className='text-center'>
@@ -149,10 +152,11 @@ class Report2 extends React.Component {
                                                 </div>
                                             </PanelBody>
                                         </PanelContainer>
+                                        {/* Comment away related reports */}
 
                                         <PanelContainer controls={false}>
                                             <PanelBody style={{ paddingBottom: 12.5 }}>
-                                                <Grid>
+                                                {/* <Grid>
                                                     <Row>
                                                         <Col xs={12} className='text-center'>
                                                             <div className='text-left'>
@@ -186,8 +190,8 @@ class Report2 extends React.Component {
                                                             </div>
                                                         </Col>
                                                     </Row>
-                                                </Grid>
-                                                <hr />
+                                                </Grid> 
+                                                <hr /> */}
                                                 <Grid>
                                                     <Row>
                                                         <Col xs={12} className='text-center'>
