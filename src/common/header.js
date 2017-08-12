@@ -112,7 +112,7 @@ class ProfileMenu extends React.Component {
     );
     return (
       <NavDropdownHover noCaret eventKey={3} title={bullhornIcon} id='notifications-menu' className='header-menu'>
-        <MenuItem>
+        <MenuItem onClick={() => {this.props.router.push("/usermanagement/profile") }}>
           Edit Profile
         </MenuItem>
         <MenuItem>

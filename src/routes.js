@@ -16,6 +16,7 @@ import Home2 from './routes/Home2';
 import Report from './routes/Report';
 import Report2 from './routes/Report2';
 import List from './routes/usermanagement/List';
+import Profile from './routes/usermanagement/Profile';
 
 import { extend } from 'lodash'
 import { SearchkitManager, SearchkitProvider} from 'searchkit'
@@ -52,6 +53,7 @@ const routes = (
     <Route path='/report' component={Report} />
     <Route path='/report2' component={Report2} />
     <Route path='/usermanagement/list' component={List} />
+    <Route path='/usermanagement/profile' component={Profile} />
   </Route>
 );
 
