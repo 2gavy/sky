@@ -17,5 +17,5 @@ function* loginUserRequestAsync(action) {
 }
 
 export default function*() {
-    yield takeLatest(Types.LOGIN_USER_REQUESTED, loginUserRequestAsync)
+    yield takeLatest(Types.LOGIN_USER_REQUESTED, loginUserRequestAsync);
 }
