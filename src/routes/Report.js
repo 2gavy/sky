@@ -46,6 +46,10 @@ class Report extends React.Component {
         axios.get('http://35.198.208.48:8001/api/reports/' + this.props.params.reportid)
             .then((result) => {
                 const report = result.data;
+                console.log(report);
+                if (!report){
+                    this.props.router.push('/404');
+                }
                 this.setState(report);
             })
     }
