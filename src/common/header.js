@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 
@@ -138,11 +139,11 @@ class ProfileMenu extends React.Component {
             </Row> */}
 
         </MenuItem>
-        
+
         <MenuItem onClick={() => {this.props.router.push("/usermanagement/list") }}>
           Admin
         </MenuItem>
-        
+
         <MenuItem>
             Log Out
         </MenuItem>
@@ -151,11 +152,11 @@ class ProfileMenu extends React.Component {
   }
 }
 
-export default class Header extends React.Component {
+class Header extends React.Component {
   render() {
     return (
 
-      <Grid id='navbar' {...this.props}>
+      <Grid id='navbar' {...this.props.ownProps}>
         <Row>
           <Col md={12} sm={12} xs={12}>
             <Navbar fixedTop fluid id='rubix-nav-header'>
@@ -167,6 +168,9 @@ export default class Header extends React.Component {
                   <TopicNavigation />
                 </Col>
                 <Col md={6} sm={7} xs={3} collapseRight className='text-right'>
+                    {  !!this.props.loginUser.username &&
+                      <span>Welcome, {this.props.loginUser.username} </span>
+                    }
                   <HeaderNavigation />
                 </Col>
               </Row>
@@ -177,3 +181,20 @@ export default class Header extends React.Component {
     );
   }
 }
+
+const mapStateToProps = (state, ownProps) => {
+    return {
+        loginUser: state.users.loginUser,
+        ownProps: ownProps,
+    };
+};
+
+const mapDispatchToProps = () => {
+    return {
+    };
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Header);

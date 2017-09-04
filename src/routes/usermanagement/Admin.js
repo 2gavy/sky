@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import actions from '../../redux/actions';
+import * as actions from '../../redux/actions';
 
 import {
   Row,
@@ -28,13 +28,12 @@ import {
     isUserRemoved: false,
   }];
 
-@connect((state) => state)
-export default class Home extends React.Component {
+class Admin extends React.Component {
   static fetchData(store) {
     return store.dispatch(actions.getUsers(users));
   }
 
- 
+
 
   renderHeader = () => {
     return (
@@ -61,7 +60,7 @@ export default class Home extends React.Component {
         </tr>
       )
     })
-  }; 
+  };
 
   render() {
     return (
@@ -78,7 +77,7 @@ export default class Home extends React.Component {
                       {this.renderHeader()}
                     </thead>
                     <tbody>
-                      {this.renderBody()}           
+                      {this.renderBody()}
                     </tbody>
                   </Table>
                 </PanelBody>
@@ -92,3 +91,20 @@ export default class Home extends React.Component {
     );
   }
 }
+
+
+const mapStateToProps = (state) => {
+    return {
+        users: state.users.profiles,
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Admin);

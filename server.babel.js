@@ -4,13 +4,14 @@ import compression from 'compression';
 import cookieParser from 'cookie-parser';
 
 import graphQLHTTP from 'express-graphql';
-
+import createSagaMiddleware from 'redux-saga'
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-
 import routes from './src/routes';
 import {
   setupReducers,
+  applyMiddleware,
+  replaceReducers,
   renderHTMLString,
 } from '@sketchpixy/rubix/lib/node/redux-router';
 import RubixAssetMiddleware from '@sketchpixy/rubix/lib/node/RubixAssetMiddleware';
@@ -18,7 +19,12 @@ import RubixAssetMiddleware from '@sketchpixy/rubix/lib/node/RubixAssetMiddlewar
 import schema from './data/schema.js';
 
 import reducers from './src/redux/reducers';
+import sagas from './src/redux/sagas';
+// create the saga middleware
+const sagaMiddleware = createSagaMiddleware()
+
 setupReducers(reducers);
+applyMiddleware(sagaMiddleware);
 
 const port = process.env.PORT || 8080;
 
@@ -46,6 +52,7 @@ function renderHTML(req, res) {
       });
     }
   });
+  sagaMiddleware.run(sagas);
 }
 
 app.use('/graphql', graphQLHTTP({

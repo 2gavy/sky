@@ -1,10 +1,10 @@
 import greetings from './greetings';
-import users from './users';
+import * as users from './users';
 import reports from './reports';
 import profile from './profile';
 
 module.exports = {
-  ...greetings, 
+  ...greetings,
   ...users,
   ...reports,
   ...profile
