@@ -3,7 +3,7 @@ import users from './users';
 import reports from './reports';
 
 module.exports = {
-  ...greetings,
-  ...users,
-  ...reports
+  greeting: greetings,
+  users: users,
+  reports: reports
 };

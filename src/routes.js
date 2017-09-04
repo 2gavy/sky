@@ -13,7 +13,7 @@ import Footer from './common/footer';
 /* Pages */
 import Home from './routes/Home';
 import Report from './routes/Report';
-import List from './routes/usermanagement/List';
+import Admin from './routes/usermanagement/Admin';
 import Profile from './routes/usermanagement/Profile';
 
 import { extend } from 'lodash'
@@ -49,7 +49,7 @@ const routes = (
     <IndexRoute component={Home} />
     <Route path='/report/:reportid' component={Report} />
     <Redirect from="/report" to="/" />
-    <Route path='/usermanagement/list' component={List} />
+    <Route path='/usermanagement/list' component={Admin} />
     <Route path='/usermanagement/profile' component={Profile} />
   </Route>
 );

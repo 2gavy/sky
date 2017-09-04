@@ -8,7 +8,4 @@ module.exports = {
   ...users, //GET_USERS: 'GET_USERS',
   ...reports, //GET_REPORTS: 'GET_REPORTS',
   ...profile //GET_PROFILE: 'GET_PROFILE',
-
 };
-
-

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import actions from '../../redux/actions';
+import * as Actions from '../../redux/actions';
 
 import {
   Row,
@@ -10,7 +10,8 @@ import {
   Panel,
   PanelBody,
   PanelContainer,
-  Table
+  Table,
+  Button,
 } from '@sketchpixy/rubix';
 
 
@@ -22,13 +23,11 @@ import {
     isUserRemoved: false,
   }];
 
-@connect((state) => state)
-export default class Home extends React.Component {
+// @connect((state) => state)
+class Profile extends React.Component {
   static fetchData(store) {
-    return store.dispatch(actions.getUsers(profile));
+    return store.dispatch(Actions.getUsers(profile));
   }
-
- 
 
   renderHeader = () => {
     return (
@@ -55,7 +54,7 @@ export default class Home extends React.Component {
         </tr>
       )
     })
-  }; 
+  };
 
   render() {
     return (
@@ -72,7 +71,7 @@ export default class Home extends React.Component {
                       {this.renderHeader()}
                     </thead>
                     <tbody>
-                      {this.renderBody()}           
+                      {this.renderBody()}
                     </tbody>
                   </Table>
                 </PanelBody>
@@ -82,7 +81,30 @@ export default class Home extends React.Component {
           <Col xs={1} sm={1} md={1}>
           </Col>
         </Row>
+        <Button bsStyle="primary" onClick={this.props.loginTest}>Test Dispatch</Button>
       </Grid>
     );
   }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        users: state.users.profiles,
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        loginTest: () => {
+            dispatch(Actions.loginUserRequest({
+                username: 'user01',
+                password: 'password01',
+            }));
+        },
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Profile);
