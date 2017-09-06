@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import * as actions from '../../redux/actions';
+import map from 'lodash/map';
 
 import {
   Row,
@@ -14,26 +15,24 @@ import {
 } from '@sketchpixy/rubix';
 
 
- const users = [{
-    profilePic: '/imgs/app/avatars/avatar16.png',
-    name: 'ong ting wei',
-    department: 'IT',
-    accessRights: ['admin','read','write'],
-    isUserRemoved: false,
-  }, {
-    profilePic: '/imgs/app/avatars/avatar22.png',
-    name: 'ong ting wei',
-    department: 'IT',
-    accessRights: ['admin','read','write'],
-    isUserRemoved: false,
-  }];
-
 class Admin extends React.Component {
-  static fetchData(store) {
-    return store.dispatch(actions.getUsers(users));
+
+  state = {
+    isEditable: false,
+    users: {},
   }
 
+  componentWillMount = () => {
+    this.props.getUsers();
+  }
 
+  componentWillReceiveProps = (nextProps) => {
+    if(this.props.users !== nextProps.users) {
+      this.setState({
+        users: nextProps.users
+      })
+    }
+  }
 
   renderHeader = () => {
     return (
@@ -43,20 +42,54 @@ class Admin extends React.Component {
           <th>User Name</th>
           <th>Department</th>
           <th>Access Rights</th>
+          <th></th>
         </tr>
       )
   };
 
+  handleChange = (id, key) => (evt) => {
+    const newUsers = {
+      ...this.state.users,
+      [id]: {
+        ...this.state.users[id],
+        [key]: evt.target.value
+      }
+    }
+    this.setState({users: newUsers});
+  }
+
+  renderEditableRow = (id, key) => {
+    return (
+      <input 
+        type="text" 
+        className="adminInput"
+        onChange={this.handleChange(id, key)} 
+        value={this.state.users[id][key]}
+      />
+    )
+  }
+
+  handleSave = () => {
+    this.props.updateUsers(this.state.users);
+    this.setState({isEditable: false})
+  }
+
   renderBody = () => {
-    console.log(this.props.users);
-    return this.props.users.map((user, idx) => {
+    return map(this.props.users, (user, id) => {
       return (
-        <tr key={idx}>
-          <td>{idx+1}</td>
+        <tr key={id}>
+          <td>{id}</td>
           <td><img src={user.profilePic} width='40' height='40'/></td>
-          <td>{user.name}</td>
-          <td>{user.department}</td>
+          <td>{this.state.isEditable ? this.renderEditableRow(id, 'name') : user.name}</td>
+          <td>{this.state.isEditable ? this.renderEditableRow(id, 'department') : user.department}</td>
           <td>{user.accessRights.join(', ')}</td>
+          <td className="adminAction">
+            {this.state.isEditable ? null : <a onClick={() => this.setState({isEditable: true})}>edit</a>}
+            {this.state.isEditable ? null : <a href="/delete">delete</a> }
+            
+            {this.state.isEditable ? <a onClick={this.handleSave}>save</a> : null}
+            {this.state.isEditable ? <a onClick={() => this.setState({isEditable: false})}>cancel</a> : null}
+          </td>
         </tr>
       )
     })
@@ -99,12 +132,9 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-    }
+const mapDispatchToProps = {
+  getUsers: actions.getUsers,
+  updateUsers: actions.updateUsers
 }
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Admin);
+export default connect(mapStateToProps,mapDispatchToProps)(Admin);
