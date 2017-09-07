@@ -7,7 +7,7 @@ import axios from 'axios';
 import {
     ShareButtons,
     generateShareIcon,
-  } from 'react-share';
+} from 'react-share';
 
 import {
     Tag,
@@ -29,7 +29,7 @@ import {
     PanelContainer,
 } from '@sketchpixy/rubix';
 
-<<<<<<< HEAD
+
 var report = {
     title: "Trump to North Korea: 'Be very, very nervous'",
     publisher: "Channel News Asia",
@@ -51,28 +51,18 @@ const TwitterIcon = generateShareIcon('twitter');
 const TelegramIcon = generateShareIcon('telegram');
 const WhatsappIcon = generateShareIcon('whatsapp');
 
-=======
->>>>>>> 54ba2a7fae023542118e042e33546bb7e4cf7990
 @connect((state) => state)
 class Report extends React.Component {
     constructor(props) {
         super(props);
-<<<<<<< HEAD
-        this.state = {isToggleOn: true};
+        
 
-           // This binding is necessary to make `this` work in the callback
-           this.handleClick = this.handleClick.bind(this);
-           this.handleHover = this.handleHover.bind(this);
+        // This binding is necessary to make `this` work in the callback
+        this.handleClick = this.handleClick.bind(this);
+        this.handleHover = this.handleHover.bind(this);
 
-           this.handleLoginClick = this.handleLoginClick.bind(this);
-           this.state = {isLoggedIn: true};
+        this.handleLoginClick = this.handleLoginClick.bind(this);
 
-           this.state = {
-                title: "",
-                body: "",
-                entities: ""
-            }    
-=======
         this.state = {
             docid: "",
             title: "",
@@ -81,26 +71,25 @@ class Report extends React.Component {
             body: "",
             entities: ""
         }
->>>>>>> 54ba2a7fae023542118e042e33546bb7e4cf7990
+
     }
-    
+
     handleLoginClick() {
-        this.setState({isLoggedIn: true});
-      }
-    
-      handleLogoutClick() {
-        this.setState({isLoggedIn: false});
-      }
+        this.setState({ isLoggedIn: true });
+    }
+
+    handleLogoutClick() {
+        this.setState({ isLoggedIn: false });
+    }
 
     componentDidMount() {
-        if (!this.props.params.reportid){
+        if (!this.props.params.reportid) {
             return
         }
         axios.get('http://35.198.208.48:8001/api/reports/' + this.props.params.reportid)
             .then((result) => {
                 const report = result.data;
-                console.log(report);
-                if (!report){
+                if (!report) {
                     this.props.router.push('/404');
                 }
                 this.setState(report);
@@ -109,23 +98,23 @@ class Report extends React.Component {
 
     handleClick() {
         this.setState(prevState => ({
-          isToggleOn: !prevState.isToggleOn
-          
-          
+            isToggleOn: !prevState.isToggleOn
+
+
         }));
     }
 
 
     handleHover() {
         this.setState(prevState => ({
-          isToggleOn: !prevState.isToggleOn
-          
-          
+            isToggleOn: !prevState.isToggleOn
+
+
         }));
     }
 
-  
-   
+
+
 
     render() {
         const shareUrl = report.link;
@@ -143,40 +132,40 @@ class Report extends React.Component {
 
         if (isLoggedIn) {
             <Flexbox flexDirection="row" justifyContent="center" minHeight="3vh">
-            <FacebookShareButton
-            url={shareUrl}
-            quote={title}
-            className="Demo__some-network__share-button">
-            <FacebookIcon
-            size={32}
-            round />
-            </FacebookShareButton>
+                <FacebookShareButton
+                    url={shareUrl}
+                    quote={title}
+                    className="Demo__some-network__share-button">
+                    <FacebookIcon
+                        size={32}
+                        round />
+                </FacebookShareButton>
 
-            <TwitterShareButton
-                url={shareUrl}
-                title={title}
-                className="Demo__some-network__share-button">
-                <TwitterIcon
-                size={32}
-                round />
-            </TwitterShareButton>
-            
-            <TelegramShareButton
-                url={shareUrl}
-                title={title}
-                className="Demo__some-network__share-button">
-                <TelegramIcon size={32} round />
-            </TelegramShareButton>
-        
-            <WhatsappShareButton
-                url={shareUrl}
-                title={title}
-                separator=":: "
-                className="Demo__some-network__share-button">
-                <WhatsappIcon size={32} round />
-            </WhatsappShareButton>
-        </Flexbox>
-          }
+                <TwitterShareButton
+                    url={shareUrl}
+                    title={title}
+                    className="Demo__some-network__share-button">
+                    <TwitterIcon
+                        size={32}
+                        round />
+                </TwitterShareButton>
+
+                <TelegramShareButton
+                    url={shareUrl}
+                    title={title}
+                    className="Demo__some-network__share-button">
+                    <TelegramIcon size={32} round />
+                </TelegramShareButton>
+
+                <WhatsappShareButton
+                    url={shareUrl}
+                    title={title}
+                    separator=":: "
+                    className="Demo__some-network__share-button">
+                    <WhatsappIcon size={32} round />
+                </WhatsappShareButton>
+            </Flexbox>
+        }
 
 
         return (
@@ -256,37 +245,37 @@ class Report extends React.Component {
                                                     </Button>{' '}
 
                                                     <button onClick={this.handleClick}>
-                                                    {this.state.isToggleOn ? 'ON' : 'OFF'}  
+                                                        {this.state.isToggleOn ? 'ON' : 'OFF'}
                                                     </button>
-                                            
-                                                 
-  
+
+
+
                                                     <Flexbox flexDirection="row" justifyContent="center" minHeight="3vh">
                                                         <FacebookShareButton
-                                                        url={shareUrl}
-                                                        quote={title}
-                                                        className="Demo__some-network__share-button">
-                                                        <FacebookIcon
-                                                        size={32}
-                                                        round />
+                                                            url={shareUrl}
+                                                            quote={title}
+                                                            className="Demo__some-network__share-button">
+                                                            <FacebookIcon
+                                                                size={32}
+                                                                round />
                                                         </FacebookShareButton>
-                 
+
                                                         <TwitterShareButton
                                                             url={shareUrl}
                                                             title={title}
                                                             className="Demo__some-network__share-button">
                                                             <TwitterIcon
-                                                            size={32}
-                                                            round />
+                                                                size={32}
+                                                                round />
                                                         </TwitterShareButton>
-                                                        
+
                                                         <TelegramShareButton
                                                             url={shareUrl}
                                                             title={title}
                                                             className="Demo__some-network__share-button">
                                                             <TelegramIcon size={32} round />
                                                         </TelegramShareButton>
-                                                    
+
                                                         <WhatsappShareButton
                                                             url={shareUrl}
                                                             title={title}
