@@ -1,9 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router';
-
+import Flexbox from 'flexbox-react';
 import actions from '../redux/actions';
 import axios from 'axios';
+import {
+    ShareButtons,
+    generateShareIcon,
+  } from 'react-share';
 
 import {
     Tag,
@@ -34,17 +38,46 @@ var report = {
     entities: ['Donald Trump', 'Mike Pence', 'Kim Rak-Gyom', 'Yang Moo-Jin']
 };
 
+const {
+    FacebookShareButton,
+    TwitterShareButton,
+    TelegramShareButton,
+    WhatsappShareButton,
+  } = ShareButtons;
+
+const FacebookIcon = generateShareIcon('facebook');
+const TwitterIcon = generateShareIcon('twitter');
+const TelegramIcon = generateShareIcon('telegram');
+const WhatsappIcon = generateShareIcon('whatsapp');
+
 @connect((state) => state)
 class Report extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            title: "",
-            body: "",
-            entities: ""
-        }
+        this.state = {isToggleOn: true};
+
+           // This binding is necessary to make `this` work in the callback
+           this.handleClick = this.handleClick.bind(this);
+           this.handleHover = this.handleHover.bind(this);
+
+           this.handleLoginClick = this.handleLoginClick.bind(this);
+           this.state = {isLoggedIn: true};
+
+           this.state = {
+                title: "",
+                body: "",
+                entities: ""
+            }    
     }
     
+    handleLoginClick() {
+        this.setState({isLoggedIn: true});
+      }
+    
+      handleLogoutClick() {
+        this.setState({isLoggedIn: false});
+      }
+
     componentDidMount() {
         if (!this.props.params.reportid){
             return
@@ -56,7 +89,31 @@ class Report extends React.Component {
             })
     }
 
+    handleClick() {
+        this.setState(prevState => ({
+          isToggleOn: !prevState.isToggleOn
+          
+          
+        }));
+    }
+
+
+    handleHover() {
+        this.setState(prevState => ({
+          isToggleOn: !prevState.isToggleOn
+          
+          
+        }));
+    }
+
+  
+   
+
     render() {
+        const shareUrl = report.link;
+        const title = report.title;
+        const isLoggedIn = this.state.isLoggedIn;
+
         var entities = [];
         if (this.state.entities.length == 0) {
             entities.push("None found");
@@ -65,6 +122,44 @@ class Report extends React.Component {
                 entities.push(<Tag key={i}>{this.state.entities[i]}</Tag>);
             }
         }
+
+        if (isLoggedIn) {
+            <Flexbox flexDirection="row" justifyContent="center" minHeight="3vh">
+            <FacebookShareButton
+            url={shareUrl}
+            quote={title}
+            className="Demo__some-network__share-button">
+            <FacebookIcon
+            size={32}
+            round />
+            </FacebookShareButton>
+
+            <TwitterShareButton
+                url={shareUrl}
+                title={title}
+                className="Demo__some-network__share-button">
+                <TwitterIcon
+                size={32}
+                round />
+            </TwitterShareButton>
+            
+            <TelegramShareButton
+                url={shareUrl}
+                title={title}
+                className="Demo__some-network__share-button">
+                <TelegramIcon size={32} round />
+            </TelegramShareButton>
+        
+            <WhatsappShareButton
+                url={shareUrl}
+                title={title}
+                separator=":: "
+                className="Demo__some-network__share-button">
+                <WhatsappIcon size={32} round />
+            </WhatsappShareButton>
+        </Flexbox>
+          }
+
 
         return (
             <Grid>
@@ -137,6 +232,55 @@ class Report extends React.Component {
                                                     <Button bsStyle='blue' className='btn-icon' onlyOnHover>
                                                         <Icon glyph='icon-fontello-link' />
                                                     </Button>{' '}
+
+                                                    <Button bsStyle='yellow' className='btn-icon' onlyOnHover onClick={this.handleClick} >
+                                                        <Icon glyph='icon-fontello-share' />
+                                                    </Button>{' '}
+
+                                                    <button onClick={this.handleClick}>
+                                                    {this.state.isToggleOn ? 'ON' : 'OFF'}  
+                                                    </button>
+                                            
+                                                 
+  
+                                                    <Flexbox flexDirection="row" justifyContent="center" minHeight="3vh">
+                                                        <FacebookShareButton
+                                                        url={shareUrl}
+                                                        quote={title}
+                                                        className="Demo__some-network__share-button">
+                                                        <FacebookIcon
+                                                        size={32}
+                                                        round />
+                                                        </FacebookShareButton>
+                 
+                                                        <TwitterShareButton
+                                                            url={shareUrl}
+                                                            title={title}
+                                                            className="Demo__some-network__share-button">
+                                                            <TwitterIcon
+                                                            size={32}
+                                                            round />
+                                                        </TwitterShareButton>
+                                                        
+                                                        <TelegramShareButton
+                                                            url={shareUrl}
+                                                            title={title}
+                                                            className="Demo__some-network__share-button">
+                                                            <TelegramIcon size={32} round />
+                                                        </TelegramShareButton>
+                                                    
+                                                        <WhatsappShareButton
+                                                            url={shareUrl}
+                                                            title={title}
+                                                            separator=":: "
+                                                            className="Demo__some-network__share-button">
+                                                            <WhatsappIcon size={32} round />
+                                                        </WhatsappShareButton>
+                                                    </Flexbox>
+
+
+
+
                                                     <Button bsStyle='red' className='btn-icon' onlyOnHover>
                                                         <Icon glyph='icon-fontello-docs' />
                                                     </Button>{' '}
