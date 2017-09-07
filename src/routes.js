@@ -15,6 +15,7 @@ import Home from './routes/Home';
 import Report from './routes/Report';
 import Admin from './routes/usermanagement/Admin';
 import Profile from './routes/usermanagement/Profile';
+import Generic404NotFound from './routes/404';
 
 import { extend } from 'lodash'
 import { SearchkitManager, SearchkitProvider} from 'searchkit'
@@ -51,6 +52,8 @@ const routes = (
     <Redirect from="/report" to="/" />
     <Route path='/usermanagement/list' component={Admin} />
     <Route path='/usermanagement/profile' component={Profile} />
+    <Route path='/404' component={Generic404NotFound} />
+    <Route path="*" component={Generic404NotFound} />
   </Route>
 );
 

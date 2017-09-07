@@ -29,6 +29,7 @@ import {
     PanelContainer,
 } from '@sketchpixy/rubix';
 
+<<<<<<< HEAD
 var report = {
     title: "Trump to North Korea: 'Be very, very nervous'",
     publisher: "Channel News Asia",
@@ -50,10 +51,13 @@ const TwitterIcon = generateShareIcon('twitter');
 const TelegramIcon = generateShareIcon('telegram');
 const WhatsappIcon = generateShareIcon('whatsapp');
 
+=======
+>>>>>>> 54ba2a7fae023542118e042e33546bb7e4cf7990
 @connect((state) => state)
 class Report extends React.Component {
     constructor(props) {
         super(props);
+<<<<<<< HEAD
         this.state = {isToggleOn: true};
 
            // This binding is necessary to make `this` work in the callback
@@ -68,6 +72,16 @@ class Report extends React.Component {
                 body: "",
                 entities: ""
             }    
+=======
+        this.state = {
+            docid: "",
+            title: "",
+            source: "",
+            date: "",
+            body: "",
+            entities: ""
+        }
+>>>>>>> 54ba2a7fae023542118e042e33546bb7e4cf7990
     }
     
     handleLoginClick() {
@@ -85,6 +99,10 @@ class Report extends React.Component {
         axios.get('http://35.198.208.48:8001/api/reports/' + this.props.params.reportid)
             .then((result) => {
                 const report = result.data;
+                console.log(report);
+                if (!report){
+                    this.props.router.push('/404');
+                }
                 this.setState(report);
             })
     }
@@ -179,7 +197,7 @@ class Report extends React.Component {
                                                                 <Row>
                                                                     <Col xs={6} collapseLeft collapseRight>
                                                                         <div className='fg-darkgray50'>
-                                                                            <small>by {report.publisher} / {report.date}</small>
+                                                                            <small>by {this.state.source} / {this.state.date}</small>
                                                                         </div>
                                                                     </Col>
                                                                     <Col xs={6} collapseLeft collapseRight className='text-right'>

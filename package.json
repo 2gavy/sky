@@ -91,7 +91,11 @@
     "es6-promise": "^3.2.1",
     "express": "^4.14.0",
     "express-graphql": "^0.5.3",
+<<<<<<< HEAD
     "flexbox-react": "^4.4.0",
+=======
+    "lodash": "^4.17.4",
+>>>>>>> 54ba2a7fae023542118e042e33546bb7e4cf7990
     "promised-mongo": "git+https://github.com/mindeavor/promised-mongo.git",
     "pug": "^2.0.0-beta3",
     "react": "^15.3.0",

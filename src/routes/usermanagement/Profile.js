@@ -37,12 +37,12 @@ class Profile extends React.Component {
           <th>User Name</th>
           <th>Department</th>
           <th>Access Rights</th>
+          <th></th>
         </tr>
       )
   };
 
   renderBody = () => {
-    console.log(this.props.users);
     return this.props.users.map((user, idx) => {
       return (
         <tr key={idx}>
@@ -51,6 +51,10 @@ class Profile extends React.Component {
           <td>{user.name}</td>
           <td>{user.department}</td>
           <td>{user.accessRights.join(', ')}</td>
+          <td className="profileAction">
+            <a href="/edit">edit</a>
+            <a href="/delete">delete</a>
+          </td>
         </tr>
       )
     })
@@ -104,7 +108,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Profile);
+export default connect(mapStateToProps,mapDispatchToProps)(Profile);
