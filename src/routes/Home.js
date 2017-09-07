@@ -127,7 +127,7 @@ class Home extends React.Component {
     return (
       <Grid>
         <Row>
-          <Col xs={4} sm={3} md={2}>
+          <Col className="hidden-xs" sm={3} md={2} >
             <PanelContainer>
               <Panel>
                 <PanelBody>
@@ -148,7 +148,7 @@ class Home extends React.Component {
               </Panel>
             </PanelContainer>
           </Col>
-          <Col xs={4} sm={6} md={8}>
+          <Col xs={12} sm={6} md={8}>
             {/* {this._getPosts()} */}
             <ActionBar>
               <ActionBarRow>
@@ -179,7 +179,7 @@ class Home extends React.Component {
             <NoHits suggestionsField={"title"} />
             <Pagination showNumbers={true} />
           </Col>
-          <Col xs={4} sm={3} md={2}>
+          <Col className="hidden-xs" sm={3} md={2}>
           </Col>
         </Row>
       </Grid>
