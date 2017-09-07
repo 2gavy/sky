@@ -92,10 +92,11 @@ class EditReport extends React.Component {
         this.setState({ body: e.target.value});
       }
 
-      handleSubmitEvent(e) {
-          console.log('The new title:' + this.state.title);
-          console.log('the new body content:' + this.state.body);
-        
+      handleSubmit(e) {
+        alert('A name was submitted: ' + this.state.title);
+        alert('the new body text is:' + this.state.body);
+        this.props.router.push("/report/" + this.props.params.reportid)
+        e.preventDefault();
       }
 
     render() {
@@ -124,8 +125,8 @@ class EditReport extends React.Component {
                                                 <Grid>
                                                     <Row>
                                                         <Col xs={12}>
-                                                        <form onSubmit={this.handleSubmitEvent}>
-                                                            <formGroup controlId="formReportTitle">
+                                                        <form onSubmit={this.handleSubmit.bind(this)}>
+                                                            <formGroup>
                                                             <Col xs={2}>
                                                                 <controlLabel>Title:</controlLabel>
                                                             </Col>
@@ -139,7 +140,7 @@ class EditReport extends React.Component {
                                                             </Col>
                                                             </formGroup>
 
-                                                            <formGroup controlId="formReportBody">
+                                                            <formGroup>
                                                             <Col xs={2}>
                                                                 <controlLabel>Content:</controlLabel>
                                                             </Col>
@@ -154,7 +155,7 @@ class EditReport extends React.Component {
                                                             </Col>
                                                             </formGroup>
 
-                                                            <formGroup controlId="formReportSubmit">
+                                                            <formGroup>
                                                                 <Col xsOffset={10} xs={2}>
                                                                     <Button type="submit">
                                                                     Update
