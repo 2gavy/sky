@@ -56,13 +56,6 @@ class Report extends React.Component {
     constructor(props) {
         super(props);
         
-
-        // This binding is necessary to make `this` work in the callback
-        this.handleClick = this.handleClick.bind(this);
-        this.handleHover = this.handleHover.bind(this);
-
-        this.handleLoginClick = this.handleLoginClick.bind(this);
-
         this.state = {
             docid: "",
             title: "",
@@ -71,17 +64,7 @@ class Report extends React.Component {
             body: "",
             entities: ""
         }
-
     }
-
-    handleLoginClick() {
-        this.setState({ isLoggedIn: true });
-    }
-
-    handleLogoutClick() {
-        this.setState({ isLoggedIn: false });
-    }
-
     componentDidMount() {
         if (!this.props.params.reportid) {
             return
@@ -92,34 +75,13 @@ class Report extends React.Component {
                 if (!report) {
                     this.props.router.push('/404');
                 }
-                this.setState(report);
+                this.setState(report[0]);
             })
     }
 
-    handleClick() {
-        this.setState(prevState => ({
-            isToggleOn: !prevState.isToggleOn
-
-
-        }));
-    }
-
-
-    handleHover() {
-        this.setState(prevState => ({
-            isToggleOn: !prevState.isToggleOn
-
-
-        }));
-    }
-
-
-
-
     render() {
-        const shareUrl = report.link;
-        const title = report.title;
-        const isLoggedIn = this.state.isLoggedIn;
+        const shareUrl = ('http://35.198.208.48:8001/api/reports/' + this.props.params.reportid);
+        const title = this.state.title;
 
         var entities = [];
         if (this.state.entities.length == 0) {
@@ -129,44 +91,6 @@ class Report extends React.Component {
                 entities.push(<Tag key={i}>{this.state.entities[i]}</Tag>);
             }
         }
-
-        if (isLoggedIn) {
-            <Flexbox flexDirection="row" justifyContent="center" minHeight="3vh">
-                <FacebookShareButton
-                    url={shareUrl}
-                    quote={title}
-                    className="Demo__some-network__share-button">
-                    <FacebookIcon
-                        size={32}
-                        round />
-                </FacebookShareButton>
-
-                <TwitterShareButton
-                    url={shareUrl}
-                    title={title}
-                    className="Demo__some-network__share-button">
-                    <TwitterIcon
-                        size={32}
-                        round />
-                </TwitterShareButton>
-
-                <TelegramShareButton
-                    url={shareUrl}
-                    title={title}
-                    className="Demo__some-network__share-button">
-                    <TelegramIcon size={32} round />
-                </TelegramShareButton>
-
-                <WhatsappShareButton
-                    url={shareUrl}
-                    title={title}
-                    separator=":: "
-                    className="Demo__some-network__share-button">
-                    <WhatsappIcon size={32} round />
-                </WhatsappShareButton>
-            </Flexbox>
-        }
-
 
         return (
             <Grid>
@@ -244,10 +168,7 @@ class Report extends React.Component {
                                                         <Icon glyph='icon-fontello-share' />
                                                     </Button>{' '}
 
-                                                    <button onClick={this.handleClick}>
-                                                        {this.state.isToggleOn ? 'ON' : 'OFF'}
-                                                    </button>
-
+                                               
 
 
                                                     <Flexbox flexDirection="row" justifyContent="center" minHeight="3vh">
