@@ -4,11 +4,11 @@ const initialState = {
   loginUser: {},
   users: [],
   profile: {
-     profilePic: '/imgs/app/avatars/avatar16.png',
-     name: 'ong ting wei',
-     department: 'IT',
-     accessRights: ['admin','read','write'],
-     isUserRemoved: false,
+    //  profilePic: '/imgs/app/avatars/avatar16.png',
+    //  name: 'ong ting wei',
+    //  department: 'IT',
+    //  accessRights: ['admin','read','write'],
+    //  isUserRemoved: false,
    },
 };
 
