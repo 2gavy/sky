@@ -199,7 +199,16 @@ export function getUsers() {
 
 export function getUser() {
   return {
-    type: Actions.GET_USER_REQUESTED
+      type: Actions.GET_USER_REQUESTED,
+      payload: {
+          1: {
+              profilePic: "/imgs/app/avatars/avatar16.png",
+              name: "Jenny",
+              department: "IT",
+              accessRights: ["admin", "read", "write"],
+              isUserRemoved: false
+          }
+      }
   };
 }
 
@@ -208,4 +217,11 @@ export function updateUsers(users) {
     type: Actions.UPDATE_USERS_SUCCESS,
     payload: users
   };
+}
+
+export function updateUser(user) {
+    return {
+        type: Actions.UPDATE_USER_SUCCESS,
+        payload: user
+    };
 }

@@ -180,7 +180,6 @@ class Header extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        loginUser: state.users.loginUser,
         ownProps: ownProps,
     };
 };

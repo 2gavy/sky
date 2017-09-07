@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import AdminRow from './AdminRow';
-import * as actions from '../../redux/actions';
+import * as Actions from '../../redux/actions';
 import map from 'lodash/map';
 
 import {
@@ -137,13 +137,13 @@ class Admin extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        users: state.users.users,
+        users: state.userModule.users,
     }
 }
 
 const mapDispatchToProps = {
-  getUsers: actions.getUsers,
-  updateUsers: actions.updateUsers
+  getUsers: Actions.getUsers,
+  updateUsers: Actions.updateUsers
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(Admin);
