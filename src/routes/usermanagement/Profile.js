@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import * as Actions from '../../redux/actions';
@@ -13,21 +14,20 @@ import {
   Table,
   Button,
 } from '@sketchpixy/rubix';
-
-
- const profile = [{
-    profilePic: '/imgs/app/avatars/avatar16.png',
-    name: 'ong ting wei',
-    department: 'IT',
-    accessRights: ['admin','read','write'],
-    isUserRemoved: false,
-  }];
+ //
+ // const profile = [{
+ //    profilePic: '/imgs/app/avatars/avatar16.png',
+ //    name: 'ong ting wei',
+ //    department: 'IT',
+ //    accessRights: ['admin','read','write'],
+ //    isUserRemoved: false,
+ //  }];
 
 // @connect((state) => state)
 class Profile extends React.Component {
-  static fetchData(store) {
-    return store.dispatch(Actions.getUsers(profile));
-  }
+  // static fetchData(store) {
+  //   return store.dispatch(Actions.getUsers(profile));
+  // }
 
   renderHeader = () => {
     return (
@@ -75,7 +75,6 @@ class Profile extends React.Component {
                       {this.renderHeader()}
                     </thead>
                     <tbody>
-                      {this.renderBody()}
                     </tbody>
                   </Table>
                 </PanelBody>
@@ -91,9 +90,13 @@ class Profile extends React.Component {
   }
 }
 
+Profile.propTypes = {
+    profile: PropTypes.object,
+}
+
 const mapStateToProps = (state) => {
     return {
-        users: state.users.profiles,
+        profile: state.users.profile,
     }
 }
 

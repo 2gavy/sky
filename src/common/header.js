@@ -167,9 +167,6 @@ class Header extends React.Component {
                   <TopicNavigation />
                 </Col>
                 <Col md={6} sm={7} xs={3} collapseRight className='text-right'>
-                    {  !!this.props.loginUser.username &&
-                      <span>Welcome, {this.props.loginUser.username} </span>
-                    }
                   <HeaderNavigation />
                 </Col>
               </Row>
