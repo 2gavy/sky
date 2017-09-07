@@ -5,7 +5,6 @@ import AdminRow from './AdminRow';
 import * as Actions from '../../redux/actions';
 import map from 'lodash/map';
 
-
 import {
   Row,
   Col,
@@ -15,6 +14,7 @@ import {
   PanelContainer,
   Table,
   Button,
+  Image
 } from '@sketchpixy/rubix';
  //
  // const profile = [{
@@ -52,10 +52,8 @@ class Profile extends React.Component {
     return (
         <tr>
           <th>#</th>
-          <th>Profile Picture</th>
           <th>User Name</th>
           <th>Department</th>
-          <th>Access Rights</th>
           <th></th>
         </tr>
       )
@@ -75,17 +73,15 @@ class Profile extends React.Component {
   //          <a href="/delete">delete</a>
   //        </td>
   //      </tr>
-  //    )
-  //  })
-  //};
 
   renderBody = () => {
-      return map(this.props.user, (user, id) => {
-          return <AdminRow handleChange={this.handleChange}
-              key={id}
-              id={id}
-              user={user} />;
-      });
+      return (
+          <tr>
+              <td></td>
+              <td>{this.props.user.name}</td>
+              <td>{this.props.user.department}</td>
+          </tr>
+      );
   };
 
   render() {
@@ -94,18 +90,39 @@ class Profile extends React.Component {
         <Row>
           <Col xs={1} sm={1} md={1}>
           </Col>
+          <Col xs={5} sm={5} md={4}>
+                    <PanelContainer controls={false} style={{ textAlign: 'center'}}>
+                        <Image src="/imgs/app/avatars/avatar23.png" rounded />
+                    </PanelContainer>
+
+          </Col>
+          <Col xs={5} sm={5} md={6}>
+                    <PanelContainer controls={false}>
+                        <Panel>
+                            <PanelBody>
+                                <Table responsive>
+                                    <thead>
+                                        {this.renderHeader()}
+                                    </thead>
+                                    <tbody>
+                                        {this.renderBody()}
+                                    </tbody>
+                                </Table>
+                            </PanelBody>
+                        </Panel>
+                    </PanelContainer>
+          </Col>
+          <Col xs={1} sm={1} md={1}>
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={1} sm={1} md={1}>
+          </Col>
           <Col xs={10} sm={10} md={10}>
             <PanelContainer controls={false}>
               <Panel>
                 <PanelBody>
-                  <Table responsive>
-                    <thead>
-                      {this.renderHeader()}
-                    </thead>
-                    <tbody>
-                      {this.renderBody()}
-                    </tbody>
-                  </Table>
+                  
                 </PanelBody>
               </Panel>
             </PanelContainer>
@@ -142,7 +159,7 @@ Profile.propTypes = {
 
 const mapStateToProps = (state) => {
     return {
-        user: state.userModule.users,
+        user: state.userModule.loginUser,
     }
 }
 
