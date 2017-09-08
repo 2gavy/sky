@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
 import actions from '../redux/actions';
 
 import {
+  Button,
   Row,
   Col,
   Grid,
@@ -51,7 +51,7 @@ const MovieHitsListItem = (props) => {
     //   </div>
     // </div>
 
-    <PanelContainer>
+    <PanelContainer controls={false}>
       <Panel>
         <PanelBody>
           <TimelineView withHeader className={'border-hover-blue tl-blue'}>
@@ -127,28 +127,34 @@ class Home extends React.Component {
     return (
       <Grid>
         <Row>
-          <Col className="hidden-xs" sm={3} md={2} >
-            <PanelContainer>
+          <Col xs={4} sm={3} md={3}>
+            <PanelContainer controls={false}>
               <Panel>
                 <PanelBody>
-                  <HierarchicalMenuFilter fields={["type.raw", "genres.raw"]} title="Categories" id="categories" />
-                  <DynamicRangeFilter field="metaScore" id="metascore" title="Metascore" rangeFormatter={(count) => count + "*"} />
-                  <RangeFilter min={0} max={10} field="imdbRating" id="imdbRating" title="IMDB Rating" showHistogram={true} />
-                  <InputFilter id="writers" searchThrottleTime={500} title="Writers" placeholder="Search writers" searchOnChange={true} queryFields={["writers"]} />
-                  <RefinementListFilter id="actors" title="Actors" field="actors.raw" size={10} />
-                  <RefinementListFilter translations={{ "facets.view_more": "View more writers" }} id="writers" title="Writers" field="writers.raw" operator="OR" size={10} />
-                  <RefinementListFilter id="countries" title="Countries" field="countries.raw" operator="OR" size={10} />
-                  <NumericRefinementListFilter id="runtimeMinutes" title="Length" field="runtimeMinutes" options={[
-                    { title: "All" },
-                    { title: "up to 20", from: 0, to: 20 },
-                    { title: "21 to 60", from: 21, to: 60 },
-                    { title: "60 or more", from: 61, to: 1000 }
-                  ]} />
+                  <Grid>
+                    <Row>
+                      <Col xs={12}>
+                        <HierarchicalMenuFilter fields={["type.raw", "genres.raw"]} title="Categories" id="categories" />
+                        <DynamicRangeFilter field="metaScore" id="metascore" title="Metascore" rangeFormatter={(count) => count + "*"} />
+                        <RangeFilter min={0} max={10} field="imdbRating" id="imdbRating" title="IMDB Rating" showHistogram={true} />
+                        <InputFilter id="writers" searchThrottleTime={500} title="Writers" placeholder="Search writers" searchOnChange={true} queryFields={["writers"]} />
+                        <RefinementListFilter id="actors" title="Actors" field="actors.raw" size={10} />
+                        <RefinementListFilter translations={{ "facets.view_more": "View more writers" }} id="writers" title="Writers" field="writers.raw" operator="OR" size={10} />
+                        <RefinementListFilter id="countries" title="Countries" field="countries.raw" operator="OR" size={10} />
+                        <NumericRefinementListFilter id="runtimeMinutes" title="Length" field="runtimeMinutes" options={[
+                          { title: "All" },
+                          { title: "up to 20", from: 0, to: 20 },
+                          { title: "21 to 60", from: 21, to: 60 },
+                          { title: "60 or more", from: 61, to: 1000 }
+                        ]} />
+                      </Col>
+                    </Row>
+                  </Grid>
                 </PanelBody>
               </Panel>
             </PanelContainer>
           </Col>
-          <Col xs={12} sm={6} md={8}>
+          <Col md={9}>
             {/* {this._getPosts()} */}
             <ActionBar>
               <ActionBarRow>
@@ -156,6 +162,7 @@ class Home extends React.Component {
                   "hitstats.results_found": "{hitCount} results found"
                 }} />
                 <ViewSwitcherToggle />
+
                 <SortingSelector options={[
                   { label: "Relevance", field: "_score", order: "desc" },
                   { label: "Latest Releases", field: "released", order: "desc" },
@@ -163,8 +170,7 @@ class Home extends React.Component {
                 ]} />
               </ActionBarRow>
               <ActionBarRow>
-                <GroupedSelectedFilters />
-                <ResetFilters />
+                <GroupedSelectedFilters /><ResetFilters />
               </ActionBarRow>
             </ActionBar>
             <ViewSwitcherHits
@@ -172,14 +178,12 @@ class Home extends React.Component {
               sourceFilter={["plot", "title", "poster", "imdbId", "imdbRating", "year"]}
               hitComponents={[
                 { key: "list", title: "List", itemComponent: MovieHitsListItem },
-                {/* {key:"grid", title:"Grid", itemComponent:MovieHitsGridItem, defaultOption:true}, */ }
+                {/* {key:"grid", title:"Grid", itemsComponent:MovieHitsGridItem, defaultOption:true} */ }
               ]}
               scrollTo="body"
             />
             <NoHits suggestionsField={"title"} />
             <Pagination showNumbers={true} />
-          </Col>
-          <Col className="hidden-xs" sm={3} md={2}>
           </Col>
         </Row>
       </Grid>
