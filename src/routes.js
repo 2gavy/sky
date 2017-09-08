@@ -18,6 +18,7 @@ import Admin from './routes/usermanagement/Admin';
 import Profile from './routes/usermanagement/Profile';
 import Generic404NotFound from './routes/404';
 import CreateReport from './routes/CreateReport';
+import Login from './routes/Login';
 
 import { extend } from 'lodash'
 import { SearchkitManager, SearchkitProvider} from 'searchkit'
@@ -50,6 +51,7 @@ class App extends React.Component {
 const routes = (
   <Route path='/' component={App}>
     <IndexRoute component={Home} />
+    <Route path='/login' component={Login} />
     <Route path='/report/:reportid' component={Report} />
     <Route path='/editreport/:reportid' component={EditReport} />
     <Redirect from="/report" to="/" />
