@@ -34,8 +34,23 @@ class Sharebox extends React.Component {
     // passResultToParent = () => {
     //     this.props.propsInParent('valueToPassToParent');
     // }
+    constructor(props){
+        super(props);
+        this.state = {isShareOn:false};
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    handleClick(){
+        
+        this.setState(prevState=>({
+            isShareOn: !prevState.isShareOn
+        }));
+
+    }
 
     render() {
+
+        if(this.state.isShareOn){
         return (
             <Grid>
                 <Row>
@@ -98,6 +113,39 @@ class Sharebox extends React.Component {
             </Grid>
         );
     }
+
+    return (
+        <Grid>
+            <Row>
+                <Col xs={12} collapseRight>
+                    <PanelContainer controls={false}>
+                        <PanelBody style={{ paddingBottom: 25, verticalAlign: 'middle', display: 'block' }} className='text-center'>
+                            <Button bsStyle='blue' className='btn-icon' onlyOnHover>
+                                <Icon glyph='icon-fontello-link' />
+                            </Button>{' '}
+
+                            <Button bsStyle='yellow' className='btn-icon' onlyOnHover onClick={this.handleClick} >
+                                <Icon glyph='icon-fontello-share' />
+                            </Button>{' '}
+                            <Button bsStyle='red' className='btn-icon' onlyOnHover>
+                                <Icon glyph='icon-fontello-docs' />
+                            </Button>{' '}
+                            <Button bsStyle='orange75' className='btn-icon' onlyOnHover>
+                                <Icon glyph='icon-fontello-print' />
+                            </Button>
+
+
+                            
+                        </PanelBody>
+                    </PanelContainer>
+                </Col>
+            </Row>
+        </Grid>
+    );
+}
+
+    
+
 }
 
 Sharebox.propType = {
