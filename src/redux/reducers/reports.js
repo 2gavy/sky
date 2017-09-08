@@ -16,7 +16,9 @@ const reports = (state = initialState, action) => {
             return {...state, ...action.payload};
         case Actions.REPORT_FIELDS_AUTHOR_CREATE:
             return {...state, ...action.payload};
-        case Actions.REPORT_FIELDS_CONTENT_UPDATE:
+        case Actions.REPORT_FIELDS_DATE_CREATE:
+            return {...state, ...action.payload};
+        case Actions.REPORT_FIELDS_CONTENT_CREATE:
             return {...state, ...action.payload};
         default:
           return state;
