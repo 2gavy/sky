@@ -1,20 +1,21 @@
 import axios from 'axios';
 import * as config from '../../../appConfig';
+var querystring = require('querystring');
 
 const instance = axios.create({
     baseURL: config.USER_HOST_ADDR,
     headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/x-www-form-urlencoded'
     },
     responseType: 'json',
-    withCredentials: true
+    withCredentials: false
 });
 
 export function loginUser(userid, password) {
-    return instance.post('/user/login', {
+    return instance.post('/login', querystring.stringify({
         userid: userid,
         password: password
-    });
+    }));
 }
 
 export function getUsers(name = '', userid = '', page = 1, limit = 20) {
@@ -51,5 +52,5 @@ export function deleteUser(userid) {
 }
 
 export function logoutUser() {
-    return instance.delete('/user/logout');
+    return instance.delete('/logout');
 }
