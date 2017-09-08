@@ -73,7 +73,6 @@ class Report extends React.Component {
         // Bind this to the functions 
 		this.handleClick = this.handleClick.bind(this);
 		
-		this.saveMenuRef = this.saveMenuRef.bind(this)
         this.state = { choice: null }
         
     }
@@ -92,20 +91,14 @@ class Report extends React.Component {
     }
 
     handleClick() {
-        console.log('test');
+        console.log('in');
+ 
+        <Button>test</Button>
       }
 
-    saveMenuRef (ref) {
-    this.menu = ref
-    }
-    
-    componentDidMount () {
-    this.menu.on('choose', choice => {
-        this.setState({ choice: choice.innerText })
-    })
-    }
 
-    render() { 
+
+    render() {  
         const shareUrl = ('http://35.198.208.48:8001/api/reports/' + this.props.params.reportid);
         const title = this.state.title;
 
@@ -116,7 +109,7 @@ class Report extends React.Component {
         }
 
         var entities = [];
-        if (this.state.entities.length == 0) {
+        if (entities|| this.state.entities.length == 0) {
             entities.push("None found");
         } else {
             for (var i = 0; i < this.state.entities.length; i++) {
@@ -197,53 +190,47 @@ class Report extends React.Component {
                                                 <div className='text-center'>
 
 
-                                                    <Button bsStyle='yellow' cclassName='btn-ion' onlyOnHover onClick={this.handleClick} >
+                                                    <Button bsStyle='yellow' className='btn-ion' onlyOnHover onClick={this.handleClick} >
                                                         <Icon glyph='icon-fontello-share' />
                                                     </Button>{' '}
                                               
                                                
-                                                    <MenuButton
-                                                        id='difficulty'
-                                                        label={label}
-                                                        menuRef={this.saveMenuRef}
-                                                    >
-
                                                     <Flexbox flexDirection="row" justifyContent="center" minHeight="3vh">
-                                                        <FacebookShareButton  className='btn-icon'
-                                                            url={shareUrl}
-                                                            quote={title}
-                                                            className="Demo__some-network__share-button">
-                                                            <FacebookIcon
-                                                                size={32}
-                                                                round />
-                                                        </FacebookShareButton>
+                                                    <FacebookShareButton  className='btn-icon'
+                                                        url={shareUrl}
+                                                        quote={title}
+                                                        className="Facebook__share-button">
+                                                        <FacebookIcon
+                                                            size={32}
+                                                            round />
+                                                    </FacebookShareButton>
 
-                                                        <TwitterShareButton
-                                                            url={shareUrl}
-                                                            title={title}
-                                                            className="Demo__some-network__share-button">
-                                                            <TwitterIcon
-                                                                size={32}
-                                                                round />
-                                                        </TwitterShareButton>
+                                                    <TwitterShareButton
+                                                        url={shareUrl}
+                                                        title={title}
+                                                        className="Demo__some-network__share-button">
+                                                        <TwitterIcon
+                                                            size={32}
+                                                            round />
+                                                    </TwitterShareButton>
 
-                                                        <TelegramShareButton
-                                                            url={shareUrl}
-                                                            title={title}
-                                                            className="Demo__some-network__share-button">
-                                                            <TelegramIcon size={32} round />
-                                                        </TelegramShareButton>
+                                                    <TelegramShareButton
+                                                        url={shareUrl}
+                                                        title={title}
+                                                        className="Demo__some-network__share-button">
+                                                        <TelegramIcon size={32} round />
+                                                    </TelegramShareButton>
 
-                                                        <WhatsappShareButton
-                                                            url={shareUrl}
-                                                            title={title}
-                                                            separator=":: "
-                                                            className="Demo__some-network__share-button">
-                                                            <WhatsappIcon size={32} round />
-                                                        </WhatsappShareButton>
+                                                    <WhatsappShareButton
+                                                        url={shareUrl}
+                                                        title={title}
+                                                        separator=":: "
+                                                        className="Demo__some-network__share-button">
+                                                        <WhatsappIcon size={32} round />
+                                                    </WhatsappShareButton>
                                                     </Flexbox>
 
-                                                    </MenuButton>
+
 
 
 
