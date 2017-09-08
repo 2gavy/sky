@@ -28,6 +28,10 @@ html.default(dir=dir)
     link(rel='icon', type='image/png', href='/favicons/favicon-96x96.png', sizes='96x96')
     link(rel='icon', type='image/png', href='/favicons/favicon-16x16.png', sizes='16x16')
     link(rel='icon', type='image/png', href='/favicons/favicon-32x32.png', sizes='32x32')
+    //- Below is not working, should link directly to node_module so that when you npm update, no need to manually paste updated css over (if any)
+    //- link(rel='stylesheet', href='../../node_modules/searchkit/release/theme.css')
+    //- As a workaround, we copied the file over to public/css/theme.css
+    link(rel='stylesheet', href='/css/theme.css')
     meta(name='msapplication-TileColor', content='#E76049')
     meta(name='msapplication-TileImage', content='/favicons/mstile-144x144.png')
 

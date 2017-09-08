@@ -162,14 +162,11 @@ class Header extends React.Component {
               <Row>
                 <Col xs={3} visible='xs'>
                 </Col>
-                <Col md={6} sm={5} xs={6}>
+                <Col md={6} sm={4} xs={6}>
                   <Brand />
                   <TopicNavigation />
                 </Col>
-                <Col md={6} sm={7} xs={3} collapseRight className='text-right'>
-                    {  !!this.props.loginUser.username &&
-                      <span>Welcome, {this.props.loginUser.username} </span>
-                    }
+                <Col md={6} sm={8} xs={3} collapseRight className='text-right'>
                   <HeaderNavigation />
                 </Col>
               </Row>
@@ -183,7 +180,6 @@ class Header extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        loginUser: state.users.loginUser,
         ownProps: ownProps,
     };
 };

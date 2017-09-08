@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
-import * as actions from '../../redux/actions';
+import AdminRow from './AdminRow';
+import * as Actions from '../../redux/actions';
 import map from 'lodash/map';
 
 import {
@@ -57,43 +57,52 @@ class Admin extends React.Component {
     }
     this.setState({users: newUsers});
   }
-
-  renderEditableRow = (id, key) => {
-    return (
-      <input 
-        type="text" 
-        className="adminInput"
-        onChange={this.handleChange(id, key)} 
-        value={this.state.users[id][key]}
-      />
-    )
-  }
-
-  handleSave = () => {
-    this.props.updateUsers(this.state.users);
-    this.setState({isEditable: false})
-  }
+  //
+  // renderEditableRow = (id, key) => {
+  //   return (
+  //     <input
+  //       type="text"
+  //       className="adminInput"
+  //       onChange={this.handleChange(id, key)}
+  //       value={this.state.users[id][key]}
+  //     />
+  //   )
+  // }
+  //
+  // handleSave = () => {
+  //     this.props.updateUsers(this.state.users);
+  //     this.setState({isEditable: false})
+  // }
 
   renderBody = () => {
     return map(this.props.users, (user, id) => {
-      return (
-        <tr key={id}>
-          <td>{id}</td>
-          <td><img src={user.profilePic} width='40' height='40'/></td>
-          <td>{this.state.isEditable ? this.renderEditableRow(id, 'name') : user.name}</td>
-          <td>{this.state.isEditable ? this.renderEditableRow(id, 'department') : user.department}</td>
-          <td>{user.accessRights.join(', ')}</td>
-          <td className="adminAction">
-            {this.state.isEditable ? null : <a onClick={() => this.setState({isEditable: true})}>edit</a>}
-            {this.state.isEditable ? null : <a href="/delete">delete</a> }
-            
-            {this.state.isEditable ? <a onClick={this.handleSave}>save</a> : null}
-            {this.state.isEditable ? <a onClick={() => this.setState({isEditable: false})}>cancel</a> : null}
-          </td>
-        </tr>
-      )
-    })
+      return <AdminRow  handleChange={this.handleChange}
+                        key={id}
+                        id={id}
+                        user={user} />;
+    });
   };
+
+  // renderBody = () => {
+  //   return map(this.props.users, (user, id) => {
+  //     return (
+  //       <tr key={id}>
+  //         <td>{id}</td>
+  //         <td><img src={user.profilePic} width='40' height='40'/></td>
+  //         <td>{this.state.isEditable ? this.renderEditableRow(id, 'name') : user.name}</td>
+  //         <td>{this.state.isEditable ? this.renderEditableRow(id, 'department') : user.department}</td>
+  //         <td>{user.accessRights.join(', ')}</td>
+  //         <td className="adminAction">
+  //           {this.state.isEditable ? null : <a onClick={() => this.setState({isEditable: true})}>edit</a>}
+  //           {this.state.isEditable ? null : <a href="/delete">delete</a> }
+  //
+  //           {this.state.isEditable ? <a onClick={this.handleSave}>save</a> : null}
+  //           {this.state.isEditable ? <a onClick={() => this.setState({isEditable: false})}>cancel</a> : null}
+  //         </td>
+  //       </tr>
+  //     )
+  //   })
+  // };
 
   render() {
     return (
@@ -128,13 +137,13 @@ class Admin extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        users: state.users.profiles,
+        users: state.userModule.users,
     }
 }
 
 const mapDispatchToProps = {
-  getUsers: actions.getUsers,
-  updateUsers: actions.updateUsers
+  getUsers: Actions.getUsers,
+  updateUsers: Actions.updateUsers
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(Admin);

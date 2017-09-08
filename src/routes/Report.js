@@ -67,7 +67,7 @@ class Report extends React.Component {
             source: "",
             date: "",
             body: "",
-            entities: ""
+            entities: "",
         }
 
         // Bind this to the functions 
@@ -176,6 +176,9 @@ class Report extends React.Component {
                                                             <div className='fg-pink' style={{ display: 'inline-block', marginLeft: 25 }}>
                                                                 <Icon style={{ position: 'relative', lineHeight: 0, top: 2 }} glyph='icon-ikons-heart' /><span> 0</span>
                                                             </div>
+                                                            <div style={{ display: 'inline-block', marginLeft: 25 }}>
+                                                                <Button onClick={() => {this.props.router.push("/editreport/" + this.props.params.reportid)}}>Edit Report</Button>
+                                                            </div>
                                                         </Col>
                                                     </Row>
                                                 </Grid>
@@ -255,27 +258,27 @@ class Report extends React.Component {
                                             </PanelBody>
                                         </PanelContainer>
 
-                                        <PanelContainer controls={false}>
-                                            <PanelBody style={{ paddingBottom: 12.5 }}>
-                                                <Grid>
-                                                    <Row>
-                                                        <Col xs={12} className='text-center'>
-                                                            <div className='text-uppercase text-left blog-sidebar-heading'>
-                                                                <small>Entities</small>
-                                                            </div>
-                                                            {entities}
-                                                        </Col>
-                                                    </Row>
-                                                </Grid>
-                                            </PanelBody>
-                                        </PanelContainer>
-                                    </Col>
-                                </Row>
-                            </Grid>
-                        </PanelRight>
+                                    <PanelContainer controls={false}>
+                                        <PanelBody style={{ paddingBottom: 12.5 }}>
+                                            <Grid>
+                                                <Row>
+                                                    <Col xs={12} className='text-center'>
+                                                        <div className='text-uppercase text-left blog-sidebar-heading'>
+                                                            <small>Entities</small>
+                                                        </div>
+                                                        {entities}
+                                                    </Col>
+                                                </Row>
+                                            </Grid>
+                                        </PanelBody>
+                                    </PanelContainer>
+                                </Col>
+                            </Row>
+                        </Grid>
+                    </PanelRight>
                     </Panel>
                 </PanelContainer>
-            </Grid>
+            </Grid >
         );
     }
 }
