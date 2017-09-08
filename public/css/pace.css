@@ -253,3 +253,20 @@ body.pace-small .pace .pace-progress {
     border-radius: 0 !important;
 }
 
+.btn-primary.btn-outlined.btn-onlyOnHover {
+    color: #89949B;
+}
+
+.form-control {
+    color: #444;
+    height: 30px;
+    padding: 0 12px;
+    box-shadow: none !important;
+    border-width: 2px;
+    letter-spacing: 0.5px;
+    border-radius: 0 !important;
+}
+
+html.default .form-control {
+    border-color: #ddd;
+}
