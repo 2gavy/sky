@@ -6,10 +6,22 @@ const instance = axios.create({
     headers: {
         'Content-Type': 'application/json'
     },
-    responseType: 'json',
-    withCredentials: true
+    responseType: 'json'
 });
 
 export function createReport(obj) {
-    return instance.post('/create', obj);
+    return instance.post('/reports', obj);
 }
+
+export function updateReport(id) {
+    return instance.post('/reports', id);
+}
+
+export function deleteReport(id) {
+    return instance.post('/reports', id);
+}
+
+export function getReport(id) {
+    return instance.post('/reports', id);
+}
+
