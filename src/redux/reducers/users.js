@@ -2,8 +2,14 @@ import * as Actions from "../actions/actionTypes/users";
 
 const initialState = {
   loginUser: {},
-  profiles: {},
-  profile: {}
+  users: [],
+  //profile: {
+  //   profilePic: '/imgs/app/avatars/avatar16.png',
+  //   name: 'ong ting wei',
+  //   department: 'IT',
+  //   accessRights: ['admin','read','write'],
+  //   isUserRemoved: false,
+  // },
 };
 
 const users = (state = initialState, action) => {
@@ -14,7 +20,7 @@ const users = (state = initialState, action) => {
       });
     case Actions.GET_USERS_REQUESTED:
       return Object.assign({}, state, {
-        profiles: action.payload
+        users: action.payload
       });
     case Actions.GET_USER_REQUESTED:
       return Object.assign({}, state, {
@@ -27,10 +33,10 @@ const users = (state = initialState, action) => {
           isUserRemoved: false
         }
       });
-    case Actions.UPDATE_USERS_SUCCESS: 
+    case Actions.UPDATE_USERS_SUCCESS:
       return {
         ...state,
-        profiles: action.payload
+        users: action.payload
       }
     case Actions.LOGIN_USER_REQUESTED:
       // console.log(action.payload);

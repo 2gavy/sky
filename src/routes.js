@@ -13,6 +13,7 @@ import Footer from './common/footer';
 /* Pages */
 import Home from './routes/Home';
 import Report from './routes/Report';
+import EditReport from './routes/EditReport';
 import Admin from './routes/usermanagement/Admin';
 import Profile from './routes/usermanagement/Profile';
 import Generic404NotFound from './routes/404';
@@ -50,6 +51,7 @@ const routes = (
   <Route path='/' component={App}>
     <IndexRoute component={Home} />
     <Route path='/report/:reportid' component={Report} />
+    <Route path='/editreport/:reportid' component={EditReport} />
     <Redirect from="/report" to="/" />
     <Route path='/usermanagement/list' component={Admin} />
     <Route path='/usermanagement/profile' component={Profile} />

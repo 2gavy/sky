@@ -4,6 +4,6 @@ import reports from './reports';
 
 module.exports = {
   greeting: greetings,
-  users: users,
+  userModule: users,
   reports: reports
 };
