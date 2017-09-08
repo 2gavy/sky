@@ -5,5 +5,5 @@ import reports from './reports';
 module.exports = {
   greeting: greetings,
   userModule: users,
-  reports: reports
+  reportsModule: reports
 };

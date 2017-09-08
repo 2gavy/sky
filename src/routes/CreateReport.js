@@ -1,9 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router';
 import Flexbox from 'flexbox-react';
 import actions from '../redux/actions';
-import axios from 'axios';
+import * as Actions from '../redux/actions/reports';
+import {createReport} from '../redux/apis/ReportService';
 import {
     ShareButtons,
     generateShareIcon,
@@ -51,11 +53,10 @@ const TwitterIcon = generateShareIcon('twitter');
 const TelegramIcon = generateShareIcon('telegram');
 const WhatsappIcon = generateShareIcon('whatsapp');
 
-@connect((state) => state)
 class Report extends React.Component {
     constructor(props) {
         super(props);
-        
+
         this.state = {
             docid: "",
             title: "",
@@ -89,37 +90,63 @@ class Report extends React.Component {
   }
 
     onTitleChange(event) {
-        this.setState({ title: event.target.value });
-    } 
+        this.props.reportFieldsTitleUpdate({
+            title: event.target.value
+        });
+        // this.setState({ title: event.target.value });
+    }
 
     onSourceChange(event) {
-        this.setState({ source: event.target.value });
-    } 
+        this.props.reportFieldsSourceUpdate({
+            source: event.target.value
+        });
+        // this.setState({ source: event.target.value });
+    }
+
+    onContentChange(event) {
+        this.props.reportFieldsContentUpdate({
+            content: event.target.value
+        });
+        // this.setState({ source: event.target.value });
+    }
 
     onAuthorChange(event) {
-        this.setState({ author: event.target.value });
+        this.props.reportFieldsAuthorUpdate({
+            author: event.target.value
+        });
+        // this.setState({ author: event.target.value });
     }
 
-   onAuthorChange(event) {
-        this.setState({ author: event.target.value });
-    }
+  //  onAuthorChange(event) {
+  //       this.setState({ author: event.target.value });
+  //   }
 
-    onSubmit(event) { 
+    onSubmit(event) {
 	//this.setState({ title: event.target.value, source: event.target.value });
-	console.log(this.state.title);
-    } 
+        createReport({
+            title: this.props.title,
+            author: this.props.author,
+            source: this.props.source,
+            content: this.props.content,
+        }).then(function (response) {
+            console.log(response);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    }
 
    handleChange(e) {
 	console.log(e.target.value);
 	this.setState({ title: e.target.value });
 	this.setState({ source: e.target.value });
-//console.log('test' + this.title.state);  
+//console.log('test' + this.title.state);
 }
 
    createReport() {
    console.log('button was clicked');
    console.log('title state is' + this.state.title);
- 
+
    }
 
     render() {
@@ -149,25 +176,24 @@ class Report extends React.Component {
                                                     <Row>
 						     <Col xs={26}>
 						      <form>
-							<formGroup controlId="reportCreate" validationState={this.getValidationState()}>
-							<div class="col-sm-9"><label for="largeinput" class="col-sm-3 control-label">Title</label>
-							<FormControl type="text" placeholder="Input Title" id="title" class="form-control" value={this.state.value} onChange={::this.onTitleChange} />
+							<div className="col-sm-9"><label className="col-sm-3 control-label">Title</label>
+							<FormControl type="text" placeholder="Input Title" id="title" className="form-control" value={!!this.props.title ? this.props.title : ''} onChange={::this.onTitleChange} />
 							<FormControl.Feedback />
-							</div>                                                        
-                                                        <div class="col-sm-9"><label for="largeinput" class="col-sm-3 control-label">Source</label>
-							<FormControl type="text" placeholder="Input Source" id="source" class="form-control" value={this.state.value} />
+							</div>
+                                                        <div className="col-sm-9"><label className="col-sm-3 control-label">Source</label>
+							<FormControl type="text" placeholder="Input Source" id="source" className="form-control" value={!!this.props.source ? this.props.source : ''} onChange={::this.onSourceChange} />
                                                         <FormControl.Feedback />
                                                         </div>
-							<div class="col-sm-9"><label for="largeinput" class="col-sm-3 control-label">HTML Text</label><FormControl componentClass="textarea" rows="13" placeholder="Input HTML content here..." id="textareahorizontal" class="form-control" />
+							<div className="col-sm-9"><label className="col-sm-3 control-label">HTML Text</label><FormControl componentClass="textarea" rows="13" placeholder="Input HTML content here..." id="textareahorizontal" className="form-control" value={!!this.props.content ? this.props.content : ''} onChange={::this.onContentChange} />
 <FormControl.Feedback />
 							</div>
-          						<div class="col-xs-12">
+          						<div className="col-xs-12">
 							<Button >Cancel</Button>
 							<Button onClick={this.onSubmit}>Upload</Button>
 							</div>
                                                         <Icon glyph='icon-fontello-share' />
-        					     	</formGroup>
-						      </form>		
+
+						      </form>
                 					</Col>
 		                                        <Col xs={12}>
                                                             <Grid>
@@ -218,7 +244,7 @@ class Report extends React.Component {
 
                                                     <Button bsStyle='yellow' className='btn-icon' onlyOnHover onClick={this.handleClick} >
                                                         <Icon glyph='icon-fontello-share' />
-                                                    </Button>{' '}                                              
+                                                    </Button>{' '}
                                                     <Flexbox flexDirection="row" justifyContent="center" minHeight="3vh">
                                                         <FacebookShareButton
                                                             url={shareUrl}
@@ -293,4 +319,39 @@ by {this.state.source}
     }
 }
 
-export default Report;
+Report.propType = {
+    title: PropTypes.string,
+    author: PropTypes.string,
+    source: PropTypes.string,
+    content: PropTypes.string,
+}
+
+const mapStateToProps = (state) => {
+    return {
+        title: state.reportsModule.title,
+        author: state.reportsModule.author,
+        source: state.reportsModule.source,
+        content: state.reportsModule.content,
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        reportFieldsTitleUpdate: (data) => {
+            dispatch(Actions.reportFieldsTitleUpdate(data));
+        },
+        reportFieldsAuthorUpdate: (data) => {
+            dispatch(Actions.reportFieldsAuthorUpdate(data));
+        },
+        reportFieldsSourceUpdate: (data) => {
+            dispatch(Actions.reportFieldsSourceUpdate(data));
+        },
+        reportFieldsContentUpdate: (data) => {
+            dispatch(Actions.reportFieldsContentUpdate(data));
+        },
+        reportCreateRequest: (data) => {
+            dispatch(Actions.reportCreateRequest(data));
+        },
+    }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Report);
