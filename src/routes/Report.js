@@ -4,6 +4,10 @@ import { Link, withRouter } from 'react-router';
 import Flexbox from 'flexbox-react';
 import actions from '../redux/actions';
 import axios from 'axios';
+
+import Alert from 'react-s-alert';
+
+
 import {
     ShareButtons,
     generateShareIcon,
@@ -50,12 +54,13 @@ const FacebookIcon = generateShareIcon('facebook');
 const TwitterIcon = generateShareIcon('twitter');
 const TelegramIcon = generateShareIcon('telegram');
 const WhatsappIcon = generateShareIcon('whatsapp');
+const MenuButton = require('react-menu-button');
 
 @connect((state) => state)
 class Report extends React.Component {
     constructor(props) {
         super(props);
-        
+     
         this.state = {
             docid: "",
             title: "",
@@ -64,6 +69,13 @@ class Report extends React.Component {
             body: "",
             entities: ""
         }
+
+        // Bind this to the functions 
+		this.handleClick = this.handleClick.bind(this);
+		
+		this.saveMenuRef = this.saveMenuRef.bind(this)
+        this.state = { choice: null }
+        
     }
     componentDidMount() {
         if (!this.props.params.reportid) {
@@ -79,9 +91,29 @@ class Report extends React.Component {
             })
     }
 
-    render() {
+    handleClick() {
+        console.log('test');
+      }
+
+    saveMenuRef (ref) {
+    this.menu = ref
+    }
+    
+    componentDidMount () {
+    this.menu.on('choose', choice => {
+        this.setState({ choice: choice.innerText })
+    })
+    }
+
+    render() { 
         const shareUrl = ('http://35.198.208.48:8001/api/reports/' + this.props.params.reportid);
         const title = this.state.title;
+
+        let label = 'Difficulty'
+        
+        if (this.state.choice) {
+            label += ' ' + this.state.choice
+        }
 
         var entities = [];
         if (this.state.entities.length == 0) {
@@ -160,19 +192,21 @@ class Report extends React.Component {
                                         <PanelContainer controls={false}>
                                             <PanelBody style={{ paddingBottom: 25, verticalAlign: 'middle', display: 'block' }}>
                                                 <div className='text-center'>
-                                                    <Button bsStyle='blue' className='btn-icon' onlyOnHover>
-                                                        <Icon glyph='icon-fontello-link' />
-                                                    </Button>{' '}
 
-                                                    <Button bsStyle='yellow' className='btn-icon' onlyOnHover onClick={this.handleClick} >
+
+                                                    <Button bsStyle='yellow' cclassName='btn-ion' onlyOnHover onClick={this.handleClick} >
                                                         <Icon glyph='icon-fontello-share' />
                                                     </Button>{' '}
-
+                                              
                                                
-
+                                                    <MenuButton
+                                                        id='difficulty'
+                                                        label={label}
+                                                        menuRef={this.saveMenuRef}
+                                                    >
 
                                                     <Flexbox flexDirection="row" justifyContent="center" minHeight="3vh">
-                                                        <FacebookShareButton
+                                                        <FacebookShareButton  className='btn-icon'
                                                             url={shareUrl}
                                                             quote={title}
                                                             className="Demo__some-network__share-button">
@@ -206,15 +240,17 @@ class Report extends React.Component {
                                                         </WhatsappShareButton>
                                                     </Flexbox>
 
+                                                    </MenuButton>
 
 
 
-                                                    <Button bsStyle='red' className='btn-icon' onlyOnHover>
+                                                  {/* <Button bsStyle='red' className='btn-icon' onlyOnHover>
                                                         <Icon glyph='icon-fontello-docs' />
                                                     </Button>{' '}
                                                     <Button bsStyle='orange75' className='btn-icon' onlyOnHover>
                                                         <Icon glyph='icon-fontello-print' />
                                                     </Button>
+                                                    */}
                                                 </div>
                                             </PanelBody>
                                         </PanelContainer>
