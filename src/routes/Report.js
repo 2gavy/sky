@@ -76,7 +76,7 @@ class Report extends React.Component {
 
     handleClick() {
         console.log('in');
-        this.setState({modalIsOpen: true});
+       
       }
 
     render() {  
@@ -164,8 +164,7 @@ class Report extends React.Component {
                                             <PanelBody style={{ paddingBottom: 25, verticalAlign: 'middle', display: 'block' }}>
                                                 <div className='text-center'>
 
-
-                                                    <Button bsStyle='yellow' className='btn-ion' onlyOnHover onClick={this.handleClick} >
+                                                    <Button bsStyle='yellow' className='btn-icon' onlyOnHover onClick={this.handleClick}>
                                                         <Icon glyph='icon-fontello-share' />
                                                     </Button>{' '}
                                               
@@ -205,17 +204,13 @@ class Report extends React.Component {
                                                     </WhatsappShareButton>
                                                     </Flexbox>
 
-
-
-
-
-                                                  {/* <Button bsStyle='red' className='btn-icon' onlyOnHover>
+                                                  <Button bsStyle='red' className='btn-icon' onlyOnHover>
                                                         <Icon glyph='icon-fontello-docs' />
                                                     </Button>{' '}
                                                     <Button bsStyle='orange75' className='btn-icon' onlyOnHover>
                                                         <Icon glyph='icon-fontello-print' />
                                                     </Button>
-                                                    */}
+                                                    
                                                 </div>
                                             </PanelBody>
                                         </PanelContainer>
