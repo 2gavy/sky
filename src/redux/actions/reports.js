@@ -1,29 +1,36 @@
 import * as Actions from "./actionTypes/reports";
 
-export function reportFieldsTitleUpdate(data) {
+export function reportFieldsTitleCreate(data) {
   return {
-    type: Actions.REPORT_FIELDS_TITLE_UPDATE,
+    type: Actions.REPORT_FIELDS_TITLE_CREATE,
     payload: data
   };
 }
 
-export function reportFieldsSourceUpdate(data) {
+export function reportFieldsSourceCreate(data) {
   return {
-    type: Actions.REPORT_FIELDS_SOURCE_UPDATE,
+    type: Actions.REPORT_FIELDS_SOURCE_CREATE,
     payload: data
   };
 }
 
-export function reportFieldsAuthorUpdate(data) {
+export function reportFieldsAuthorCreate(data) {
   return {
-    type: Actions.REPORT_FIELDS_AUTHOR_UPDATE,
+    type: Actions.REPORT_FIELDS_AUTHOR_CREATE,
     payload: data
   };
 }
 
-export function reportFieldsContentUpdate(data) {
+export function reportFieldsDateCreate(data) {
   return {
-    type: Actions.REPORT_FIELDS_CONTENT_UPDATE,
+    type: Actions.REPORT_FIELDS_AUTHOR_DATE,
+    payload: data
+  };
+}
+
+export function reportFieldsContentCreate(data) {
+  return {
+    type: Actions.REPORT_FIELDS_CONTENT_CREATE,
     payload: data
   };
 }
