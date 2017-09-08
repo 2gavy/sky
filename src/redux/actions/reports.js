@@ -1,5 +1,12 @@
 import * as Actions from "./actionTypes/reports";
 
+export function reportGet(data) {
+  return {
+    type: Actions.REPORT_GET_REQUEST,
+    payload: data
+  };
+}
+
 export function reportFieldsTitleCreate(data) {
   return {
     type: Actions.REPORT_FIELDS_TITLE_CREATE,
