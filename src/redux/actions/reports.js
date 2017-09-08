@@ -1,29 +1,50 @@
-import {
-  GET_REPORTS
-} from './actionTypes'; 
+import * as Actions from "./actionTypes/reports";
 
-import axios from 'axios';
-
-import GraphQLSettings from '../../../graphql.json';
-
-let GraphQLEndpoint = GraphQLSettings.development.endpoint;
-
-if (process.env.NODE_ENV === 'production') {
-  GraphQLEndpoint = GraphQLSettings.production.endpoint;
-}
-
-function getReports(reports) {
-
-  return dispatch => {
-      console.log('reports', reports)
-      dispatch({
-        type: GET_REPORTS, 
-        result: reports,
-      });
+export function reportFieldsTitleUpdate(data) {
+  return {
+    type: Actions.REPORT_FIELDS_TITLE_UPDATE,
+    payload: data
   };
 }
 
-module.exports = {
-  getReports,
-};
+export function reportFieldsSourceUpdate(data) {
+  return {
+    type: Actions.REPORT_FIELDS_SOURCE_UPDATE,
+    payload: data
+  };
+}
 
+export function reportFieldsAuthorUpdate(data) {
+  return {
+    type: Actions.REPORT_FIELDS_AUTHOR_UPDATE,
+    payload: data
+  };
+}
+
+export function reportFieldsContentUpdate(data) {
+  return {
+    type: Actions.REPORT_FIELDS_CONTENT_UPDATE,
+    payload: data
+  };
+}
+
+export function reportCreateRequest(data) {
+  return {
+    type: Actions.REPORT_CREATE_REQUEST,
+    payload: data
+  };
+}
+
+export function reportCreateSuccess(data) {
+  return {
+    type: Actions.REPORT_CREATE_SUCCESS,
+    payload: data
+  };
+}
+
+export function reportCreateFail(data) {
+  return {
+    type: Actions.REPORT_CREATE_FAIL,
+    payload: data
+  };
+}
