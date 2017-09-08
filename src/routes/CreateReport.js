@@ -64,7 +64,9 @@ class Report extends React.Component {
             body: "",
             entities: ""
         }
+        this.onSubmit = this.onSubmit.bind(this);
     }
+
     componentDidMount() {
         if (!this.props.params.reportid) {
             return
@@ -78,6 +80,47 @@ class Report extends React.Component {
                 this.setState(report[0]);
             })
     }
+
+  getValidationState() {
+//	const length = this.state.value.length;
+	//if (length > 10) return 'success';
+	//else if (length > 5) return 'warning';
+	//else if (length > 0) return 'error';
+  }
+
+    onTitleChange(event) {
+        this.setState({ title: event.target.value });
+    } 
+
+    onSourceChange(event) {
+        this.setState({ source: event.target.value });
+    } 
+
+    onAuthorChange(event) {
+        this.setState({ author: event.target.value });
+    }
+
+   onAuthorChange(event) {
+        this.setState({ author: event.target.value });
+    }
+
+    onSubmit(event) { 
+	//this.setState({ title: event.target.value, source: event.target.value });
+	console.log(this.state.title);
+    } 
+
+   handleChange(e) {
+	console.log(e.target.value);
+	this.setState({ title: e.target.value });
+	this.setState({ source: e.target.value });
+//console.log('test' + this.title.state);  
+}
+
+   createReport() {
+   console.log('button was clicked');
+   console.log('title state is' + this.state.title);
+ 
+   }
 
     render() {
         const shareUrl = ('http://35.198.208.48:8001/api/reports/' + this.props.params.reportid);
@@ -104,23 +147,32 @@ class Report extends React.Component {
                                             <PanelBody>
                                                 <Grid>
                                                     <Row>
-                                                        <Col xs={12}>
-                                                            <h3 className='fg-black50' style={{ marginTop: 0 }}>{this.state.title}</h3>
+						     <Col xs={26}>
+						      <form>
+							<formGroup controlId="reportCreate" validationState={this.getValidationState()}>
+							<div class="col-sm-9"><label for="largeinput" class="col-sm-3 control-label">Title</label>
+							<FormControl type="text" placeholder="Input Title" id="title" class="form-control" value={this.state.value} onChange={::this.onTitleChange} />
+							<FormControl.Feedback />
+							</div>                                                        
+                                                        <div class="col-sm-9"><label for="largeinput" class="col-sm-3 control-label">Source</label>
+							<FormControl type="text" placeholder="Input Source" id="source" class="form-control" value={this.state.value} />
+                                                        <FormControl.Feedback />
+                                                        </div>
+							<div class="col-sm-9"><label for="largeinput" class="col-sm-3 control-label">HTML Text</label><FormControl componentClass="textarea" rows="13" placeholder="Input HTML content here..." id="textareahorizontal" class="form-control" />
+<FormControl.Feedback />
+							</div>
+          						<div class="col-xs-12">
+							<Button >Cancel</Button>
+							<Button onClick={this.onSubmit}>Upload</Button>
+							</div>
+                                                        <Icon glyph='icon-fontello-share' />
+        					     	</formGroup>
+						      </form>		
+                					</Col>
+		                                        <Col xs={12}>
                                                             <Grid>
-                                                                <Row>
-                                                                    <Col xs={6} collapseLeft collapseRight>
-                                                                        <div className='fg-darkgray50'>
-                                                                            <small>by {this.state.source} / {this.state.date}</small>
-                                                                        </div>
-                                                                    </Col>
-                                                                    <Col xs={6} collapseLeft collapseRight className='text-right'>
-                                                                        <div className='fg-darkgray25 fg-hover-black50'>
-                                                                            <small><Icon glyph='icon-ikons-time' style={{ position: 'relative', top: 1 }} /><span> 5 minutes read</span></small>
-                                                                        </div>
-                                                                    </Col>
-                                                                </Row>
                                                             </Grid>
-                                                            <p style={{ marginTop: 25 }}>{this.state.body}</p>
+                                                            <p style={{ marginTop: 25 }}></p>
                                                         </Col>
                                                     </Row>
                                                 </Grid>
@@ -166,11 +218,7 @@ class Report extends React.Component {
 
                                                     <Button bsStyle='yellow' className='btn-icon' onlyOnHover onClick={this.handleClick} >
                                                         <Icon glyph='icon-fontello-share' />
-                                                    </Button>{' '}
-
-                                               
-
-
+                                                    </Button>{' '}                                              
                                                     <Flexbox flexDirection="row" justifyContent="center" minHeight="3vh">
                                                         <FacebookShareButton
                                                             url={shareUrl}
@@ -227,6 +275,7 @@ class Report extends React.Component {
                                                             <div className='text-uppercase text-left blog-sidebar-heading'>
                                                                 <small>Entities</small>
                                                             </div>
+by {this.state.source}
                                                             {entities}
                                                         </Col>
                                                     </Row>
