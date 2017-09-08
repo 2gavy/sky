@@ -89,45 +89,45 @@ class Report extends React.Component {
 	//else if (length > 0) return 'error';
   }
 
-    onTitleChange(event) {
-        this.props.reportFieldsTitleUpdate({
-            title: event.target.value
-        });
-        // this.setState({ title: event.target.value });
-    }
+onTitleChange(event) {
+  this.props.reportFieldsTitleCreate({
+       title: event.target.value
+  });
+}
 
-    onSourceChange(event) {
-        this.props.reportFieldsSourceUpdate({
-            source: event.target.value
-        });
-        // this.setState({ source: event.target.value });
-    }
+onSourceChange(event) {
+  this.props.reportFieldsSourceCreate({
+       source: event.target.value
+  });
+}
 
-    onContentChange(event) {
-        this.props.reportFieldsContentUpdate({
-            content: event.target.value
-        });
-        // this.setState({ source: event.target.value });
-    }
+onAuthorChange(event) {
+  this.props.reportFieldsAuthorCreate({
+       author: event.target.value
+  });
+}
 
-    onAuthorChange(event) {
-        this.props.reportFieldsAuthorUpdate({
-            author: event.target.value
-        });
-        // this.setState({ author: event.target.value });
-    }
+onDateChange(event) {
+  this.props.reportFieldsDateCreate({
+       date: event.target.value
+  });
+}
 
-  //  onAuthorChange(event) {
-  //       this.setState({ author: event.target.value });
-  //   }
+onContentChange(event) {
+  this.props.reportFieldsContentCreate({
+       content: event.target.value
+  });
+}
 
-    onSubmit(event) {
+onSubmit(event) {
 	//this.setState({ title: event.target.value, source: event.target.value });
         createReport({
             title: this.props.title,
             author: this.props.author,
             source: this.props.source,
-            content: this.props.content,
+	    date: this.props.date,
+            body: this.props.content,
+	    docid: '88888',
         }).then(function (response) {
             console.log(response);
         })
@@ -140,14 +140,7 @@ class Report extends React.Component {
 	console.log(e.target.value);
 	this.setState({ title: e.target.value });
 	this.setState({ source: e.target.value });
-//console.log('test' + this.title.state);
 }
-
-   createReport() {
-   console.log('button was clicked');
-   console.log('title state is' + this.state.title);
-
-   }
 
     render() {
         const shareUrl = ('http://35.198.208.48:8001/api/reports/' + this.props.params.reportid);
@@ -177,14 +170,22 @@ class Report extends React.Component {
 						     <Col xs={26}>
 						      <form>
 							<div className="col-sm-9"><label className="col-sm-3 control-label">Title</label>
-							<FormControl type="text" placeholder="Input Title" id="title" className="form-control" value={!!this.props.title ? this.props.title : ''} onChange={::this.onTitleChange} />
+							<FormControl type="text" placeholder="Input Title" id="title" className="form-control" value={!!this.props.title ? this.props.title : ''} onChange={ ::this.onTitleChange } />
 							<FormControl.Feedback />
 							</div>
                                                         <div className="col-sm-9"><label className="col-sm-3 control-label">Source</label>
-							<FormControl type="text" placeholder="Input Source" id="source" className="form-control" value={!!this.props.source ? this.props.source : ''} onChange={::this.onSourceChange} />
+							<FormControl type="text" placeholder="Input Source" id="source" className="form-control" value={!!this.props.source ? this.props.source : ''} onChange={ ::this.onSourceChange } />
+                                                        <FormControl.Feedback />
+							</div>
+                                                        <div className="col-sm-9"><label className="col-sm-3 control-label">Author</label>
+                                                        <FormControl type="text" placeholder="Input Author" id="author" className="form-control" value={!!this.props.author ? this.props.author : ''} onChange={ ::this.onAuthorChange } />
+                                                        <FormControl.Feedback />
+							</div>
+	                                                <div className="col-sm-9"><label className="col-sm-3 control-label">Date</label>
+                                                        <FormControl type="text" placeholder="Input Source" id="date" className="form-control" value={!!this.props.date ? this.props.date : ''} onChange={ ::this.onDateChange } />
                                                         <FormControl.Feedback />
                                                         </div>
-							<div className="col-sm-9"><label className="col-sm-3 control-label">HTML Text</label><FormControl componentClass="textarea" rows="13" placeholder="Input HTML content here..." id="textareahorizontal" className="form-control" value={!!this.props.content ? this.props.content : ''} onChange={::this.onContentChange} />
+							<div className="col-sm-9"><label className="col-sm-3 control-label">HTML Text</label><FormControl componentClass="textarea" rows="13" placeholder="Input HTML content here..." id="textareahorizontal" className="form-control" value={!!this.props.content ? this.props.content : ''} onChange={ ::this.onContentChange } />
 <FormControl.Feedback />
 							</div>
           						<div className="col-xs-12">
@@ -323,6 +324,7 @@ Report.propType = {
     title: PropTypes.string,
     author: PropTypes.string,
     source: PropTypes.string,
+    date: PropTypes.date,
     content: PropTypes.string,
 }
 
@@ -331,23 +333,27 @@ const mapStateToProps = (state) => {
         title: state.reportsModule.title,
         author: state.reportsModule.author,
         source: state.reportsModule.source,
+	date: state.reportsModule.date,
         content: state.reportsModule.content,
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        reportFieldsTitleUpdate: (data) => {
-            dispatch(Actions.reportFieldsTitleUpdate(data));
+        reportFieldsTitleCreate: (data) => {
+            dispatch(Actions.reportFieldsTitleCreate(data));
         },
-        reportFieldsAuthorUpdate: (data) => {
-            dispatch(Actions.reportFieldsAuthorUpdate(data));
+        reportFieldsAuthorCreate: (data) => {
+            dispatch(Actions.reportFieldsAuthorCreate(data));
         },
-        reportFieldsSourceUpdate: (data) => {
-            dispatch(Actions.reportFieldsSourceUpdate(data));
+        reportFieldsSourceCreate: (data) => {
+            dispatch(Actions.reportFieldsSourceCreate(data));
         },
-        reportFieldsContentUpdate: (data) => {
-            dispatch(Actions.reportFieldsContentUpdate(data));
+        reportFieldsDateCreate: (data) => {
+            dispatch(Actions.reportFieldsDateCreate(data));
+        },
+        reportFieldsContentCreate: (data) => {
+            dispatch(Actions.reportFieldsContentCreate(data));
         },
         reportCreateRequest: (data) => {
             dispatch(Actions.reportCreateRequest(data));
