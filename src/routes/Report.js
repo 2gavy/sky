@@ -37,7 +37,6 @@ class Report extends React.Component {
             date: "",
             body: "",
             entities: "",
-            shareUrl: config.FRONTEND_ADDR + "report/" + this.props.params.reportid
         }
 
         // Bind this to the functions 
@@ -60,6 +59,7 @@ class Report extends React.Component {
             })
     }
 
+    shareUrl = config.FRONTEND_ADDR + "report/" + this.props.params.reportid;
     handleClick() {
         console.log('in');
     }
@@ -79,7 +79,7 @@ class Report extends React.Component {
                         </PanelLeft>
                         <PanelRight className='hidden-xs' style={{ width: 350 }}>
                             {/* <Sharebox propsInParent={this._getValueFromChildComponent} /> Don't remove. To get result from child*/}
-                            <Sharebox shareUrl={this.state.shareUrl} title={this.state.title} />
+                            <Sharebox shareUrl={this.shareUrl} title={this.state.title} />
                             <Entities entities={this.state.entities} />
                         </PanelRight>
                     </Panel>
