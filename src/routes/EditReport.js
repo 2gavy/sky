@@ -4,6 +4,8 @@ import { Link, withRouter } from 'react-router';
 import Flexbox from 'flexbox-react';
 import actions from '../redux/actions';
 import axios from 'axios';
+import ReportEdit from '../components/ReportEdit';
+
 import {
     ShareButtons,
     generateShareIcon,
@@ -85,11 +87,11 @@ class EditReport extends React.Component {
       }
 
       handleTitleChange(e) {
-        this.setState({ title: e.target.value});
+        // this.setState({ title: e.target.value});
       }
 
       handleBodyChange(e) {
-        this.setState({ body: e.target.value});
+        // this.setState({ body: e.target.value});
       }
 
       handleSubmit(e) {
@@ -119,6 +121,13 @@ class EditReport extends React.Component {
                         <PanelLeft>
                             <Row>
                                 <Col xs={12}>
+                                    {/*<ReportEdit docid={this.state.docid} title={'testing title'} body={this.state.body} /> */}
+                                    <ReportEdit docid={this.state.docid} title={this.state.title} body={this.state.body} />
+                                </Col>
+                            </Row>
+                        </PanelLeft>
+        
+                                    {/*
                                     <PanelContainer>
                                         <Panel>
                                             <PanelBody>
@@ -179,7 +188,7 @@ class EditReport extends React.Component {
                                                                     </Col>
                                                                 </Row>
                                                             </Grid>
-                                                            <p style={{ marginTop: 25 }}>{this.state.body}</p> */}
+                                                            <p style={{ marginTop: 25 }}>{this.state.body}</p> 
                                                         </Col>
                                                     </Row>
                                                 </Grid>
@@ -190,8 +199,7 @@ class EditReport extends React.Component {
                                                 <Grid>
                                                     <Row>
                                                         <Col xs={4} style={{ paddingTop: 12.5, paddingBottom: 12.5 }}>
-                                                            {/* Commented away hashtag */}
-                                                            {/* <div><small><Icon glyph='icon-ikons-hashtag' style={{ position: 'relative', top: 1 }} /> ENTERTAINMENT</small></div> */}
+                                                    
                                                         </Col>
                                                         <Col xs={8} className='text-right' style={{ paddingTop: 12.5, paddingBottom: 12.5 }}>
                                                             <div style={{ display: 'inline-block', marginLeft: 25 }}>
@@ -211,10 +219,9 @@ class EditReport extends React.Component {
                                                 </Grid>
                                             </PanelFooter>
                                         </Panel>
-                                    </PanelContainer>
-                                </Col>
-                            </Row>
-                        </PanelLeft>
+                                    </PanelContainer> 
+                                    */}
+
                         <PanelRight className='hidden-xs' style={{ width: 350 }}>
                             <Grid>
                                 <Row>
