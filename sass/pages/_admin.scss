@@ -7,3 +7,13 @@
 .adminInput{
   padding: 0 10px;
 }
+
+.adminTable {
+  padding: 0 5%
+}
+
+@media only screen and (max-width: 768px) {
+  .adminTable {
+    padding: 10px;
+  }
+}
