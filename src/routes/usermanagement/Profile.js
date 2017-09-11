@@ -1,9 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import AdminRow from './AdminRow';
-import * as Actions from '../../redux/actions';
-import map from 'lodash/map';
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import AdminRow from "./AdminRow";
+import * as Actions from "../../redux/actions";
+import map from "lodash/map";
 
 import {
   Row,
@@ -15,15 +15,15 @@ import {
   Table,
   Button,
   Image
-} from '@sketchpixy/rubix';
- //
- // const profile = [{
- //    profilePic: '/imgs/app/avatars/avatar16.png',
- //    name: 'ong ting wei',
- //    department: 'IT',
- //    accessRights: ['admin','read','write'],
- //    isUserRemoved: false,
- //  }];
+} from "@sketchpixy/rubix";
+//
+// const profile = [{
+//    profilePic: '/imgs/app/avatars/avatar16.png',
+//    name: 'ong ting wei',
+//    department: 'IT',
+//    accessRights: ['admin','read','write'],
+//    isUserRemoved: false,
+//  }];
 
 // @connect((state) => state)
 class Profile extends React.Component {
@@ -31,32 +31,21 @@ class Profile extends React.Component {
   //   return store.dispatch(Actions.getUsers(profile));
   // }
 
-    state = {
-        isEditable: false,
-        user: {},
-    }
+  state = {
+    isEditable: false,
+    user: {}
+  };
 
-    componentWillMount = () => {
-        this.props.getUser();
-    }
+  componentWillMount = () => {
+    this.props.getUser();
+  };
 
-    componentWillReceiveProps = (nextProps) => {
-        if (this.props.user !== nextProps.user) {
-            this.setState({
-                user: nextProps.user
-            })
-        }
+  componentWillReceiveProps = nextProps => {
+    if (this.props.user !== nextProps.user) {
+      this.setState({
+        user: nextProps.user
+      });
     }
-
-  renderHeader = () => {
-    return (
-        <tr>
-          <th>#</th>
-          <th>User Name</th>
-          <th>Department</th>
-          <th></th>
-        </tr>
-      )
   };
 
   //renderBody = () => {
@@ -75,70 +64,43 @@ class Profile extends React.Component {
   //      </tr>
 
   renderBody = () => {
-      return (
-          <tr>
-              <td></td>
-              <td>{this.props.user.name}</td>
-              <td>{this.props.user.department}</td>
-          </tr>
-      );
+    return (
+      <tr>
+        <td />
+        <td>{this.props.user.name}</td>
+        <td>{this.props.user.department}</td>
+      </tr>
+    );
   };
 
   render() {
     return (
-      <Grid>
-        <Row>
-          <Col xs={1} sm={1} md={1}>
-          </Col>
-          <Col xs={5} sm={5} md={4}>
-                    <PanelContainer controls={false} style={{ textAlign: 'center'}}>
-                        <Image src="/imgs/app/avatars/avatar23.png" rounded />
-                    </PanelContainer>
+        <div className="profileContainer">
 
-          </Col>
-          <Col xs={5} sm={5} md={6}>
-                    <PanelContainer controls={false}>
-                        <Panel>
-                            <PanelBody>
-                                <Table responsive>
-                                    <thead>
-                                        {this.renderHeader()}
-                                    </thead>
-                                    <tbody>
-                                        {this.renderBody()}
-                                    </tbody>
-                                </Table>
-                            </PanelBody>
-                        </Panel>
-                    </PanelContainer>
-          </Col>
-          <Col xs={1} sm={1} md={1}>
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={1} sm={1} md={1}>
-          </Col>
-          <Col xs={10} sm={10} md={10}>
-            <PanelContainer controls={false}>
-              <Panel>
-                <PanelBody>
-                  
-                </PanelBody>
-              </Panel>
-            </PanelContainer>
-          </Col>
-          <Col xs={1} sm={1} md={1}>
-          </Col>
-        </Row>
-        <Button bsStyle="primary" onClick={this.props.loginTest}>Test Dispatch</Button>
-      </Grid>
+            <div className="profileImageContainer">
+                <Image src="/imgs/app/avatars/avatar23.png" rounded />    
+            </div>  
+            <div className="profileDetailsContainer" >
+                <div className="profileDetail">
+                    <h1> Ong Ting Wei</h1>
+                </div>
+                <div className="profileDetail">
+                    <span>Department: </span> <span>IT computing</span>                    
+                </div>
+
+                <div className="profileActions">
+                    <div>Edit Password</div>
+                    <div>Reset Password</div>
+                </div>
+            </div>
+       </div> 
     );
   }
 }
 
 Profile.propTypes = {
-    profile: PropTypes.object,
-}
+  profile: PropTypes.object
+};
 
 //const mapStateToProps = (state) => {
 //    return {
@@ -157,22 +119,20 @@ Profile.propTypes = {
 //    }
 //}
 
-const mapStateToProps = (state) => {
-    return {
-        user: state.userModule.loginUser,
-    }
-}
+const mapStateToProps = state => {
+  return {
+    user: state.userModule.loginUser
+  };
+};
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        getUser: () => {
-            dispatch(Actions.getUser({
-            }));
-        },
-        updateUser: () => {
-            dispatch(Actions.getUser({
-            }));
-        }
+const mapDispatchToProps = dispatch => {
+  return {
+    getUser: () => {
+      dispatch(Actions.getUser({}));
+    },
+    updateUser: () => {
+      dispatch(Actions.getUser({}));
     }
-}
-export default connect(mapStateToProps,mapDispatchToProps)(Profile);
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);
