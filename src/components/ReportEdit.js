@@ -24,20 +24,20 @@ class ReportEdit extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log('hi'+this.props.title);
+    console.log('hi' + this.props.title);
     this.state = {
-        docid: "",
-        title: "",
-        body: "",
+      docid: "",
+      title: "",
+      body: "",
     }
-}
+  }
 
   handleTitleChange(e) {
-    this.setState({ title: e.target.value});
+    this.setState({ title: e.target.value });
   }
 
   handleBodyChange(e) {
-    this.setState({ body: e.target.value});
+    this.setState({ body: e.target.value });
   }
 
   handleSubmit(e) {
@@ -51,11 +51,11 @@ class ReportEdit extends React.Component {
     return (
       <PanelContainer>
         <Panel>
-          <PanelBody>
-            <Grid>
-              <Row>
-                <Col xs={12}>
-                  <form onSubmit={this.handleSubmit.bind(this)}>
+          <form onSubmit={this.handleSubmit.bind(this)}>
+            <PanelBody>
+              <Grid>
+                <Row>
+                  <Col xs={12}>
                     <formGroup>
                       <Col xs={2}>
                         <controlLabel>Title:</controlLabel>
@@ -86,42 +86,32 @@ class ReportEdit extends React.Component {
                     </formGroup>
                     <formGroup>
                       <Col xsOffset={10} xs={2}>
-                        <Button type="submit">
-                          Update
-                        </Button>
                       </Col>
                     </formGroup>
-                  </form>
-                </Col>
-              </Row>
-            </Grid>
-          </PanelBody>
-          <hr style={{ margin: '0' }} />
 
-          <PanelFooter>
-            <Grid>
-              <Row>
-                <Col xs={4} style={{ paddingTop: 12.5, paddingBottom: 12.5 }}>
-                  {/* Commented away hashtag */}
-                  {/* <div><small><Icon glyph='icon-ikons-hashtag' style={{ position: 'relative', top: 1 }} /> ENTERTAINMENT</small></div> */}
-                </Col>
-                <Col xs={8} className='text-right' style={{ paddingTop: 12.5, paddingBottom: 12.5 }}>
-                  <div style={{ display: 'inline-block', marginLeft: 25 }}>
-                    <Icon style={{ position: 'relative', lineHeight: 0, top: 2 }} glyph='icon-ikons-speech-3' />
-                  </div>{' '}
-                  <div style={{ display: 'inline-block', marginLeft: 25 }}>
-                    <Icon style={{ position: 'relative', lineHeight: 0 }} glyph='icon-fontello-share' />
-                  </div>
-                  <div className='fg-pink' style={{ display: 'inline-block', marginLeft: 25 }}>
-                    <Icon style={{ position: 'relative', lineHeight: 0, top: 2 }} glyph='icon-ikons-heart' /><span> 0</span>
-                  </div>
-                  <div style={{ display: 'inline-block', marginLeft: 25 }}>
-                    <Button onClick={() => { this.props.router.push("/report/" + this.props.params.reportid) }}>Cancel Edit</Button>
-                  </div>
-                </Col>
-              </Row>
-            </Grid>
-          </PanelFooter>
+                  </Col>
+                </Row>
+              </Grid>
+            </PanelBody>
+            <hr style={{ margin: '0' }} />
+
+            <PanelFooter>
+              <Grid>
+                <Row>
+                  <Col xs={4} style={{ paddingTop: 12.5, paddingBottom: 12.5 }}>
+                    {/* Commented away hashtag */}
+                  </Col>
+
+                  <Col xs={8} className='text-right' style={{ paddingTop: 12.5, paddingBottom: 12.5 }}>
+                    <div style={{ display: 'inline-block', marginLeft: 25 }}>
+                      <Button type="submit">Update</Button>
+                      <Button onClick={() => { this.props.router.push("/report/" + this.props.params.reportid) }}>Cancel Edit</Button>
+                    </div>
+                  </Col>
+                </Row>
+              </Grid>
+            </PanelFooter>
+          </form>
         </Panel>
       </PanelContainer>
     );
