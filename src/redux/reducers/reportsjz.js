@@ -6,7 +6,7 @@ const initialState = {
     date: '',
     source: '',
     body:'',
-    entities:''
+    entities:[]
 };
 
 const report = (state = initialState, action) => {

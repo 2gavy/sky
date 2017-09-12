@@ -7,6 +7,7 @@ import * as Actions from '../redux/actions/reportsjz';
 import axios from 'axios';
 import ReportEdit from '../components/ReportEdit';
 import Sharebox from '../components/sharebox';
+import PropTypes from 'prop-types';
 
 import {
     ShareButtons,
@@ -33,7 +34,6 @@ import {
     PanelContainer,
 } from '@sketchpixy/rubix';
 
-// @connect((state) => state)
 class EditReport extends React.Component {
     constructor(props) {
         super(props);
@@ -49,37 +49,41 @@ class EditReport extends React.Component {
                     this.props.router.push('/404');
                 }
                 // this.setState(report[0]);
-                this.props.ReportSetFields({title:'HelloWorld'});
+                this.props.ReportSetFields(report[0]);
                 console.log(report[0]);
             })
     }
 
-      handleTitleChange(e) {
-        // this.setState({ title: e.target.value});
-      }
+    handleTitleChange(title) {
+        this.props.ReportSetFields(title);
+    }
 
-      handleBodyChange(e) {
-        // this.setState({ body: e.target.value});
-      }
+    handleBodyChange(body) {
+        this.props.ReportSetFields(body);
+    }
 
-      handleSubmit(e) {
-        alert('A name was submitted: ' + this.state.title);
-        alert('the new body text is:' + this.state.body);
+    handleDateChange(date) {
+        this.props.ReportSetFields(date);
+    }
+
+    handleSourceChange(source) {
+        this.props.ReportSetFields(source);
+    }
+
+    handleEntitiesChange(entities) {
+        this.props.ReportSetFields(entities);
+    }
+
+
+    handleSubmit(e) {
+        alert('A name was submitted: ' + this.props.title);
+        alert('the new body text is:' + this.props.body);
         this.props.router.push("/report/" + this.props.params.reportid)
         e.preventDefault();
-      }
+    }
 
     render() {
         const shareUrl = ('http://35.198.208.48:8001/api/reports/' + this.props.params.reportid);
-
-        // var entities = [];
-        // if (this.props.entities.length == 0) {
-        //     entities.push("None found");
-        // } else {
-        //     for (var i = 0; i < this.props.entities.length; i++) {
-        //         entities.push(<Tag key={i}>{this.props.entities[i]}</Tag>);
-        //     }
-        // }
 
         return (
             <Grid>
@@ -88,17 +92,12 @@ class EditReport extends React.Component {
                         <PanelLeft>
                             <Row>
                                 <Col xs={12}>
-                                    <div>
-                                    <h1>{this.props.title + 'no updating'}</h1>
-                                    </div>
-                                    {/*<ReportEdit docid={this.state.docid} title={'testing title'} body={this.state.body} /> */}
-                                    <ReportEdit docid={this.props.docid} title={this.props.title} body={this.props.body} />
+                                    <ReportEdit handleTitleChange={this.handleTitleChange.bind(this)} handleBodyChange={this.handleBodyChange.bind(this)} handleDateChange={this.handleDateChange.bind(this)} handleSourceChange={this.handleSourceChange.bind(this)} handleEntitiesChange={this.handleEntitiesChange.bind(this)} docid={this.props.docid} title={this.props.title} body={this.props.body} date={this.props.date} source={this.props.source} entities={this.props.entities}/>
                                 </Col>
                             </Row>
                         </PanelLeft>
-        
                         <PanelRight className='hidden-xs' style={{ width: 350 }}>
-                        <Sharebox shareUrl={this.shareUrl} title={this.props.title} />
+                            <Sharebox shareUrl={this.shareUrl} title={this.props.title} />
                         </PanelRight>
                     </Panel>
                 </PanelContainer>
@@ -107,11 +106,13 @@ class EditReport extends React.Component {
     }
 }
 
-const mapStateToProps = (state) =>{
+
+
+const mapStateToProps = (state) => {
     return {
         docid: state.reportsjzModule.docid,
         title: state.reportsjzModule.title,
-        author: state.reportsjzModule.author,
+        date: state.reportsjzModule.date,
         source: state.reportsjzModule.source,
         body: state.reportsjzModule.body,
         entities: state.reportsjzModule.entities
@@ -120,16 +121,19 @@ const mapStateToProps = (state) =>{
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        ReportFieldTitleEdit: (data) => {
-            dispatch(Actions.ReportFieldTitleEdit(data));
-        },
-        ReportFieldBodyEdit: (data) => {
-            dispatch(Actions.ReportFieldBodyEdit(data));
-        }, 
         ReportSetFields: (data) => {
             dispatch(Actions.ReportSetFields(data));
-        } 
+        }
     }
+}
+
+EditReport.PropTypes = {
+    docid: PropTypes.string,
+    title: PropTypes.string,
+    source: PropTypes.string,
+    body: PropTypes.string,
+    entities: PropTypes.array,
+    date: PropTypes.string
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditReport);

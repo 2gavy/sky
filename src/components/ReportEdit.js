@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, withRouter } from 'react-router';
 
 import {
   Tag,
@@ -20,30 +21,33 @@ import {
   PanelContainer,
 } from '@sketchpixy/rubix';
 
+@withRouter
 class ReportEdit extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log('hi' + this.props.title);
-    this.state = {
-      docid: "",
-      title: "",
-      body: "",
-    }
   }
 
   handleTitleChange(e) {
-    this.setState({ title: e.target.value });
+    this.props.handleTitleChange({ title: e.target.value });
   }
 
   handleBodyChange(e) {
-    this.setState({ body: e.target.value });
+    this.props.handleBodyChange({ body: e.target.value });
+  }
+  handleDateChange(e) {
+    this.props.handleAuthorChange({ date: e.target.value });
+  }
+  handleSourceChange(e) {
+    this.props.handleSourceChange({ source: e.target.value });
+  }
+  handleEntitiesChange(e) {
+    this.props.handleEntitiesChange({ entities: e.target.value });
   }
 
   handleSubmit(e) {
-    alert('A name was submitted: ' + this.state.title);
-    alert('the new body text is:' + this.state.body);
-    this.props.router.push("/report/" + this.props.docid)
+    alert('A new title was submitted: ' + this.props.title);
+    this.props.router.push("/report/" + this.props.params.reportid);
     e.preventDefault();
   }
 
@@ -63,9 +67,37 @@ class ReportEdit extends React.Component {
                       <Col xs={10}>
                         <FormControl
                           type="text"
-                          value={this.state.title}
+                          value={!!this.props.title ? this.props.title : ''}
                           placeholder="Mandatory Text"
-                          onChange={::this.handleTitleChange}
+                          onChange={this.handleTitleChange.bind(this)}
+                        />
+                      </Col>
+                    </formGroup>
+
+                    <formGroup>
+                      <Col xs={2}>
+                        <controlLabel>Date:</controlLabel>
+                      </Col>
+                      <Col xs={10}>
+                        <FormControl
+                          type="text"
+                          value={!!this.props.date ? this.props.date : ''}
+                          placeholder="Mandatory Text"
+                          onChange={this.handleDateChange.bind(this)}
+                        />
+                      </Col>
+                    </formGroup>
+
+                    <formGroup>
+                      <Col xs={2}>
+                        <controlLabel>Source:</controlLabel>
+                      </Col>
+                      <Col xs={10}>
+                        <FormControl
+                          type="text"
+                          value={!!this.props.source ? this.props.source : ''}
+                          placeholder="Mandatory Text"
+                          onChange={this.handleSourceChange.bind(this)}
                         />
                       </Col>
                     </formGroup>
@@ -77,10 +109,10 @@ class ReportEdit extends React.Component {
                       <Col xs={10}>
                         <FormControl
                           componentClass="TextArea"
-                          value={this.state.body}
+                          value={!!this.props.body ? this.props.body : ''}
                           rows='10'
                           placeholder="Mandatory text"
-                          onChange={::this.handleBodyChange}
+                          onChange={this.handleBodyChange.bind(this)}
                         />
                       </Col>
                     </formGroup>
