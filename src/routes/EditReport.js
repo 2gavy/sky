@@ -109,12 +109,12 @@ class EditReport extends React.Component {
 
 const mapStateToProps = (state) =>{
     return {
-        docid: state.docid,
-        title: state.title,
-        author: state.author,
-        source: state.source,
-        body: state.body,
-        entities: state.entities
+        docid: state.reportsjzModule.docid,
+        title: state.reportsjzModule.title,
+        author: state.reportsjzModule.author,
+        source: state.reportsjzModule.source,
+        body: state.reportsjzModule.body,
+        entities: state.reportsjzModule.entities
     };
 }
 

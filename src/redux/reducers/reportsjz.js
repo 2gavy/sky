@@ -2,14 +2,14 @@ import * as Actions from '../actions/actionTypes/reportsjz';
 
 const initialState = {
     docid: '',
-    title: 'Bomberman',
+    title: '',
     date: '',
     source: '',
     body:'',
     entities:''
 };
 
-const report = (state=initialstate, action) => {
+const report = (state = initialState, action) => {
     switch(action.type) {
         case Actions.REPORTS_FIELD_TITLE_EDIT: 
             return {...state, ...action.payload};
