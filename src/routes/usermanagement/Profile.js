@@ -14,7 +14,8 @@ import {
   PanelContainer,
   Table,
   Button,
-  Image
+  Image,
+  Modal
 } from "@sketchpixy/rubix";
 //
 // const profile = [{
@@ -33,7 +34,10 @@ class Profile extends React.Component {
 
   state = {
     isEditable: false,
-    user: {}
+    user: {},
+    showEditPWModal: false,
+    showResetPWModal: false,
+    showConfirmModal: false
   };
 
   componentWillMount = () => {
@@ -48,21 +52,24 @@ class Profile extends React.Component {
     }
   };
 
-  //renderBody = () => {
-  //  return this.props.users.map((user, idx) => {
-  //    return (
-  //      <tr key={idx}>
-  //        <td>{idx+1}</td>
-  //        <td><img src={user.profilePic} width='40' height='40'/></td>
-  //        <td>{user.name}</td>
-  //        <td>{user.department}</td>
-  //        <td>{user.accessRights.join(', ')}</td>
-  //        <td className="profileAction">
-  //          <a href="/edit">edit</a>
-  //          <a href="/delete">delete</a>
-  //        </td>
-  //      </tr>
-
+  close() {
+    this.setState({ 
+      showEditPWModal: false,
+      showResetPWModal: false,
+      showConfirmModal: false });
+  }
+  
+  openEditPW() {
+    this.setState({ showEditPWModal: true });
+  }
+  openResetPW() {
+    this.setState({ showResetPWModal: true });
+  }
+  openConfirmPW() {
+    this.setState({ showEditPWModal: false });
+    this.setState({ showConfirmModal: true });
+  }
+  showConfirmModal
   renderBody = () => {
     return (
       <tr>
@@ -89,35 +96,60 @@ class Profile extends React.Component {
                 </div>
 
                 <div className="profileActions">
-                    <div>Edit Password</div>
-                    <div>Reset Password</div>
+                    <div onClick={this.openEditPW.bind(this)}>Edit Password</div>
+                    <div onClick={this.openResetPW.bind(this)}>Reset Password</div>
                 </div>
             </div>
-       </div> 
+            <Modal show={this.state.showEditPWModal} onHide={this.close.bind(this)}>
+              <Modal.Header closeButton>
+                <Modal.Title>Change Password</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <p>Old Password: <input type="password"/></p>
+                <p>New Password: <input type="password"/></p>
+                <p>Confirm New Password: <input type="password"/></p>
+              </Modal.Body>
+              <Modal.Footer>
+                <Button onClick={this.openConfirmPW.bind(this)}>Save</Button>
+                <Button onClick={this.close.bind(this)}>Close</Button>
+              </Modal.Footer>
+            </Modal>
+            
+            <Modal show={this.state.showConfirmModal} onHide={this.close.bind(this)}>
+              <Modal.Header closeButton>
+                <Modal.Title>Confirm Change Password?</Modal.Title>
+              </Modal.Header>
+              <Modal.Footer>
+                <Button onClick={this.close.bind(this)}>Yes</Button>
+                <Button onClick={this.close.bind(this)}>No</Button>
+              </Modal.Footer>
+            </Modal>
+
+            <Modal show={this.state.showResetPWModal} onHide={this.close.bind(this)}>
+              <Modal.Header closeButton>
+                <Modal.Title>Reset Password</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <p>Send new password to email: <input type="text"/></p>
+              </Modal.Body>
+              <Modal.Footer>
+                <Button onClick={this.close.bind(this)}>Send</Button>
+              </Modal.Footer>
+            </Modal>
+        </div> 
+        
+        
     );
   }
 }
+
+
 
 Profile.propTypes = {
   profile: PropTypes.object
 };
 
-//const mapStateToProps = (state) => {
-//    return {
-//        profile: state.users.profile,
-//    }
-//}
 
-//const mapDispatchToProps = (dispatch) => {
-//    return {
-//        logintest: () => {
-//            dispatch(actions.loginuserrequest({
-//                username: 'user01',
-//                password: 'password01',
-//            }));
-//        },
-//    }
-//}
 
 const mapStateToProps = state => {
   return {
