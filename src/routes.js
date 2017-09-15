@@ -19,7 +19,7 @@ import Profile from './routes/usermanagement/Profile';
 import Generic404NotFound from './routes/404';
 import CreateReport from './routes/CreateReport';
 import Login from './routes/Login';
-
+import UserFeedPreference from './routes/UserFeedPreference';
 import { extend } from 'lodash'
 import { SearchkitManager, SearchkitProvider} from 'searchkit'
 
@@ -59,7 +59,9 @@ const routes = (
     <Route path='/usermanagement/profile' component={Profile} />
     <Route path='/404' component={Generic404NotFound} />
     <Route path='/CreateReport' component={CreateReport} />
+    <Route path='/userFeedPreference' component={UserFeedPreference} />
     <Route path="*" component={Generic404NotFound} />
+    
   </Route>
 );
 

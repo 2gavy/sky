@@ -110,17 +110,17 @@ class Profile extends React.Component {
                 <p>Confirm New Password: <input type="password"/></p>
               </Modal.Body>
               <Modal.Footer>
-                <Button onClick={this.openConfirmPW.bind(this)}>Save</Button>
+                <Button bsStyle='primary' onClick={this.openConfirmPW.bind(this)}>Save</Button>
                 <Button onClick={this.close.bind(this)}>Close</Button>
               </Modal.Footer>
             </Modal>
             
             <Modal show={this.state.showConfirmModal} onHide={this.close.bind(this)}>
               <Modal.Header closeButton>
-                <Modal.Title>Confirm Change Password?</Modal.Title>
+                <Modal.Title>Confirm change password?</Modal.Title>
               </Modal.Header>
               <Modal.Footer>
-                <Button onClick={this.close.bind(this)}>Yes</Button>
+                <Button bsStyle='primary' onClick={this.close.bind(this)}>Yes</Button>
                 <Button onClick={this.close.bind(this)}>No</Button>
               </Modal.Footer>
             </Modal>
