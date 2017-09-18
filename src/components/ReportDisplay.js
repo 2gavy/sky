@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, withRouter } from 'react-router';
 
 import {
     Button,
@@ -13,6 +14,7 @@ import {
     PanelFooter,
 } from '@sketchpixy/rubix';
 
+@withRouter
 class ReportDisplay extends React.Component {
     render() {
         return (
@@ -62,7 +64,7 @@ class ReportDisplay extends React.Component {
                                         <Icon style={{ position: 'relative', lineHeight: 0, top: 2 }} glyph='icon-ikons-heart' /><span> 0</span>
                                     </div>
                                     <div style={{ display: 'inline-block', marginLeft: 25 }}>
-                                        <Button onClick={() => { this.props.report.router.push("/editreport/" + this.props.report.params.reportid) }}>Edit Report</Button>
+                                        <Button onClick={() => { this.props.router.push("/editreport/" + this.props.params.reportid) }}>Edit Report</Button>
                                     </div>
                                 </Col>
                             </Row>
