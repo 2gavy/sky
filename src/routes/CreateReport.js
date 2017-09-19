@@ -125,9 +125,9 @@ onSubmit(event) {
             title: this.props.title,
             author: this.props.author,
             source: this.props.source,
-	    date: this.props.date,
-            body: this.props.content,
-	    docid: '88888',
+	    date: '12/02/2017',
+            bodys: this.props.content,
+	    docid: '12345',
         }).then(function (response) {
             console.log(response);
         })
@@ -182,7 +182,7 @@ onSubmit(event) {
                                                         <FormControl.Feedback />
 							</div>
 	                                                <div className="col-sm-9"><label className="col-sm-3 control-label">Date</label>
-                                                        <FormControl type="text" placeholder="Input Source" id="date" className="form-control" value={!!this.props.date ? this.props.date : ''} onChange={ ::this.onDateChange } />
+                                                        <FormControl type="date" placeholder="Input Date" id="date" className="form-control" value={!!this.props.date ? this.props.date : ''} onChange={ ::this.onDateChange } />
                                                         <FormControl.Feedback />
                                                         </div>
 							<div className="col-sm-9"><label className="col-sm-3 control-label">HTML Text</label><FormControl componentClass="textarea" rows="13" placeholder="Input HTML content here..." id="textareahorizontal" className="form-control" value={!!this.props.content ? this.props.content : ''} onChange={ ::this.onContentChange } />
