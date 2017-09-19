@@ -115,30 +115,9 @@ class ProfileMenu extends React.Component {
         <MenuItem onClick={() => {this.props.router.push("/usermanagement/profile") }}>
           Edit Profile
         </MenuItem>
-        <MenuItem>
+        <MenuItem onClick={() => {this.props.router.push("/userFeedPreference") }}>
           Edit Feed Preference
-            {/* <Row>
-              <Col xs={2} className='avatar-container' collapseRight>
-                <div><img src='/imgs/app/avatars/avatar22.png' width='40' height='40' alt='sarah_patchett' /></div>
-                <div className='text-center'>
-                  <Label bsStyle='info'>NEW</Label>
-                </div>
-              </Col>
-              <Col xs={10} className='notification-container' collapseLeft collapseRight>
-                <div className='time'>
-                  <strong className='fg-darkgray50'><Icon bundle='fontello' glyph='chat-5' /></strong>
-                </div>
-                <div className='message-header'>
-                  <strong className='fg-darkgreen45'>Sarah Patchett sent you a private message</strong>
-                </div>
-                <div className='message-details fg-text'>
-                  <span>{"Hey Anna! Sorry for delayed response. I've just finished reading the mail you sent couple of days ago..."}</span>
-                </div>
-              </Col>
-            </Row> */}
-
         </MenuItem>
-
         <MenuItem onClick={() => {this.props.router.push("/usermanagement/list") }}>
           Admin
         </MenuItem>

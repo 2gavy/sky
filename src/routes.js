@@ -18,9 +18,11 @@ import Admin from './routes/usermanagement/Admin';
 import Profile from './routes/usermanagement/Profile';
 import Generic404NotFound from './routes/404';
 import CreateReport from './routes/CreateReport';
-
+import Login from './routes/Login';
+import UserFeedPreference from './routes/UserFeedPreference';
 import { extend } from 'lodash'
 import { SearchkitManager, SearchkitProvider} from 'searchkit'
+import Collab from './routes/Collab';
 
 const host = "http://demo.searchkit.co/api/movies"
 const searchkit = new SearchkitManager(host)
@@ -50,6 +52,7 @@ class App extends React.Component {
 const routes = (
   <Route path='/' component={App}>
     <IndexRoute component={Home} />
+    <Route path='/login' component={Login} />
     <Route path='/report/:reportid' component={Report} />
     <Route path='/editreport/:reportid' component={EditReport} />
     <Redirect from="/report" to="/" />
@@ -57,7 +60,10 @@ const routes = (
     <Route path='/usermanagement/profile' component={Profile} />
     <Route path='/404' component={Generic404NotFound} />
     <Route path='/CreateReport' component={CreateReport} />
+    <Route path='/userFeedPreference' component={UserFeedPreference} />
+    <Route path='/collab' component={Collab} />
     <Route path="*" component={Generic404NotFound} />
+    
   </Route>
 );
 

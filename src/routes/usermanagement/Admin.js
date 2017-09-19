@@ -47,7 +47,10 @@ class Admin extends React.Component {
       )
   };
 
-  handleChange = (id, key) => (evt) => {
+
+
+  handleChange = (id) => (key) => (evt) => {
+
     const newUsers = {
       ...this.state.users,
       [id]: {
@@ -74,12 +77,18 @@ class Admin extends React.Component {
   //     this.setState({isEditable: false})
   // }
 
-  renderBody = () => {
-    return map(this.props.users, (user, id) => {
-      return <AdminRow  handleChange={this.handleChange}
-                        key={id}
-                        id={id}
-                        user={user} />;
+
+  renderBody = () => {    
+    return map(this.state.users, (user, id) => {
+      return (
+        <AdminRow  
+          handleChange={this.handleChange(id)}
+          key={id}
+          id={id}
+          user={user} 
+          updateUsers={() => this.props.updateUsers(this.state.users)}
+        />
+      )
     });
   };
 
@@ -108,9 +117,7 @@ class Admin extends React.Component {
     return (
       <Grid>
         <Row>
-          <Col xs={1} sm={1} md={1}>
-          </Col>
-          <Col xs={10} sm={10} md={10}>
+          <Col xs={12} sm={12} md={12} className="adminTable">
             <PanelContainer controls={false}>
               <Panel>
                 <PanelBody>
@@ -125,8 +132,6 @@ class Admin extends React.Component {
                 </PanelBody>
               </Panel>
             </PanelContainer>
-          </Col>
-          <Col xs={1} sm={1} md={1}>
           </Col>
         </Row>
       </Grid>

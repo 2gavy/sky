@@ -14,7 +14,7 @@ class AdminRow extends React.Component {
         <input
           type="text"
           className="adminInput"
-          onChange={this.props.handleChange}
+          onChange={this.props.handleChange(key)}
           value={this.props.user[key]}
         />
       )
@@ -22,7 +22,7 @@ class AdminRow extends React.Component {
 
     handleSave = () => {
         //Dispatch newly edited user object for saving
-        // this.props.updateUsers(this.prop.users);
+        this.props.updateUsers();
         this.setState({isEditable: false})
     }
 
@@ -50,6 +50,7 @@ AdminRow.propTypes = {
     handleChange: PropTypes.func,
     id: PropTypes.string,
     user: PropTypes.object,
+    updateUsers: PropTypes.func,
 };
 
 export default AdminRow;
