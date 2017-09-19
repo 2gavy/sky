@@ -10,6 +10,7 @@ import {
     Panel,
     PanelBody,
     PanelContainer,
+    Button,
 } from '@sketchpixy/rubix';
 
 const rankData = [
@@ -74,8 +75,16 @@ const rankData = [
         ]
     }];
 
+const DisplayWindows = rankData.map(Element => {
+    console.log(`The ID capture is: ${Element.id}`)
+});
 
 export default class Collab extends React.Component {
+    constructor() {
+        super();
+        this.state = {};
+    }
+
     render() {
         return (
             <PanelContainer>
@@ -85,6 +94,7 @@ export default class Collab extends React.Component {
                             <Row>
                                 <Col xs={12}>
                                     <p>hello</p>
+                                    {DisplayWindows}
                                 </Col>
                             </Row>
                         </Grid>
