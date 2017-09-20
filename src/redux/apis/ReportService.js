@@ -10,6 +10,7 @@ const instance = axios.create({
 });
 
 export function createReport(obj) {
+    console.log(obj);
     return instance.post('/reports', obj);
 }
 
