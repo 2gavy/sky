@@ -126,7 +126,7 @@ onSubmit(event) {
             author: this.props.author,
             source: this.props.source,
 	    date: '12/02/2017',
-            bodys: this.props.content,
+            body: this.props.content,
 	    docid: '12345',
         }).then(function (response) {
             console.log(response);
