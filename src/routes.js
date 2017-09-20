@@ -22,6 +22,7 @@ import Login from './routes/Login';
 import UserFeedPreference from './routes/UserFeedPreference';
 import { extend } from 'lodash'
 import { SearchkitManager, SearchkitProvider} from 'searchkit'
+import Collab from './routes/Collab';
 
 const host = "http://demo.searchkit.co/api/movies"
 const searchkit = new SearchkitManager(host)
@@ -60,6 +61,7 @@ const routes = (
     <Route path='/404' component={Generic404NotFound} />
     <Route path='/CreateReport' component={CreateReport} />
     <Route path='/userFeedPreference' component={UserFeedPreference} />
+    <Route path='/collab' component={Collab} />
     <Route path="*" component={Generic404NotFound} />
     
   </Route>
