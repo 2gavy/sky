@@ -14,8 +14,8 @@ export function createReport(obj) {
     return instance.post('/reports', obj);
 }
 
-export function updateReport(id) {
-    return instance.post('/reports', id);
+export function updateReport(obj) {
+    return instance.put('/reports', obj);
 }
 
 export function deleteReport(id) {
