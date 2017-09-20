@@ -121,13 +121,15 @@ onContentChange(event) {
 
 onSubmit(event) {
 	//this.setState({ title: event.target.value, source: event.target.value });
+console.log("title is " + this.props.title);
+console.log("author is " + this.props.author);
         createReport({
             title: this.props.title,
             author: this.props.author,
             source: this.props.source,
 	    date: '12/02/2017',
             body: this.props.content,
-	    docid: '12345',
+	    docid: '1234567',
         }).then(function (response) {
             console.log(response);
         })
@@ -190,7 +192,7 @@ onSubmit(event) {
 							</div>
           						<div className="col-xs-12">
 							<Button >Cancel</Button>
-							<Button onClick={this.onSubmit}>Upload</Button>
+							<Button onClick={this.onSubmit()}>Upload</Button>
 							</div>
                                                         <Icon glyph='icon-fontello-share' />
 

@@ -30,7 +30,7 @@ export function reportFieldsAuthorCreate(data) {
 
 export function reportFieldsDateCreate(data) {
   return {
-    type: Actions.REPORT_FIELDS_AUTHOR_DATE,
+    type: Actions.REPORT_FIELDS_DATE_CREATE,
     payload: data
   };
 }
