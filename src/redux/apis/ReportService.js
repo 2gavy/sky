@@ -15,6 +15,7 @@ export function createReport(obj) {
 }
 
 export function updateReport(obj) {
+    console.log('The data capture' + obj);
     return instance.put('/reports', obj);
 }
 

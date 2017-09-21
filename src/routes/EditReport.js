@@ -8,7 +8,6 @@ import axios from 'axios';
 import ReportEdit from '../components/ReportEdit';
 import Sharebox from '../components/sharebox';
 import PropTypes from 'prop-types';
-import {updateReport} from '../redux/apis/ReportService';
 
 import {
     ShareButtons,
@@ -73,23 +72,6 @@ class EditReport extends React.Component {
 
     handleEntitiesChange(entities) {
         this.props.ReportSetFields(entities);
-    }
-
-
-    handleSubmit(e) {
-        alert('A name was submitted: ' + this.props.title);
-        alert('the new body text is:' + this.props.body);
-        createReport({
-            title: this.props.title,
-            author: this.props.author,
-            source: this.props.source,
-	    date: '12/02/2017',
-            body: this.props.body,
-	    docid: this.props.docid,
-        })
-        
-        this.props.router.push("/report/" + this.props.params.reportid)
-        e.preventDefault();
     }
 
     render() {
