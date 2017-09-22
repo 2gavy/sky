@@ -1,0 +1,10 @@
+/* For TDT table hovering, highlight similar words */
+td:hover, td.hover, td.matching {
+    background: #FF9D00;
+  }
+
+  /*
+  td:hover, td.hover, td.matching {
+    background: #E5E5E5;
+  }
+  */
