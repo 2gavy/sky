@@ -77,7 +77,7 @@ const rankData = [
     }];
 
 const DisplayWindows = rankData.map(Element => {
-    console.log(`The ID capture is: ${Element.id}`)
+    // console.log(`The ID capture is: ${Element.id}`)
 });
 
 export default class Collab extends React.Component {

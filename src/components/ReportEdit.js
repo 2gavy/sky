@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router';
-import {updateReport} from '../redux/apis/ReportService';
+import { updateReport } from '../redux/apis/ReportService';
 
 import {
   Tag,
@@ -47,6 +47,7 @@ class ReportEdit extends React.Component {
   }
 
   handleSubmit(e) {
+    e.preventDefault();
     alert('A new title was submitted: ' + this.props.title);
     updateReport({
       title: this.props.title,
@@ -56,9 +57,7 @@ class ReportEdit extends React.Component {
       body: this.props.body,
       docid: this.props.docid,
     });
-
-    // this.props.router.push("/report/" + this.props.params.reportid);
-    e.preventDefault();
+    this.props.router.push("/report/" + this.props.params.reportid);
   }
 
   render() {
