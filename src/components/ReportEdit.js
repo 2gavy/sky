@@ -49,6 +49,8 @@ class ReportEdit extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     alert('A new title was submitted: ' + this.props.title);
+
+
     updateReport({
       title: this.props.title,
       author: this.props.author,
@@ -56,8 +58,11 @@ class ReportEdit extends React.Component {
       date: '12/02/2017',
       body: this.props.body,
       docid: this.props.docid,
+    }).then(value => {
+      this.props.router.push("/report/" + this.props.params.reportid);
+    }, reason => {
+      console.log(reason);
     });
-    this.props.router.push("/report/" + this.props.params.reportid);
   }
 
   render() {
