@@ -1,4 +1,5 @@
 import React from 'react';
+import Clouds from '../components/Clouds';
 // import { connect } from 'react-redux';
 // import { TagCloud } from "react-tagcloud";
 // import actions from '../redux/actions';
@@ -120,7 +121,7 @@ export default class Collab extends React.Component {
                         <Grid>
                             <Row>
                                 <Col xs={12}>
-                                    <p>hello</p>
+                                    <Clouds />                                    
                                     <Table bordered={true} striped={true}>
                                         <thead>
                                             <tr>
