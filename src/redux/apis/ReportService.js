@@ -14,7 +14,7 @@ const instance = axios.create({
 export function createReport(obj) {
     console.log('came to apis');
     console.log(obj);
-    return instance.post('reports', obj);
+    return instance.post('reports/', obj);
 }
 
 export function updateReport(obj) {
