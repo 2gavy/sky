@@ -18,8 +18,10 @@ export function createReport(obj) {
 }
 
 export function updateReport(obj) {
-    console.log('The data capture' + obj);
-    return instance.put('/reports', obj);
+    for (var prop in obj) {
+        console.log('The data capture ' + prop + " : " + obj[prop]);
+    }
+     return instance.put('/reports/'+ obj['docid'], obj);
 }
 
 export function deleteReport(id) {
