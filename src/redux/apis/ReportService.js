@@ -4,14 +4,17 @@ import * as config from '../../../appConfig';
 const instance = axios.create({
     baseURL: config.REPORT_HOST_ADDR,
     headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+	'Accept': 'application/json'
     },
-    responseType: 'json'
+    responseType: 'json',
+    withCredentials: false
 });
 
 export function createReport(obj) {
+    console.log('came to apis');
     console.log(obj);
-    return instance.post('/reports', obj);
+    return instance.post('reports', obj);
 }
 
 export function updateReport(obj) {
