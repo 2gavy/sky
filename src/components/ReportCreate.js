@@ -6,6 +6,8 @@ import actions from '../redux/actions';
 import * as Actions from '../redux/actions/reports';
 import { Link, withRouter } from 'react-router';
 import { createReport } from '../redux/apis/ReportService';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
 
 import {
   Tag,
@@ -39,7 +41,7 @@ class ReportCreate extends React.Component {
       source: "",
       date: "",
       body: "",
-      entities: ""
+      entities: "" 
   }
   this.onSubmit = this.onSubmit.bind(this);
   }
@@ -125,18 +127,12 @@ class ReportCreate extends React.Component {
                     </formGroup>
 
                     <formGroup>
-                      <Col xs={2}>
-                        <controlLabel>Date:</controlLabel>
-                      </Col>
-                      <Col xs={10}>
-                        <FormControl
-                          type="text"
-                          value={!!this.props.date ? this.props.date : ''}
-                          placeholder="Mandatory Text"
-                          onChange={ ::this.onDateChange }
-                        />
-                      </Col>
-                    </formGroup>
+                    <Col xs={2}>
+                      <controlLabel>Date:</controlLabel>
+                    </Col>
+                    <Col xs={10}>
+                    <DatePicker selected={this.state.date} onChange={this.handleChange} /> </Col>
+                  </formGroup>
 
                     <formGroup>
                       <Col xs={2}>
