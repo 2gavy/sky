@@ -24,6 +24,7 @@ import { extend } from 'lodash'
 import { SearchkitManager, SearchkitProvider} from 'searchkit'
 import Collab from './routes/Collab';
 
+//Code change for ES: host
 //const host = "http://demo.searchkit.co/api/movies"
 const host = "http://35.186.155.174:9200/tap_overts"
 const searchkit = new SearchkitManager(host)

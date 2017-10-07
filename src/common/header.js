@@ -60,7 +60,9 @@ class HeaderNavigation extends React.Component {
                 </button>
               </div>
             </div> */}
-            <SearchBox placeholder="Search" autofocus={true} searchOnChange={true} prefixQueryFields={["actors^1", "type^2", "languages", "title^10"]} />
+            {/*Code change for ES: SearchBox*/}
+            {/*<SearchBox placeholder="Search" autofocus={true} searchOnChange={true} prefixQueryFields={["actors^1", "type^2", "languages", "title^10"]} />*/}
+            <SearchBox placeholder="Search" autofocus={true} searchOnChange={false} queryFields={["content","title"]} />
           </NavItem>
           <NavItem className='hidden-xs'>
             <Icon bundle='fontello' glyph='star-1' />
