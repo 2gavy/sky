@@ -1,0 +1,84 @@
+.userFeedPreference-container {
+  .userFeedPreference-selectedSource {
+    padding: 10px 25px;
+    cursor: pointer;
+    border: 1px solid #F5F5F5;
+    color: #55C9A6;
+  }
+  .userFeedPreference-source {
+    padding: 10px 25px;
+    cursor: pointer;
+    border: 1px solid #F5F5F5;
+  }
+  .userFeedPreference-source:hover,
+  .userFeedPreference-selectedSource:hover {
+    border: 1px solid #55C9A6;
+  }
+  .userFeedPreference-separator {
+    width: 10%;
+    height: 200px;
+    padding-top: 50px;
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+    font-size:40px;
+    font-weight: bold;
+    border: 1px solid #F5F5F5;
+  }
+  .left-flip {
+    transform: rotateY(180deg);
+    transition: 0.6s
+  }
+  .right-flip {
+    transition: 0.6s;
+  }
+  .userFeedPreference-sources,
+  .userFeedPreference-selectedSources {
+    width: 45%;
+    display: inline-block;
+    height: 200px;
+    overflow: auto;
+  }
+  .rubix-panel-container {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .rubix-panel-header {
+    margin-bottom: 0;
+  }
+  .rubix-panel-body {
+    margin-bottom: -8px;
+  }
+  .userFeedPreference-reportFrequencies {
+    background-color: white;
+    padding: 10px 25px;
+    margin-top: 10px;
+    select {
+      width: 300px;
+      appearance: none;
+      padding: 5px;
+    }
+  }
+  .userFeedPreference-selectBox {
+    position: relative;
+  }
+  .userFeedPreference-label {
+    margin-bottom: 10px;
+  }
+  .userFeedPreference-chevron-down {
+    position: absolute;
+    left: 270px;
+    top: 10px;
+    pointer-events: none;
+  }
+  .userFeedPreference-submit {
+    margin-top: 10px;
+    background-color: white;
+    padding: 10px 25px;
+    .btn {
+      border-radius:  0;
+    }
+  }
+
+}
