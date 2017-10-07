@@ -29,7 +29,7 @@ import {
   ActionBar, ActionBarRow
 } from 'searchkit'
 
-const MovieHitsListItem = (props) => {
+const ReportHitsListItem = (props) => {
   const { bemBlocks, result } = props
   let url = "http://www.imdb.com/title/" + result._source.imdbId
   const source: any = extend({}, result._source, result.highlight)
@@ -59,7 +59,11 @@ const MovieHitsListItem = (props) => {
               <TimelineHeader className={'bg-hover-yellow'}>
                 <TimelineIcon className={'bg-blue fg-white'} glyph='icon-fontello-chat-1' />
                 <TimelineTitle>
-                  {now.getDate() + " " + month[now.getMonth()] + " " + now.getFullYear() + " " + now.getHours() + ":" + now.getMinutes()}
+                  {/*Code change for ES: Convert epoch to human readable date/time}*/}
+                  {/*now.getDate() + " " + month[now.getMonth()] + " " + now.getFullYear() + " " + now.getHours() + ":" + now.getMinutes()}*/}
+                  {
+                      new Date(Number(source.reportDatetime)*1000).toUTCString()            
+                  }
                 </TimelineTitle>
               </TimelineHeader>
               <TimelineBody>
@@ -67,13 +71,18 @@ const MovieHitsListItem = (props) => {
                   <li>
                     {/* <LoremIpsum query='2s' /> */}
                     <div className={bemBlocks.item().mix(bemBlocks.container("item"))} data-qa="hit">
+                      {/* Code change for ES: Comment out image display
                       <div className={bemBlocks.item("poster")}>
                         <img alt="presentation" data-qa="poster" src={result._source.poster} />
-                      </div>
+                      </div>*/}
                       <div className={bemBlocks.item("details")}>
+                        {/* Code change for ES: Change attributes to overt report attributes
                         <a href={url} target="_blank"><h2 className={bemBlocks.item("title")} dangerouslySetInnerHTML={{ __html: source.title }}></h2></a>
                         <h3 className={bemBlocks.item("subtitle")}>Released in {source.year}, rated {source.imdbRating}/10</h3>
-                        <div className={bemBlocks.item("text")} dangerouslySetInnerHTML={{ __html: source.plot }}></div>
+                        <div className={bemBlocks.item("text")} dangerouslySetInnerHTML={{ __html: source.plot }}></div>*/}
+                        <a href={url} target="_blank"><h2 className={bemBlocks.item("title")} dangerouslySetInnerHTML={{ __html: source.title }}></h2></a>
+                        <h3 className={bemBlocks.item("subtitle")}>Source: {source.source} <br/> Author: {source.authors.author}</h3>
+                        <div className={bemBlocks.item("text")} dangerouslySetInnerHTML={{ __html: source.docid}}></div>
                       </div>
                     </div>
                   </li>
@@ -134,6 +143,7 @@ class Home extends React.Component {
                   <Grid>
                     <Row>
                       <Col xs={12}>
+                        {/* Code change for ES: Faceted search for entities
                         <HierarchicalMenuFilter fields={["type.raw", "genres.raw"]} title="Categories" id="categories" />
                         <DynamicRangeFilter field="metaScore" id="metascore" title="Metascore" rangeFormatter={(count) => count + "*"} />
                         <RangeFilter min={0} max={10} field="imdbRating" id="imdbRating" title="IMDB Rating" showHistogram={true} />
@@ -146,7 +156,8 @@ class Home extends React.Component {
                           { title: "up to 20", from: 0, to: 20 },
                           { title: "21 to 60", from: 21, to: 60 },
                           { title: "60 or more", from: 61, to: 1000 }
-                        ]} />
+                        ]} />*/}
+                        <RefinementListFilter id= "entities" title="ENTITIES" field="entities" operator="OR" size={10}/>
                       </Col>
                     </Row>
                   </Grid>
@@ -159,26 +170,39 @@ class Home extends React.Component {
             <ActionBar>
               <ActionBarRow>
                 <HitsStats translations={{
-                  "hitstats.results_found": "{hitCount} results found"
+                  "hitstats.results_found": "{hitCount} reports found"
                 }} />
                 <ViewSwitcherToggle />
 
                 <SortingSelector options={[
+                  {/* Code change for ES: sort options
                   { label: "Relevance", field: "_score", order: "desc" },
                   { label: "Latest Releases", field: "released", order: "desc" },
-                  { label: "Earliest Releases", field: "released", order: "asc" }
+                  { label: "Earliest Releases", field: "released", order: "asc" */},
+                  { label: "Relevance", field: "_score", order: "desc" },
+                  { label: "Latest Reports", field: "reportDatetime", order: "desc" },
+                  { label: "Earliest Reports", field: "reportDatetime", order: "asc" }
                 ]} />
               </ActionBarRow>
-              <ActionBarRow>
+              {/*<ActionBarRow>
                 <GroupedSelectedFilters /><ResetFilters />
-              </ActionBarRow>
+              </ActionBarRow>*/}
             </ActionBar>
+            <br/><br/>
+            {/* Code change for ES: search result settings
             <ViewSwitcherHits
               hitsPerPage={12} highlightFields={["title", "plot"]}
-              sourceFilter={["plot", "title", "poster", "imdbId", "imdbRating", "year"]}
+              sourceFilter={["plot", "title", "poster", "imdbId", "imdbRating", "year"]
               hitComponents={[
                 { key: "list", title: "List", itemComponent: MovieHitsListItem },
-                {/* {key:"grid", title:"Grid", itemsComponent:MovieHitsGridItem, defaultOption:true} */ }
+                { {key:"grid", title:"Grid", itemsComponent:MovieHitsGridItem, defaultOption:true}
+              ]
+              scrollTo="body"
+            />*/}
+            <ViewSwitcherHits
+              hitsPerPage={12} highlightFields={["title"]}
+              hitComponents={[
+                { key: "list", title: "Results List", itemComponent: ReportHitsListItem }
               ]}
               scrollTo="body"
             />
