@@ -97,7 +97,7 @@ class TopicNavigation extends React.Component {
     return (
       <Nav bsStyle="pills" className='nav-orange75 hidden-xs' pullLeft>
         <DirectNavItem eventKey={1} path="/">Home</DirectNavItem>
-        <DirectNavItem className='hidden-sm' eventKey={2} path="/report/000007">Sample Report</DirectNavItem>
+        <DirectNavItem className='hidden-sm' eventKey={2} path="/report/0000000000002194">Sample Report</DirectNavItem>
       </Nav>
     );
   }

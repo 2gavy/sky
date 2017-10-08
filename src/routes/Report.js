@@ -35,7 +35,7 @@ class Report extends React.Component {
             title: "",
             source: "",
             date: "",
-            body: "",
+            content: "",
             entities: "",
         }
 
