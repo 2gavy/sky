@@ -23,3 +23,7 @@
 3. Enter Commit message.
 4. Click on `...`
 5. Push code to git
+
+## Error messages
+Node Sass does not yet support your current environment: OS X 64-bit with Unsupported runtime (57)
+To solve: npm rebuild node-sass

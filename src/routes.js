@@ -5,7 +5,6 @@ import { IndexRoute, Route, Redirect } from 'react-router';
 import { Grid, Row, Col, MainContainer } from '@sketchpixy/rubix';
 
 /* Common Components */
-
 import Sidebar from './common/sidebar';
 import Header from './common/header';
 import Footer from './common/footer';
@@ -25,7 +24,6 @@ import { SearchkitManager, SearchkitProvider} from 'searchkit'
 import Collab from './routes/Collab';
 
 //Code change for ES: host
-//const host = "http://demo.searchkit.co/api/movies"
 const host = "http://35.186.155.174:9200/tap_overts"
 const searchkit = new SearchkitManager(host)
 
