@@ -51,18 +51,9 @@ class HeaderNavigation extends React.Component {
       <Nav pullRight>
         <Nav className='hidden-xs'>
           <NavItem>
-            {/* <div className="input-group" >
-              <input className="form-control" placeholder="Search" />
-              <div className="input-group-addon plain" style={{ width: '35%' }}>
-                <button role="button" className="btn btn-default" type="button">
-                  <span>Search </span>
-                  <Icon bundle='fontello' glyph='search' />
-                </button>
-              </div>
-            </div> */}
             {/*Code change for ES: SearchBox*/}
             {/*<SearchBox placeholder="Search" autofocus={true} searchOnChange={true} prefixQueryFields={["actors^1", "type^2", "languages", "title^10"]} />*/}
-            <SearchBox placeholder="Search" autofocus={true} searchOnChange={false} queryFields={["content","title"]} />
+            <SearchBox placeholder="Search" autofocus={true} searchOnChange={true} queryFields={["content","title"]} />
           </NavItem>
           <NavItem className='hidden-xs'>
             <Icon bundle='fontello' glyph='star-1' />
