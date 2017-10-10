@@ -71,9 +71,9 @@ class ReportCreate extends React.Component {
       });
     }
     
-    onDateChange(event) {
+    onDateChange(date) {
       this.props.reportFieldsDateCreate({
-           date: event.target.value
+           date: date
       });
     }
     
@@ -91,7 +91,7 @@ class ReportCreate extends React.Component {
           "title": this.props.title,
           "author": this.props.author,
           "source": this.props.source,
-          "date": '12/02/2017',
+          "date": this.props.date,
           "body": this.props.content,
           "docid": '12345678',
       }).then(function (response) {
@@ -131,7 +131,7 @@ class ReportCreate extends React.Component {
                       <controlLabel>Date:</controlLabel>
                     </Col>
                     <Col xs={10}>
-                    <DatePicker selected={this.state.date} onChange={this.handleChange} /> </Col>
+                    <DatePicker dateFormat="DD/MM/YYYY" selected={this.props.date} onChange={ ::this.onDateChange } /> </Col>
                   </formGroup>
 
                     <formGroup>
@@ -204,7 +204,7 @@ ReportCreate.propType = {
   title: PropTypes.string,
   author: PropTypes.string,
   source: PropTypes.string,
-  date: PropTypes.date,
+  date: PropTypes.string,
   content: PropTypes.string,
 }
 

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router';
 import { updateReport } from '../redux/apis/ReportService';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
 
 import {
   Tag,
@@ -36,12 +38,15 @@ class ReportEdit extends React.Component {
   handleBodyChange(e) {
     this.props.handleBodyChange({ body: e.target.value });
   }
-  handleDateChange(e) {
-    this.props.handleAuthorChange({ date: e.target.value });
+ 
+  handleDateChange(date) {
+    this.props.handleDateChange({ date: date });
   }
+
   handleSourceChange(e) {
     this.props.handleSourceChange({ source: e.target.value });
   }
+  
   handleEntitiesChange(e) {
     this.props.handleEntitiesChange({ entities: e.target.value });
   }
@@ -88,14 +93,13 @@ class ReportEdit extends React.Component {
                       </Col>
                     </formGroup>
 
-                    <formGroup>
+                   <formGroup>
                       <Col xs={2}>
                         <controlLabel>Date:</controlLabel>
                       </Col>
                       <Col xs={10}>
-                        <FormControl
-                          type="text"
-                          value={!!this.props.date ? this.props.date : ''}
+                        <DatePicker dateFormat="DD/MM/YYYY" 
+                          selected={this.props.date}
                           placeholder="Mandatory Text"
                           onChange={this.handleDateChange.bind(this)}
                         />
