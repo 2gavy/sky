@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router';
-import { updateReport } from '../redux/apis/ReportService';
+import {updateReport} from '../redux/apis/ReportService';
 import DatePicker from 'react-datepicker';
-import moment from 'moment';
 
 import {
   Tag,
@@ -38,36 +37,28 @@ class ReportEdit extends React.Component {
   handleBodyChange(e) {
     this.props.handleBodyChange({ body: e.target.value });
   }
- 
-  handleDateChange(date) {
-    this.props.handleDateChange({ date: date });
+  handleDateChange(e) {
+    this.props.handleAuthorChange({ date: e });
   }
-
   handleSourceChange(e) {
     this.props.handleSourceChange({ source: e.target.value });
   }
-  
   handleEntitiesChange(e) {
     this.props.handleEntitiesChange({ entities: e.target.value });
   }
 
   handleSubmit(e) {
-    e.preventDefault();
     alert('A new title was submitted: ' + this.props.title);
-
-
     updateReport({
       title: this.props.title,
       author: this.props.author,
       source: this.props.source,
-      date: '12/02/2017',
+      date: this.props.date,
       body: this.props.body,
       docid: this.props.docid,
-    }).then(value => {
-      this.props.router.push("/report/" + this.props.params.reportid);
-    }, reason => {
-      console.log(reason);
     });
+    // this.props.router.push("/report/" + this.props.params.reportid);
+    e.preventDefault();
   }
 
   render() {
@@ -93,16 +84,19 @@ class ReportEdit extends React.Component {
                       </Col>
                     </formGroup>
 
-                   <formGroup>
+                    <formGroup>
                       <Col xs={2}>
                         <controlLabel>Date:</controlLabel>
                       </Col>
                       <Col xs={10}>
-                        <DatePicker dateFormat="DD/MM/YYYY" 
-                          selected={this.props.date}
+{/*                         <FormControl
+                          type="text"
+                          value={!!this.props.date ? this.props.date : ''}
                           placeholder="Mandatory Text"
                           onChange={this.handleDateChange.bind(this)}
-                        />
+                        /> */}
+                        <DatePicker dateFormat="DD/MM/YYYY" selected={this.props.date} onChange={ ::this.onDateChange } />
+
                       </Col>
                     </formGroup>
 
