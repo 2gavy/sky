@@ -38,7 +38,7 @@ class ReportEdit extends React.Component {
     this.props.handleBodyChange({ body: e.target.value });
   }
   handleDateChange(e) {
-    this.props.handleAuthorChange({ date: e });
+    this.props.handleDateChange({ date: e });
   }
   handleSourceChange(e) {
     this.props.handleSourceChange({ source: e.target.value });
@@ -54,7 +54,7 @@ class ReportEdit extends React.Component {
       author: this.props.author,
       source: this.props.source,
       date: this.props.date,
-      body: this.props.body,
+      content: this.props.content,
       docid: this.props.docid,
     });
     // this.props.router.push("/report/" + this.props.params.reportid);
@@ -95,8 +95,7 @@ class ReportEdit extends React.Component {
                           placeholder="Mandatory Text"
                           onChange={this.handleDateChange.bind(this)}
                         /> */}
-                        <DatePicker dateFormat="DD/MM/YYYY" selected={this.props.date} onChange={ ::this.onDateChange } />
-
+                        <DatePicker dateFormat="DD/MM/YYYY" selected={this.props.date} onChange={::this.handleDateChange.bind(this)} />
                       </Col>
                     </formGroup>
 
@@ -121,7 +120,7 @@ class ReportEdit extends React.Component {
                       <Col xs={10}>
                         <FormControl
                           componentClass="TextArea"
-                          value={!!this.props.body ? this.props.body : ''}
+                          value={!!this.props.content ? this.props.content : ''}
                           rows='10'
                           placeholder="Mandatory text"
                           onChange={this.handleBodyChange.bind(this)}

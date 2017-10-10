@@ -58,8 +58,8 @@ class EditReport extends React.Component {
         this.props.ReportSetFields(title);
     }
 
-    handleBodyChange(body) {
-        this.props.ReportSetFields(body);
+    handleBodyChange(content) {
+        this.props.ReportSetFields(content);
     }
 
     handleDateChange(date) {
@@ -84,7 +84,7 @@ class EditReport extends React.Component {
                         <PanelLeft>
                             <Row>
                                 <Col xs={12}>
-                                    <ReportEdit handleTitleChange={this.handleTitleChange.bind(this)} handleBodyChange={this.handleBodyChange.bind(this)} handleDateChange={this.handleDateChange.bind(this)} handleSourceChange={this.handleSourceChange.bind(this)} handleEntitiesChange={this.handleEntitiesChange.bind(this)} docid={this.props.docid} title={this.props.title} body={this.props.body} date={this.props.date} source={this.props.source} entities={this.props.entities}/>
+                                    <ReportEdit handleTitleChange={this.handleTitleChange.bind(this)} handleBodyChange={this.handleBodyChange.bind(this)} handleDateChange={this.handleDateChange.bind(this)} handleSourceChange={this.handleSourceChange.bind(this)} handleEntitiesChange={this.handleEntitiesChange.bind(this)} docid={this.props.docid} title={this.props.title} body={this.props.content} date={this.props.date} source={this.props.source} entities={this.props.entities}/>
                                 </Col>
                             </Row>
                         </PanelLeft>
@@ -106,7 +106,7 @@ const mapStateToProps = (state) => {
         title: state.reportsjzModule.title,
         date: state.reportsjzModule.date,
         source: state.reportsjzModule.source,
-        body: state.reportsjzModule.body,
+        content: state.reportsjzModule.content,
         entities: state.reportsjzModule.entities
     };
 }
@@ -123,7 +123,7 @@ EditReport.PropTypes = {
     docid: PropTypes.string,
     title: PropTypes.string,
     source: PropTypes.string,
-    body: PropTypes.string,
+    content: PropTypes.string,
     entities: PropTypes.array,
     date: PropTypes.string
 }
