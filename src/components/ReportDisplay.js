@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router';
-import Timestamp from 'react-timestamp';
 
 import {
     Button,
@@ -30,8 +29,7 @@ class ReportDisplay extends React.Component {
                                         <Row>
                                             <Col xs={6} collapseLeft collapseRight>
                                                 <div className='fg-darkgray50'>
-                                                    {/* <small>by {this.props.report.source} / {this.props.report.date}</small> */}
-                                                    <small>by {this.props.report.source} / <Timestamp time={this.props.report.captureDatetime} /></small>
+                                                    <small>by {this.props.report.source} / {new Date(Number(this.props.report.captureDatetime) * 1000).toUTCString().slice(0, -7)}</small>
                                                 </div>
                                             </Col>
                                             <Col xs={6} collapseLeft collapseRight className='text-right'>
@@ -42,10 +40,6 @@ class ReportDisplay extends React.Component {
                                         </Row>
                                     </Grid>
                                     <div dangerouslySetInnerHTML={{__html:this.props.report.content}} />
-                                    <hr/>
-                                    <p>If just displaying the html...</p>
-                                    <hr/>
-                                    {<p style={{ marginTop: 25 }}>{this.props.report.content}</p>}
                                 </Col>
                             </Row>
                         </Grid>
