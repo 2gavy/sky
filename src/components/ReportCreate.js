@@ -91,9 +91,9 @@ class ReportCreate extends React.Component {
           "title": this.props.title,
           "author": this.props.author,
           "source": this.props.source,
-          "date": this.props.date,
+          "captureDatetime": this.props.date,
           "body": this.props.content,
-          "docid": '12345678',
+          "docid": '12345678910',
       }).then(function (response) {
           console.log(response);
       })
