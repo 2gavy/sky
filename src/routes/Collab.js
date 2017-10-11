@@ -1,7 +1,8 @@
 import React from 'react';
 import Clouds from '../components/Clouds';
 // import { connect } from 'react-redux';
-// import { TagCloud } from "react-tagcloud";
+import {Tooltip} from 'react-lightweight-tooltip';
+import { TagCloud } from "react-tagcloud";
 // import actions from '../redux/actions';
 
 import {
@@ -14,6 +15,67 @@ import {
     Table,
     Button,
 } from '@sketchpixy/rubix';
+
+    var myData = require('test2.json');
+    
+/*
+var data = [
+  { value: "JavaScript", count: 0.35, docid: 123 },
+  { value: "React", count: 0.48 },
+  { value: "Nodejs", count: 0.2 },
+  { value: "Express.js", count: 0.25 },
+  { value: "HTML5", count: 0.35 },
+  { value: "MongoDB", count: 0.2 },
+  { value: "CSS3", count: 0.8 }
+];
+*/
+    
+console.log("Rendering BugCloud");
+
+var data = [];
+var datas = [];
+var labels = [];
+
+for (var i = 0; i < myData.cluster.length; i++) {
+
+console.log(myData.cluster.length);
+console.log("i :" +  i);
+console.log("looping label is : " + myData['cluster'][i]["label"]);
+
+for (var k in myData['cluster'][i]["terms"]) {
+
+console.log(k + ": Word is " + myData['cluster'][i]["terms"][k]["word"] + " & weight is " + myData['cluster'][i]["terms"][k]["weight"] + '\n');
+
+var myObj = {
+    value : myData['cluster'][i]["terms"][k]["word"],    //your word variable
+    count : myData['cluster'][i]["terms"][k]["weight"] //your weight variable
+};
+
+data.push(myObj);
+}
+
+//data.splice( 100, 0, myData['cluster'][i]["label"] );
+//data.push(myData['cluster'][i]["terms"]);
+
+datas.push(data);
+//labels.push(myData['cluster'][i]["label"]);
+
+console.log("data array contains" + data);
+
+data = [];
+}
+
+const DisplayTagClouds = datas.map(cloud => <div><Tooltip content="Hello Zhang Zhiyao! Take water now?"><TagCloud minSize={12}
+maxSize={35}
+tags={cloud}
+onClick={tag => alert(`'${tag.docid}' was selected!`)} /> </Tooltip>
+<hr/></div>
+);
+//return (<div><Tooltip content="Yes, the default one">Test for mouseover</Tooltip></div>);
+
+//console.log(cluster1.length);
+//return null;
+
 
 const rankData = [
     {
@@ -121,7 +183,8 @@ export default class Collab extends React.Component {
                         <Grid>
                             <Row>
                                 <Col xs={12}>
-                                    <Clouds />                                    
+                                    <Clouds />  
+                                    {DisplayTagClouds}                                  
                                     <Table bordered={true} striped={true}>
                                         <thead>
                                             <tr>

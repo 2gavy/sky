@@ -1,0 +1,46 @@
+{
+  "cluster": [
+    {
+      "label": "cluster1",
+      "terms": [
+        {
+          "word": "term1",
+          "weight": "0.8"
+        },
+        {
+          "word": "term2",
+          "weight": "0.3"
+        },        {
+          "word": "term3",
+          "weight": "0.2"
+        }
+      ],
+      "docs": [
+     	"A1213",
+        "B123",
+        "C123"
+    ]
+    },
+      {
+      "label": "cluster2",
+      "terms": [
+        {
+          "word": "term4",
+          "weight": "0.5"
+        },
+        {
+          "word": "term5",
+          "weight": "0.4"
+        },        {
+          "word": "term6",
+          "weight": "0.9"
+        }
+      ],
+      "docs": [
+        "A1213",
+        "B123",
+        "C123"
+      ]
+    }
+  ]
+}
