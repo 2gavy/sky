@@ -7,9 +7,12 @@ import {
     Panel,
     PanelBody,
     PanelContainer,
-  } from '@sketchpixy/rubix';
+} from '@sketchpixy/rubix';
 
-const data = {
+
+var clusterData;
+
+/* const data = {
     rainbow1: [
         { value: "jQuery", count: 25 }, { value: "MongoDB", count: 18 },
         { value: "JavaScript", count: 38 }, { value: "React", count: 30 },
@@ -54,7 +57,7 @@ function MultipleCloud(data) {
     }
     return result;
 }
-
+ */
 /* const data = [[
   { value: "jQuery", count: 25 }, { value: "MongoDB", count: 18 },
   { value: "JavaScript", count: 38 }, { value: "React", count: 30 },
@@ -85,20 +88,37 @@ function MultipleCloud(data) {
   { value: "Mocha", count: 17 }, { value: "React Native", count: 27 },
   { value: "Angular.js", count: 30 }, { value: "TypeScript", count: 15 },
   { value: "Flow", count: 30 }, { value: "NPM", count: 11 },
-]];
- 
-const MultipleCloud = data.map(cloud =>
-    <TagCloud minSize={12}
-      maxSize={35}
-      tags={cloud}
-      className="simple-cloud"
-      onClick={tag => alert(`'${tag.value}' was selected!`)} />
-); */
+]]; */
+
+function MultipleCloud(data) {
+    const result = data.map(cloud =>
+        <TagCloud minSize={12}
+            maxSize={35}
+            tags={cloud}
+            className="simple-cloud"
+            onClick={tag => alert(`'${tag.value}' was selected!`)} />
+    );
+
+    return result;
+}
 
 class Clouds extends React.Component {
     constructor(props) {
         super(props);
+        clusterData = this.props.cloudData.cluster.map(data => {
+            let term = {};
+            let terms = [];
+            for (var i = 0; i < data.terms.length; i++) {
+                ({ word: term.value, weight: term.count } = data.terms[i]);
+                terms.push(Object.assign({},term));
+            }
+            return terms;
+        });
+
+        for (var i = 0; i < clusterData.length; i++)
+            console.log(clusterData[i]);
     }
+
     render() {
         return (
             <PanelContainer>
@@ -106,11 +126,8 @@ class Clouds extends React.Component {
                     <PanelBody>
                         <Grid>
                             <Row>
-                                <Col xs={6}>
-                                    {MultipleCloud(data)}
-                                </Col>
-                                <Col xs={6}>
-                                    {MultipleCloud(data)}
+                                <Col xs={12}>
+                                    {MultipleCloud(clusterData)}
                                 </Col>
                             </Row>
                         </Grid>

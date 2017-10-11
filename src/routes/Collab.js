@@ -16,21 +16,10 @@ import {
     Button,
 } from '@sketchpixy/rubix';
 
-    var myData = require('test2.json');
+const myData = require('test2.json');
     
-/*
-var data = [
-  { value: "JavaScript", count: 0.35, docid: 123 },
-  { value: "React", count: 0.48 },
-  { value: "Nodejs", count: 0.2 },
-  { value: "Express.js", count: 0.25 },
-  { value: "HTML5", count: 0.35 },
-  { value: "MongoDB", count: 0.2 },
-  { value: "CSS3", count: 0.8 }
-];
-*/
     
-console.log("Rendering BugCloud");
+// console.log("Rendering BugCloud");
 
 var data = [];
 var datas = [];
@@ -38,13 +27,13 @@ var labels = [];
 
 for (var i = 0; i < myData.cluster.length; i++) {
 
-console.log(myData.cluster.length);
+/* console.log(myData.cluster.length);
 console.log("i :" +  i);
-console.log("looping label is : " + myData['cluster'][i]["label"]);
+console.log("looping label is : " + myData['cluster'][i]["label"]); */
 
 for (var k in myData['cluster'][i]["terms"]) {
 
-console.log(k + ": Word is " + myData['cluster'][i]["terms"][k]["word"] + " & weight is " + myData['cluster'][i]["terms"][k]["weight"] + '\n');
+// console.log(k + ": Word is " + myData['cluster'][i]["terms"][k]["word"] + " & weight is " + myData['cluster'][i]["terms"][k]["weight"] + '\n');
 
 var myObj = {
     value : myData['cluster'][i]["terms"][k]["word"],    //your word variable
@@ -60,7 +49,7 @@ data.push(myObj);
 datas.push(data);
 //labels.push(myData['cluster'][i]["label"]);
 
-console.log("data array contains" + data);
+// console.log("data array contains" + data);
 
 data = [];
 }
@@ -183,7 +172,7 @@ export default class Collab extends React.Component {
                         <Grid>
                             <Row>
                                 <Col xs={12}>
-                                    <Clouds />  
+                                    <Clouds cloudData={myData}/>  
                                     {DisplayTagClouds}                                  
                                     <Table bordered={true} striped={true}>
                                         <thead>
