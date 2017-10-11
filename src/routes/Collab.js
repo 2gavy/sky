@@ -65,7 +65,7 @@ console.log("data array contains" + data);
 data = [];
 }
 
-const DisplayTagClouds = datas.map(cloud => <div><Tooltip content="Hello Zhang Zhiyao! Take water now?"><TagCloud minSize={12}
+const DisplayTagClouds = datas.map(cloud => <div><Tooltip content="Testing tooltip to display Docids"><TagCloud minSize={12}
 maxSize={35}
 tags={cloud}
 onClick={tag => alert(`'${tag.docid}' was selected!`)} /> </Tooltip>
