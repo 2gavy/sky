@@ -1,7 +1,7 @@
 import React from 'react';
 import Clouds from '../components/Clouds';
 // import { connect } from 'react-redux';
-import {Tooltip} from 'react-lightweight-tooltip';
+import { Tooltip } from 'react-lightweight-tooltip';
 import { TagCloud } from "react-tagcloud";
 // import actions from '../redux/actions';
 
@@ -17,8 +17,8 @@ import {
 } from '@sketchpixy/rubix';
 
 const myData = require('test2.json');
-    
-    
+
+
 // console.log("Rendering BugCloud");
 
 var data = [];
@@ -27,38 +27,38 @@ var labels = [];
 
 for (var i = 0; i < myData.cluster.length; i++) {
 
-/* console.log(myData.cluster.length);
-console.log("i :" +  i);
-console.log("looping label is : " + myData['cluster'][i]["label"]); */
+    /* console.log(myData.cluster.length);
+    console.log("i :" +  i);
+    console.log("looping label is : " + myData['cluster'][i]["label"]); */
 
-for (var k in myData['cluster'][i]["terms"]) {
+    for (var k in myData['cluster'][i]["terms"]) {
 
-// console.log(k + ": Word is " + myData['cluster'][i]["terms"][k]["word"] + " & weight is " + myData['cluster'][i]["terms"][k]["weight"] + '\n');
+        // console.log(k + ": Word is " + myData['cluster'][i]["terms"][k]["word"] + " & weight is " + myData['cluster'][i]["terms"][k]["weight"] + '\n');
 
-var myObj = {
-    value : myData['cluster'][i]["terms"][k]["word"],    //your word variable
-    count : myData['cluster'][i]["terms"][k]["weight"] //your weight variable
-};
+        var myObj = {
+            value: myData['cluster'][i]["terms"][k]["word"],    //your word variable
+            count: myData['cluster'][i]["terms"][k]["weight"] //your weight variable
+        };
 
-data.push(myObj);
-}
+        data.push(myObj);
+    }
 
-//data.splice( 100, 0, myData['cluster'][i]["label"] );
-//data.push(myData['cluster'][i]["terms"]);
+    //data.splice( 100, 0, myData['cluster'][i]["label"] );
+    //data.push(myData['cluster'][i]["terms"]);
 
-datas.push(data);
-//labels.push(myData['cluster'][i]["label"]);
+    datas.push(data);
+    //labels.push(myData['cluster'][i]["label"]);
 
-// console.log("data array contains" + data);
+    // console.log("data array contains" + data);
 
-data = [];
+    data = [];
 }
 
 const DisplayTagClouds = datas.map(cloud => <div><Tooltip content="Testing tooltip to display Docids"><TagCloud minSize={12}
-maxSize={35}
-tags={cloud}
-onClick={tag => alert(`'${tag.docid}' was selected!`)} /> </Tooltip>
-<hr/></div>
+    maxSize={35}
+    tags={cloud}
+    onClick={tag => alert(`'${tag.docid}' was selected!`)} /> </Tooltip>
+    <hr /></div>
 );
 //return (<div><Tooltip content="Yes, the default one">Test for mouseover</Tooltip></div>);
 
@@ -172,8 +172,8 @@ export default class Collab extends React.Component {
                         <Grid>
                             <Row>
                                 <Col xs={12}>
-                                    <Clouds cloudData={myData}/>  
-                                    {DisplayTagClouds}                                  
+                                    <Clouds cloudData={myData} />
+                                    {DisplayTagClouds}
                                     <Table bordered={true} striped={true}>
                                         <thead>
                                             <tr>

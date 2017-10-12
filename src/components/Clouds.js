@@ -1,5 +1,6 @@
 import React from "react";
 import { TagCloud } from "react-tagcloud";
+import { Tooltip } from 'react-lightweight-tooltip';
 import {
     Row,
     Col,
@@ -91,13 +92,14 @@ function MultipleCloud(data) {
 ]]; */
 
 function MultipleCloud(data) {
-    const result = data.map(cloud =>
+    const result = data.map(cloud => 
+    <div><hr/><Tooltip content={cloud.label}>
         <TagCloud minSize={12}
             maxSize={35}
-            tags={cloud}
+            tags={cloud.terms}
             className="simple-cloud"
             onClick={tag => alert(`'${tag.value}' was selected!`)} />
-    );
+    </Tooltip><hr/></div>);
 
     return result;
 }
@@ -108,11 +110,16 @@ class Clouds extends React.Component {
         clusterData = this.props.cloudData.cluster.map(data => {
             let term = {};
             let terms = [];
+
             for (var i = 0; i < data.terms.length; i++) {
                 ({ word: term.value, weight: term.count } = data.terms[i]);
-                terms.push(Object.assign({},term));
+                terms.push(Object.assign({}, term));
             }
-            return terms;
+
+            let cloud = { terms: terms, label: data.label, docs: data.docs };
+
+            return cloud;
+
         });
 
         for (var i = 0; i < clusterData.length; i++)
