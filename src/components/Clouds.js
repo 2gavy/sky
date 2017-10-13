@@ -64,6 +64,20 @@ const colorLegend = [
   {color: "#08306b", textColor: '#deebf7', text: 'Positive'}
 ];
 
+var tooltipProps = [{
+    css: 'symbol',
+    prop: '_id'
+  }, {
+    css: 'value',
+    prop: 'value',
+    display: 'Last Value'
+  }, {
+    css: 'change',
+    prop: 'colorValue',
+    display: 'Change'
+  }];
+
+  
 function MultipleCloud(data) {
     const result = data.map(cloud => 
     <div><hr/> 
@@ -74,6 +88,8 @@ function MultipleCloud(data) {
       data={cloud.terms}
       selectedColor="#737373"
       selectedTextColor="#d9d9d9"
+      tooltip={true}
+      tooltipProps={tooltipProps}
       fixedDomain={{min: -1, max: 1}}/>
     </div>);
 
