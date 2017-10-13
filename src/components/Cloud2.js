@@ -1,6 +1,9 @@
 import React from "react";
 import { TagCloud } from "react-tagcloud";
 import { Tooltip } from 'react-lightweight-tooltip';
+import ReactBubbleChart from 'react-bubble-chart';
+//import * as d3 from 'd3';
+import * as d3 from 'react-d3';
 import {
     Row,
     Col,
@@ -13,106 +16,81 @@ import {
 
 var clusterData;
 
-/* const data = {
-    rainbow1: [
-        { value: "jQuery", count: 25 }, { value: "MongoDB", count: 18 },
-        { value: "JavaScript", count: 38 }, { value: "React", count: 30 },
-        { value: "Nodejs", count: 28 }, { value: "Express.js", count: 25 },
-        { value: "HTML5", count: 33 }, { value: "CSS3", count: 20 },
-        { value: "Webpack", count: 22 }, { value: "Babel.js", count: 7 },
-        { value: "ECMAScript", count: 25 }, { value: "Jest", count: 15 },
-        { value: "Mocha", count: 17 }, { value: "React Native", count: 27 },
-        { value: "Angular.js", count: 30 }, { value: "TypeScript", count: 15 },
-        { value: "Flow", count: 30 }, { value: "NPM", count: 11 },
-    ], rainbow2: [
-        { value: "jQuery", count: 25 }, { value: "MongoDB", count: 18 },
-        { value: "JavaScript", count: 38 }, { value: "React", count: 30 },
-        { value: "Nodejs", count: 28 }, { value: "Express.js", count: 25 },
-        { value: "HTML5", count: 33 }, { value: "CSS3", count: 20 },
-        { value: "Webpack", count: 22 }, { value: "Babel.js", count: 7 },
-        { value: "ECMAScript", count: 25 }, { value: "Jest", count: 15 },
-        { value: "Mocha", count: 17 }, { value: "React Native", count: 27 },
-        { value: "Angular.js", count: 30 }, { value: "TypeScript", count: 15 },
-        { value: "Flow", count: 30 }, { value: "NPM", count: 11 },
-    ], rainbow3: [
-        { value: "jQuery", count: 25 }, { value: "MongoDB", count: 18 },
-        { value: "JavaScript", count: 38 }, { value: "React", count: 30 },
-        { value: "Nodejs", count: 28 }, { value: "Express.js", count: 25 },
-        { value: "HTML5", count: 33 }, { value: "CSS3", count: 20 },
-        { value: "Webpack", count: 22 }, { value: "Babel.js", count: 7 },
-        { value: "ECMAScript", count: 25 }, { value: "Jest", count: 15 },
-        { value: "Mocha", count: 17 }, { value: "React Native", count: 27 },
-        { value: "Angular.js", count: 30 }, { value: "TypeScript", count: 15 },
-        { value: "Flow", count: 30 }, { value: "NPM", count: 11 },
-    ]
-};
+var clusterDataBubble;
 
-function MultipleCloud(data) {
-    let result = [];
-    for (var rainbow in data) {
-        result.push(<TagCloud minSize={12}
-            maxSize={35}
-            tags={data[rainbow]}
-            className="simple-cloud"
-            onClick={tag => alert(`'${tag.value}' was selected!`)} />)
+/*
+const testData = [
+    {
+        _id: 'test 1',
+        value: 100,
+        colorValue: 0.8,
+        selected: false
+    },
+    {
+        _id: 'test 2',
+        value: 200,
+        colorValue: 0.6,
+        selected: false
+    },
+    {
+        _id: 'test 3',
+        value: 300,
+        colorValue: 0.4,
+        selected: false
     }
-    return result;
-}
- */
-/* const data = [[
-  { value: "jQuery", count: 25 }, { value: "MongoDB", count: 18 },
-  { value: "JavaScript", count: 38 }, { value: "React", count: 30 },
-  { value: "Nodejs", count: 28 }, { value: "Express.js", count: 25 },
-  { value: "HTML5", count: 33 }, { value: "CSS3", count: 20 },
-  { value: "Webpack", count: 22 }, { value: "Babel.js", count: 7 },
-  { value: "ECMAScript", count: 25 }, { value: "Jest", count: 15 },
-  { value: "Mocha", count: 17 }, { value: "React Native", count: 27 },
-  { value: "Angular.js", count: 30 }, { value: "TypeScript", count: 15 },
-  { value: "Flow", count: 30 }, { value: "NPM", count: 11 },
-], [
-  { value: "Cloud", count: 25 }, { value: "Tag", count: 18 },
-  { value: "Arya", count: 38 }, { value: "Theon", count: 30 },
-  { value: "Jon", count: 28 }, { value: "Snow", count: 25 },
-  { value: "HTML5", count: 33 }, { value: "CSS3", count: 20 },
-  { value: "Webpack", count: 22 }, { value: "Babel.js", count: 7 },
-  { value: "ECMAScript", count: 25 }, { value: "Jest", count: 15 },
-  { value: "Mocha", count: 17 }, { value: "React Native", count: 27 },
-  { value: "Angular.js", count: 30 }, { value: "TypeScript", count: 15 },
-  { value: "Flow", count: 30 }, { value: "NPM", count: 11 },
-], [
-  { value: "NightWatch", count: 25 }, { value: "CastleBlack", count: 18 },
-  { value: "KingsLanding", count: 38 }, { value: "Winterfell", count: 30 },
-  { value: "Nodejs", count: 28 }, { value: "Express.js", count: 25 },
-  { value: "HTML5", count: 33 }, { value: "CSS3", count: 20 },
-  { value: "Webpack", count: 22 }, { value: "Babel.js", count: 7 },
-  { value: "ECMAScript", count: 25 }, { value: "Jest", count: 15 },
-  { value: "Mocha", count: 17 }, { value: "React Native", count: 27 },
-  { value: "Angular.js", count: 30 }, { value: "TypeScript", count: 15 },
-  { value: "Flow", count: 30 }, { value: "NPM", count: 11 },
-]]; */
+];
+*/
+
+const colorLegend = [
+  // reds from dark to light
+  {color: "#67000d", textColor: '#fee0d2', text: 'Negative'},
+  {color: "#a50f15", textColor: '#fee0d2'},
+  {color: "#cb181d", textColor: '#fee0d2'},
+  "#ef3b2c",
+  "#fb6a4a",
+  "#fc9272",
+  "#fcbba1",
+  "#fee0d2",
+  //neutral grey
+  {color: "#f0f0f0", text: 'Neutral'},
+  // blues from light to dark
+  "#deebf7",
+  "#c6dbef",
+  "#9ecae1",
+  "#6baed6",
+  "#4292c6",
+  {color: "#2171b5", textColor: '#deebf7'},
+  {color: '#08519c', textColor: '#deebf7'},
+  {color: "#08306b", textColor: '#deebf7', text: 'Positive'}
+];
 
 function MultipleCloud(data) {
     const result = data.map(cloud => 
-    <div><hr/><Tooltip content={cloud.label}>
-        <TagCloud minSize={12}
-            maxSize={35}
-            tags={cloud.terms}
-            className="simple-cloud"
-            onClick={tag => alert(`'${tag.value}' was selected!`)} />
-    </Tooltip><hr/></div>);
+    <div><hr/> 
+    <ReactBubbleChart
+      className="my-cool-chart"
+      colorLegend={colorLegend}
+      legend={ true }
+      data={cloud.terms}
+      selectedColor="#737373"
+      selectedTextColor="#d9d9d9"
+      fixedDomain={{min: -1, max: 1}}/>
+    </div>);
 
     return result;
 }
 
-class Clouds extends React.Component {
+class Clouds2 extends React.Component {
     constructor(props) {
         super(props);
         clusterData = this.props.cloudData.cluster.map(data => {
-            let term = {};
+            let term = {colorValue:0, selected:0};
             let terms = [];
 
             for (var i = 0; i < data.terms.length; i++) {
-                ({ word: term.value, weight: term.count } = data.terms[i]);
+                term.colorValue=Math.random();
+                term.selected=false;
+                ({ word: term._id, weight: term.value } = data.terms[i]);
                 terms.push(Object.assign({}, term));
             }
 
@@ -122,28 +100,18 @@ class Clouds extends React.Component {
 
         });
 
-        for (var i = 0; i < clusterData.length; i++)
+        for (var i = 0; i < clusterData.length; i++){
             console.log(clusterData[i]);
+        }
     }
 
     render() {
         return (
-            <PanelContainer>
-                <Panel>
-                    <PanelBody>
-                        <Grid>
-                            <Row>
-                                <Col xs={12}>
-                                    {MultipleCloud(clusterData)}
-                                </Col>
-                            </Row>
-                        </Grid>
-                    </PanelBody>
-                </Panel>
-            </PanelContainer>
+            <div>
+                {MultipleCloud(clusterData)}
+            </div>
         );
     }
 }
 
-export default Clouds
-
+export default Clouds2
