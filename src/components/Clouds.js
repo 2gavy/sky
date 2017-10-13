@@ -77,10 +77,12 @@ var tooltipProps = [{
     display: 'Change'
   }];
 
-  
+  //to use variable from cloud obj to manipulate overall size depending on how many docs r present in JSON
+  var percentage = '100%';
+
 function MultipleCloud(data) {
     const result = data.map(cloud => 
-    <div><hr/> 
+    <div style={{width: percentage + "%"}} ><hr/> 
     <ReactBubbleChart
       className="my-cool-chart"
       colorLegend={colorLegend}

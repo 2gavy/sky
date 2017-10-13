@@ -64,9 +64,25 @@ const colorLegend = [
   {color: "#08306b", textColor: '#deebf7', text: 'Positive'}
 ];
 
+var tooltipProps = [{
+    css: 'symbol',
+    prop: '_id'
+  }, {
+    css: 'value',
+    prop: 'value',
+    display: 'Last Value'
+  }, {
+    css: 'change',
+    prop: 'colorValue',
+    display: 'Change'
+  }];
+
+  //to use variable from cloud obj to manipulate overall size depending on how many docs r present in JSON
+  var percentage = '100%';
+
 function MultipleCloud(data) {
     const result = data.map(cloud => 
-    <div><hr/> 
+    <div style={{width: percentage + "%"}} ><hr/> 
     <ReactBubbleChart
       className="my-cool-chart"
       colorLegend={colorLegend}
@@ -74,13 +90,15 @@ function MultipleCloud(data) {
       data={cloud.terms}
       selectedColor="#737373"
       selectedTextColor="#d9d9d9"
+      tooltip={true}
+      tooltipProps={tooltipProps}
       fixedDomain={{min: -1, max: 1}}/>
     </div>);
 
     return result;
 }
 
-class Clouds2 extends React.Component {
+class Clouds extends React.Component {
     constructor(props) {
         super(props);
         clusterData = this.props.cloudData.cluster.map(data => {
@@ -114,4 +132,4 @@ class Clouds2 extends React.Component {
     }
 }
 
-export default Clouds2
+export default Clouds
