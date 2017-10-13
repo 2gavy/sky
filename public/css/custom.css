@@ -3,6 +3,16 @@ td:hover, td.hover, td.matching {
     background: #FF9D00;
   }
 
+  .cloud-wrapper {
+    text-align: center;
+    background-color: #3e3833;
+    padding: 20px;
+}
+
+.cloud-wrapper, .code-preview {
+    border: 1px solid #dcdcdc;
+}
+
   /*
   td:hover, td.hover, td.matching {
     background: #E5E5E5;
