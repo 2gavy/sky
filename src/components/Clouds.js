@@ -128,19 +128,9 @@ class Clouds extends React.Component {
 
     render() {
         return (
-            <PanelContainer>
-                <Panel>
-                    <PanelBody>
-                        <Grid>
-                            <Row>
-                                <Col xs={12}>
-                                    {MultipleCloud(clusterData)}
-                                </Col>
-                            </Row>
-                        </Grid>
-                    </PanelBody>
-                </Panel>
-            </PanelContainer>
+            <div>
+                {MultipleCloud(clusterData)}
+            </div>
         );
     }
 }

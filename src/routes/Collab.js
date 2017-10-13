@@ -171,9 +171,10 @@ export default class Collab extends React.Component {
                     <PanelBody>
                         <Grid>
                             <Row>
-                                <Col xs={12}>
-                                    <Clouds cloudData={myData} />
-                                    {DisplayTagClouds}
+                                <Col xs={6}>
+                                <Clouds cloudData={myData} />
+                                </Col>
+                                <Col xs={6}>
                                     <Table bordered={true} striped={true}>
                                         <thead>
                                             <tr>
