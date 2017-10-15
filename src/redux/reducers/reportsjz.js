@@ -3,9 +3,9 @@ import * as Actions from '../actions/actionTypes/reportsjz';
 const initialState = {
     docid: '',
     title: '',
-    date: '',
+    captureDatetime: '',
     source: '',
-    body:'',
+    content:'',
     entities:[]
 };
 

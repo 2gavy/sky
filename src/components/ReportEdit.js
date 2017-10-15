@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router';
-import {updateReport} from '../redux/apis/ReportService';
+import { updateReport } from '../redux/apis/ReportService';
 import DatePicker from 'react-datepicker';
+import Moment from 'moment';
 
 import {
   Tag,
@@ -23,6 +24,7 @@ import {
   PanelContainer,
 } from '@sketchpixy/rubix';
 
+
 @withRouter
 class ReportEdit extends React.Component {
 
@@ -34,11 +36,11 @@ class ReportEdit extends React.Component {
     this.props.handleTitleChange({ title: e.target.value });
   }
 
-  handleBodyChange(e) {
-    this.props.handleBodyChange({ body: e.target.value });
+  handleContentChange(e) {
+    this.props.handleContentChange({ content: e.target.value });
   }
-  handleDateChange(e) {
-    this.props.handleDateChange({ date: e });
+  handleDateChange(date) {
+    this.props.handleDateChange({ captureDatetime: date });
   }
   handleSourceChange(e) {
     this.props.handleSourceChange({ source: e.target.value });
@@ -48,17 +50,22 @@ class ReportEdit extends React.Component {
   }
 
   handleSubmit(e) {
-    alert('A new title was submitted: ' + this.props.title);
+    e.preventDefault();
+    alert('new capturedate: ' + this.props.content);
+
+
     updateReport({
       title: this.props.title,
       author: this.props.author,
       source: this.props.source,
-      date: this.props.date,
+      captureDatetime: this.props.captureDatetime,
       content: this.props.content,
       docid: this.props.docid,
+    }).then(value => {
+      this.props.router.push("/report/" + this.props.params.reportid);
+    }, reason => {
+      console.log(reason);
     });
-    // this.props.router.push("/report/" + this.props.params.reportid);
-    e.preventDefault();
   }
 
   render() {
@@ -89,13 +96,7 @@ class ReportEdit extends React.Component {
                         <controlLabel>Date:</controlLabel>
                       </Col>
                       <Col xs={10}>
-{/*                         <FormControl
-                          type="text"
-                          value={!!this.props.date ? this.props.date : ''}
-                          placeholder="Mandatory Text"
-                          onChange={this.handleDateChange.bind(this)}
-                        /> */}
-                        <DatePicker dateFormat="DD/MM/YYYY" selected={this.props.date} onChange={::this.handleDateChange.bind(this)} />
+                      <DatePicker dateFormat="DD/MM/YYYY" selected={this.props.captureDatetime} onChange={this.handleDateChange.bind(this)} />
                       </Col>
                     </formGroup>
 
@@ -123,7 +124,7 @@ class ReportEdit extends React.Component {
                           value={!!this.props.content ? this.props.content : ''}
                           rows='10'
                           placeholder="Mandatory text"
-                          onChange={this.handleBodyChange.bind(this)}
+                          onChange={this.handleContentChange.bind(this)}
                         />
                       </Col>
                     </formGroup>

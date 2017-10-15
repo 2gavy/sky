@@ -2,7 +2,6 @@ import React from "react";
 import { TagCloud } from "react-tagcloud";
 import { Tooltip } from 'react-lightweight-tooltip';
 import ReactBubbleChart from 'react-bubble-chart';
-//import * as d3 from 'd3';
 import * as d3 from 'react-d3';
 import {
     Row,
@@ -92,7 +91,7 @@ function MultipleCloud(data) {
       selectedTextColor="#d9d9d9"
       tooltip={true}
       tooltipProps={tooltipProps}
-      fixedDomain={{min: -1, max: 1}}/>
+      fixedDomain={{min: -10, max: 10}}/>
     </div>);
 
     return result;
@@ -106,7 +105,8 @@ class Clouds extends React.Component {
             let terms = [];
 
             for (var i = 0; i < data.terms.length; i++) {
-                term.colorValue=Math.random();
+                // term.colorValue=Math.random();
+                term.colorValue=-1;
                 term.selected=false;
                 ({ word: term._id, weight: term.value } = data.terms[i]);
                 terms.push(Object.assign({}, term));
