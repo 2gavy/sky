@@ -4,6 +4,7 @@ import Clouds2 from '../components/Cloud2';
 // import { connect } from 'react-redux';
 import { Tooltip } from 'react-lightweight-tooltip';
 import { TagCloud } from "react-tagcloud";
+import DocIdList from '../components/DocIdList';
 // import actions from '../redux/actions';
 
 import {
@@ -16,6 +17,8 @@ import {
     Table,
     Button,
 } from '@sketchpixy/rubix';
+
+var selectedCloudIDs = ["doc1", "doc2"];
 
 const myData = require('test2.json');
 
@@ -117,6 +120,10 @@ export default class Collab extends React.Component {
         });
     }
 
+    setDocList(docList) {
+        docList = selectedCloudIDs.map(docid => docid);
+    }
+
     render() {
         return (
             <PanelContainer>
@@ -125,9 +132,10 @@ export default class Collab extends React.Component {
                         <Grid>
                             <Row>
                                 <Col xs={6}>
-                                <Clouds cloudData={myData} />
+                                <Clouds cloudData={myData} setDocList={this.setDocList.bind(this)} />
                                 </Col>
                                 <Col xs={6}>
+                                    <DocIdList docList={selectedCloudIDs} />
                                     <Table bordered={true} striped={true}>
                                         <thead>
                                             <tr>

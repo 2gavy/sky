@@ -92,6 +92,7 @@ function MultipleCloud(data) {
       tooltip={true}
       tooltipProps={tooltipProps}
       fixedDomain={{min: -10, max: 10}}/>
+      
     </div>);
 
     return result;
