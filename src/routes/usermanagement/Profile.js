@@ -69,7 +69,6 @@ class Profile extends React.Component {
     this.setState({ showEditPWModal: false });
     this.setState({ showConfirmModal: true });
   }
-  showConfirmModal
   renderBody = () => {
     return (
       <tr>
@@ -160,10 +159,10 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getUser: () => {
-      dispatch(Actions.getUser({}));
+      dispatch(Actions.getSelfRequest({}));
     },
     updateUser: () => {
-      dispatch(Actions.getUser({}));
+      dispatch(Actions.updateSelfSuccess({}));
     }
   };
 };

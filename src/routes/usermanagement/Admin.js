@@ -23,7 +23,7 @@ class Admin extends React.Component {
   }
 
   componentWillMount = () => {
-    this.props.getUsers();
+    this.props.getUsersRequest();
   }
 
   componentWillReceiveProps = (nextProps) => {
@@ -147,8 +147,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-  getUsers: Actions.getUsers,
-  updateUsers: Actions.updateUsers
+  getUsersRequest: Actions.getUsersRequest,
+  updateUsers: Actions.updateUserSuccess
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(Admin);

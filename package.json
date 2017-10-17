@@ -100,6 +100,8 @@
     "promised-mongo": "git+https://github.com/mindeavor/promised-mongo.git",
     "pug": "^2.0.0-beta3",
     "react": "^15.3.0",
+    "react-bubble-chart": "^0.4.0",
+    "react-d3": "^0.4.0",
     "react-datepicker": "^0.55.0",
     "react-dates": "^12.6.0",
     "react-dom": "^15.3.0",
