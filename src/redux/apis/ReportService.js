@@ -2,7 +2,7 @@ import axios from 'axios';
 import * as config from '../../../appConfig';
 
 const instance = axios.create({
-    baseURL: config.REPORT_HOST_ADDR,
+    baseURL: config.REPORT_BACKEND_HOST,
     headers: {
         'Content-Type': 'application/json',
 	'Accept': 'application/json'

@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router';
 import Flexbox from 'flexbox-react';
+import * as config from '../../appConfig';
 import actions from '../redux/actions';
 import * as Actions from '../redux/actions/reportsjz';
 import axios from 'axios';
@@ -42,7 +43,7 @@ class CreateReport extends React.Component {
         if (!this.props.params.reportid) {
             return
         }
-        axios.get('http://35.198.208.48:8001/api/reports/' + this.props.params.reportid)
+        axios.get(config.REPORT_BACKEND_HOST+'/reports/' + this.props.params.reportid)
             .then((result) => {
                 const report = result.data;
                 if (!report) {

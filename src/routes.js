@@ -22,10 +22,10 @@ import UserFeedPreference from './routes/UserFeedPreference';
 import { extend } from 'lodash'
 import { SearchkitManager, SearchkitProvider} from 'searchkit'
 import Collab from './routes/Collab';
+import * as config from '../appConfig';
 
 //Code change for ES: host
-const host = "http://35.186.155.174:9200/tap_overts"
-const searchkit = new SearchkitManager(host)
+const searchkit = new SearchkitManager(config.ELASTIC_SEARCH_HOST)
 
 class App extends React.Component {
   render() {
