@@ -22,8 +22,8 @@ class Admin extends React.Component {
     users: {},
   }
 
-  componentWillMount = () => {
-    this.props.getUsersRequest();
+  componentDidMount() {
+      this.props.getUsersRequest();
   }
 
   componentWillReceiveProps = (nextProps) => {
@@ -78,14 +78,14 @@ class Admin extends React.Component {
   // }
 
 
-  renderBody = () => {    
-    return map(this.state.users, (user, id) => {
+  renderBody = () => {
+    return map(this.props.users, (user) => {
       return (
-        <AdminRow  
-          handleChange={this.handleChange(id)}
-          key={id}
-          id={id}
-          user={user} 
+        <AdminRow
+          handleChange={this.handleChange(user.userid)}
+          key={user.userid}
+          id={user.userid}
+          user={user}
           updateUsers={() => this.props.updateUsers(this.state.users)}
         />
       )
@@ -146,9 +146,15 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = {
-  getUsersRequest: Actions.getUsersRequest,
-  updateUsers: Actions.updateUserSuccess
+const mapDispatchToProps = (dispatch) => {
+  return {
+      getUsersRequest: () => {
+          // Dispatch action to sagas/userMgtSaga.js
+          dispatch(Actions.getUsersRequest());
+      },
+      updateUsers: () => {
+      },
+  }
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(Admin);

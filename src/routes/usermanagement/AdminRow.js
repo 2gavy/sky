@@ -29,11 +29,11 @@ class AdminRow extends React.Component {
     render() {
       return (
         <tr key={this.props.id}>
-          <td>{this.props.id}</td>
+          <td>{this.props.user.userid}</td>
           <td><img src={this.props.user.profilePic} width='40' height='40'/></td>
-          <td>{this.state.isEditable ? this.renderEditableRow('name') : this.props.user.name}</td>
+          <td>{this.state.isEditable ? this.renderEditableRow('name') : this.props.user.username}</td>
           <td>{this.state.isEditable ? this.renderEditableRow('department') : this.props.user.department}</td>
-          <td>{this.props.user.accessRights.join(', ')}</td>
+          <td>{this.props.user.isAdmin ? 'Admin' : ''}</td>
           <td className="adminAction">
             {this.state.isEditable ? null : <a onClick={() => this.setState({isEditable: true})}>edit</a>}
             {this.state.isEditable ? null : <a href="/delete">delete</a> }

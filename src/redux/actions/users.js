@@ -7,25 +7,10 @@ import * as Service from "../apis/UserService";
 // if (process.env.NODE_ENV === 'production') {
 //   GraphQLEndpoint = GraphQLSettings.production.endpoint;
 // }
-export function getUsersRequest(user) {
+export function getUsersRequest(data) {
   return {
     type: Actions.GET_USERS_REQUESTED,
-    payload: {
-      1: {
-        profilePic: "/imgs/app/avatars/avatar16.png",
-        name: "ong ting wei",
-        department: "IT",
-        accessRights: ["admin", "read", "write"],
-        isUserRemoved: false
-      },
-      2: {
-        profilePic: "/imgs/app/avatars/avatar22.png",
-        name: "ong ting wei",
-        department: "IT",
-        accessRights: ["admin", "read", "write"],
-        isUserRemoved: false
-      }
-    }
+    payload: data
   };
 }
 export function getUsersSuccess(data) {
@@ -203,5 +188,3 @@ export function getUser() {
       }
   };
 }
-
-

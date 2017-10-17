@@ -53,12 +53,12 @@ class Profile extends React.Component {
   };
 
   close() {
-    this.setState({ 
+    this.setState({
       showEditPWModal: false,
       showResetPWModal: false,
       showConfirmModal: false });
   }
-  
+
   openEditPW() {
     this.setState({ showEditPWModal: true });
   }
@@ -84,14 +84,14 @@ class Profile extends React.Component {
         <div className="profileContainer">
 
             <div className="profileImageContainer">
-                <Image src="/imgs/app/avatars/avatar23.png" rounded />    
-            </div>  
+                <Image src="/imgs/app/avatars/avatar23.png" rounded />
+            </div>
             <div className="profileDetailsContainer" >
                 <div className="profileDetail">
-                    <h1> Ong Ting Wei</h1>
+                    <h1> {this.props.user.username}</h1>
                 </div>
                 <div className="profileDetail">
-                    <span>Department: </span> <span>IT computing</span>                    
+                    <span>Department: </span> <span>{this.props.user.department}</span>
                 </div>
 
                 <div className="profileActions">
@@ -104,7 +104,6 @@ class Profile extends React.Component {
                 <Modal.Title>Change Password</Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                <p>Old Password: <input type="password"/></p>
                 <p>New Password: <input type="password"/></p>
                 <p>Confirm New Password: <input type="password"/></p>
               </Modal.Body>
@@ -113,7 +112,7 @@ class Profile extends React.Component {
                 <Button onClick={this.close.bind(this)}>Close</Button>
               </Modal.Footer>
             </Modal>
-            
+
             <Modal show={this.state.showConfirmModal} onHide={this.close.bind(this)}>
               <Modal.Header closeButton>
                 <Modal.Title>Confirm change password?</Modal.Title>
@@ -135,9 +134,9 @@ class Profile extends React.Component {
                 <Button onClick={this.close.bind(this)}>Send</Button>
               </Modal.Footer>
             </Modal>
-        </div> 
-        
-        
+        </div>
+
+
     );
   }
 }
