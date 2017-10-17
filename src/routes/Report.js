@@ -34,7 +34,7 @@ class Report extends React.Component {
             docid: "",
             title: "",
             source: "",
-            date: "",
+            captureDatetime: "",
             content: "",
             entities: "",
         }
