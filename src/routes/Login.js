@@ -1,8 +1,10 @@
 import React from 'react';
+import { connect } from "react-redux";
 import PropTypes from 'prop-types';
 import {Form, Col, FormGroup, ControlLabel,
 FormControl, Button} from '@sketchpixy/rubix';
-import {loginUser} from '../redux/apis/UserService';
+// import {loginUser} from '../redux/apis/UserService';
+import {loginUserRequest} from '../redux/actions/users';
 
 class Login extends React.Component {
     constructor(props) {
@@ -14,12 +16,13 @@ class Login extends React.Component {
     }
 
     handleChange = (e) => this.setState({[e.target.name]: e.target.value});
-    handleSubmit = (e) => {
-        loginUser(this.state.userid, this.state.password)
-            .then((res) => {
-                console.log(res);
-            })
-            .catch((err) => console.log(err));
+    handleSubmit = () => {
+        this.props.onLoginUserRequest(this.state.userid, this.state.password);
+        // loginUser(this.state.userid, this.state.password)
+        //     .then((res) => {
+        //         console.log(res);
+        //     })
+        //     .catch((err) => console.log(err));
     }
 
     render() {
@@ -68,4 +71,20 @@ Login.propType = {
     password: PropTypes.string,
 };
 
-export default Login;
+const mapStateToProps = () => {
+    return {
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onLoginUserRequest: (username, password) => {
+            dispatch(loginUserRequest({
+                username: username,
+                password: password
+            }));
+        },
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

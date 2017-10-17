@@ -63,7 +63,7 @@ const routes = (
     <Route path='/userFeedPreference' component={UserFeedPreference} />
     <Route path='/collab' component={Collab} />
     <Route path="*" component={Generic404NotFound} />
-    
+
   </Route>
 );
 
