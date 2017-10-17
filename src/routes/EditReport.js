@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router';
 import Flexbox from 'flexbox-react';
+import * as config from '../../appConfig';
 import actions from '../redux/actions';
 import * as Actions from '../redux/actions/reportsjz';
 import axios from 'axios';
@@ -44,7 +45,7 @@ class EditReport extends React.Component {
         if (!this.props.params.reportid) {
             return
         }
-        axios.get('http://35.198.208.48:8001/api/reports/' + this.props.params.reportid)
+        axios.get(config.REPORT_BACKEND_HOST+'/reports/' + this.props.params.reportid)
             .then((result) => {
                 const report = result.data;
                 if (!report) {
@@ -80,7 +81,7 @@ class EditReport extends React.Component {
 
         console.log(`REDUX docid: ${this.props.docid} title= ${this.props.title} body= ${this.props.content} captureDatetime= ${this.props.captureDatetime} source= ${this.props.source} entities=${this.props.entities}`);
 
-        const shareUrl = ('http://35.198.208.48:8001/api/reports/' + this.props.params.reportid);
+        const shareUrl = (config.REPORT_BACKEND_HOST+'/reports/' + this.props.params.reportid);
 
         return (
             <Grid>
