@@ -1,12 +1,25 @@
 /* For TDT table hovering, highlight similar words */
-td:hover, td.hover, td.matching {
+table.collab-highlight,
+table.collab-highlight th,
+table.collab-highlight td {
+  border-spacing: 0;
+  border-style: solid;
+}
+
+.jsonOdd {
+  background: #eee;
+}
+
+table.collab-highlight td:hover,
+table.collab-highlight td.hover,
+table.collab-highlight td.matching {
     background: #FF9D00;
   }
 
-  .cloud-wrapper {
-    text-align: center;
-    background-color: #3e3833;
-    padding: 20px;
+.cloud-wrapper {
+  text-align: center;
+  background-color: #3e3833;
+  padding: 20px;
 }
 
 .cloud-wrapper, .code-preview {
