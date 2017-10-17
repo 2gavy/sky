@@ -1,7 +1,13 @@
 import * as Actions from "../actions/actionTypes/users";
 
 const initialState = {
-  loginUser: {},
+  loginUser: {
+      "userid" : 123,
+      "username" : "admin",
+      "isAdmin" : true,
+      "profilePic" : "abc",
+      "department" : "Dept A"
+   },
   users: [],
   //profile: {
   //   profilePic: '/imgs/app/avatars/avatar16.png',
