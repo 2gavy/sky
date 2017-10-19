@@ -16,8 +16,6 @@ import {
 } from '@sketchpixy/rubix/lib/node/redux-router';
 import RubixAssetMiddleware from '@sketchpixy/rubix/lib/node/RubixAssetMiddleware';
 
-import schema from './data/schema.js';
-
 import reducers from './src/redux/reducers';
 import sagas from './src/redux/sagas';
 // create the saga middleware
@@ -54,12 +52,6 @@ function renderHTML(req, res) {
   });
   sagaMiddleware.run(sagas);
 }
-
-app.use('/graphql', graphQLHTTP({
-  schema,
-  pretty: true,
-  graphiql: true,
-}));
 
 app.get('*', RubixAssetMiddleware('ltr'), (req, res, next) => {
   renderHTML(req, res);
