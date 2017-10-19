@@ -8,7 +8,7 @@ const instance = axios.create({
         'Content-Type': 'application/x-www-form-urlencoded'
     },
     responseType: 'json',
-    withCredentials: false
+    withCredentials: true
 });
 
 export function loginUser(userid, password) {
@@ -18,12 +18,15 @@ export function loginUser(userid, password) {
     }));
 }
 
-export function getUsers(name = '', userid = '', page = 1, limit = 20) {
+export function getUsers(name = 'all', userid = 0, page = 1, limit = 20) {
+    console.log(name);
     return instance.get('/users', {
-        name: name,
-        userid: userid,
-        page: page,
-        limit: limit,
+      params : {
+          username: name,
+          userid: userid,
+          page: page,
+          limit: limit,
+      }
     });
 }
 

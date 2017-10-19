@@ -5,6 +5,7 @@ import Clouds2 from '../components/Cloud2';
 import { Tooltip } from 'react-lightweight-tooltip';
 import { TagCloud } from "react-tagcloud";
 import DocIdList from '../components/DocIdList';
+import JsonTable from 'react-json-table';
 // import actions from '../redux/actions';
 
 import {
@@ -28,9 +29,9 @@ const rankData = [
         startDate: "yyyy/mm/dd",
         endDate: "yyyy/mm/dd",
         terms: [
-            "term1",
-            "term2",
-            "term3"
+            "Fish",
+            "Cat",
+            "Dog"
         ],
         docs: [
             "A1213",
@@ -43,9 +44,9 @@ const rankData = [
         startDate: "yyyy/mm/dd",
         endDate: "yyyy/mm/dd",
         terms: [
-            "term4",
-            "term1",
-            "term3"
+            "Dog",
+            "Fish",
+            "Cat"
         ],
         docs: [
             "A1213",
@@ -58,9 +59,9 @@ const rankData = [
         startDate: "yyyy/mm/dd",
         endDate: "yyyy/mm/dd",
         terms: [
-            "term3",
-            "term4",
-            "term1"
+            "Cat",
+            "Fish",
+            "Dog"
         ],
         docs: [
             "A1213",
@@ -69,13 +70,13 @@ const rankData = [
         ]
     },
     {
-        id: 2,
+        id: 3,
         startDate: "yyyy/mm/dd",
         endDate: "yyyy/mm/dd",
         terms: [
-            "term7",
-            "term8",
-            "term9"
+            "Cat",
+            "Fish",
+            "Dog"
         ],
         docs: [
             "A1213",
@@ -83,6 +84,23 @@ const rankData = [
             "C123"
         ]
     }];
+
+//transpose
+// var newArray = array[0].map(function(col, i) { 
+//     return array.map(function(row) { 
+//       return row[i] 
+//     })
+//   });
+//create array
+// var viewData = { 
+//     employees : [] 
+// };
+
+for(var i in rankData) {
+    var id = rankData[i].startDate;
+    var name = rankData[i].name;
+    console.log(id+","+name);
+}
 
 const DisplayWindows = rankData.map(Element => {
     // console.log(`The ID capture is: ${Element.id}`)
@@ -136,12 +154,13 @@ export default class Collab extends React.Component {
                                 </Col>
                                 <Col xs={6}>
                                     <DocIdList docList={selectedCloudIDs} />
-                                    <Table bordered={true} striped={true}>
+                                    <JsonTable rows={rankData}  className='collab-highlight'/>
+                                    {<Table bordered={true} striped={true} className='collab-highlight'>
                                         <thead>
                                             <tr>
-                                                <td>Date Range 1</td>
-                                                <td>Date Range 2</td>
-                                                <td>Date Range 3</td>
+                                                <th>Date Range 1</th>
+                                                <th>Date Range 2</th>
+                                                <th>Date Range 3</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -161,7 +180,7 @@ export default class Collab extends React.Component {
                                                 <td>Dog</td>
                                             </tr>
                                         </tbody>
-                                    </Table>
+                                    </Table>}
                                     {DisplayWindows}
                                 </Col>
                             </Row>

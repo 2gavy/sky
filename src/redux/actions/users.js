@@ -13,7 +13,6 @@ export function getUsersRequest(data) {
     payload: data
   };
 }
-
 export function getUsersSuccess(data) {
   return {
     type: Actions.GET_USERS_SUCCESS,
@@ -119,10 +118,10 @@ export function updateSelfRequest(data) {
   };
 }
 
-export function updateSelfSuccess(data) {
+export function updateSelfSuccess(user) {
   return {
     type: Actions.UPDATE_SELF_SUCCESS,
-    payload: data
+    payload: user
   };
 }
 
@@ -140,10 +139,10 @@ export function updateUserRequest(data) {
   };
 }
 
-export function updateUserSuccess(data) {
+export function updateUserSuccess(users) {
   return {
     type: Actions.UPDATE_USER_SUCCESS,
-    payload: data
+    payload: users
   };
 }
 
@@ -175,31 +174,9 @@ export function deleteUserFailed(data) {
   };
 }
 
-export function getUsers() {
-  return {
-    type: Actions.GET_USERS_REQUESTED,
-    payload: {
-      1: {
-        profilePic: "/imgs/app/avatars/avatar16.png",
-        name: "ong ting wei",
-        department: "IT",
-        accessRights: ["admin", "read", "write"],
-        isUserRemoved: false
-      },
-      2: {
-        profilePic: "/imgs/app/avatars/avatar22.png",
-        name: "ong ting wei",
-        department: "IT",
-        accessRights: ["admin", "read", "write"],
-        isUserRemoved: false
-      }
-    }
-  };
-}
-
 export function getUser() {
   return {
-      type: Actions.GET_USER_REQUESTED,
+      type: Actions.GET_SELF_REQUESTED,
       payload: {
           1: {
               profilePic: "/imgs/app/avatars/avatar16.png",
@@ -210,18 +187,4 @@ export function getUser() {
           }
       }
   };
-}
-
-export function updateUsers(users) {
-  return {
-    type: Actions.UPDATE_USERS_SUCCESS,
-    payload: users
-  };
-}
-
-export function updateUser(user) {
-    return {
-        type: Actions.UPDATE_USER_SUCCESS,
-        payload: user
-    };
 }

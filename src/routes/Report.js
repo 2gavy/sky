@@ -34,7 +34,7 @@ class Report extends React.Component {
             docid: "",
             title: "",
             source: "",
-            date: "",
+            captureDatetime: "",
             content: "",
             entities: "",
         }
@@ -48,7 +48,7 @@ class Report extends React.Component {
             return
         }
 
-        axios.get('http://35.198.208.48:8001/api/reports/' + this.props.params.reportid)
+        axios.get(config.REPORT_BACKEND_HOST+'/reports/' + this.props.params.reportid)
             .then((result) => {
                 const report = result.data;
                 if (!report) {
@@ -59,7 +59,7 @@ class Report extends React.Component {
             })
     }
 
-    shareUrl = config.FRONTEND_ADDR + "report/" + this.props.params.reportid;
+    shareUrl = config.FRONTEND_ADDR + "/report/" + this.props.params.reportid;
     handleClick() {
         console.log('in');
     }

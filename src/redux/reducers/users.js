@@ -18,7 +18,8 @@ const users = (state = initialState, action) => {
       return Object.assign({}, state, {
         loginUser: action.payload
       });
-    case Actions.GET_USERS_REQUESTED:
+    case Actions.GET_USERS_SUCCESS:
+      console.log(action);
       return Object.assign({}, state, {
         users: action.payload
       });

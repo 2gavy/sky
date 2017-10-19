@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router';
 import Flexbox from 'flexbox-react';
+import * as config from '../../appConfig';
 import actions from '../redux/actions';
 import * as Actions from '../redux/actions/reports';
 import {createReport} from '../redux/apis/ReportService';
@@ -72,7 +73,7 @@ class Report extends React.Component {
         if (!this.props.params.reportid) {
             return
         }
-        axios.get('http://35.198.208.48:8001/api/reports/' + this.props.params.reportid)
+        axios.get(config.REPORT_BACKEND_HOST+'/reports/' + this.props.params.reportid)
             .then((result) => {
                 const report = result.data;
                 if (!report) {
@@ -145,7 +146,7 @@ console.log("author is " + this.props.author);
 }
 
     render() {
-        const shareUrl = ('http://35.198.208.48:8001/api/reports/' + this.props.params.reportid);
+        const shareUrl = (config.REPORT_BACKEND_HOST+'/reports/' + this.props.params.reportid);
         const title = this.state.title;
 
         var entities = [];
