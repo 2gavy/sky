@@ -60,23 +60,11 @@ class Admin extends React.Component {
     }
     this.setState({users: newUsers});
   }
-  //
-  // renderEditableRow = (id, key) => {
-  //   return (
-  //     <input
-  //       type="text"
-  //       className="adminInput"
-  //       onChange={this.handleChange(id, key)}
-  //       value={this.state.users[id][key]}
-  //     />
-  //   )
-  // }
-  //
-  // handleSave = () => {
-  //     this.props.updateUsers(this.state.users);
-  //     this.setState({isEditable: false})
-  // }
 
+  updateUsers = (userid) => {
+      // console.log(this.state.users[userid]);
+      this.props.onUpdateUsers(userid, this.state.users[userid]);
+  };
 
   renderBody = () => {
     return map(this.props.users, (user) => {
@@ -86,32 +74,12 @@ class Admin extends React.Component {
           key={user.userid}
           id={user.userid}
           user={user}
-          updateUsers={() => this.props.updateUsers(this.state.users)}
+          updateUsers={this.updateUsers}
         />
       )
     });
   };
 
-  // renderBody = () => {
-  //   return map(this.props.users, (user, id) => {
-  //     return (
-  //       <tr key={id}>
-  //         <td>{id}</td>
-  //         <td><img src={user.profilePic} width='40' height='40'/></td>
-  //         <td>{this.state.isEditable ? this.renderEditableRow(id, 'name') : user.name}</td>
-  //         <td>{this.state.isEditable ? this.renderEditableRow(id, 'department') : user.department}</td>
-  //         <td>{user.accessRights.join(', ')}</td>
-  //         <td className="adminAction">
-  //           {this.state.isEditable ? null : <a onClick={() => this.setState({isEditable: true})}>edit</a>}
-  //           {this.state.isEditable ? null : <a href="/delete">delete</a> }
-  //
-  //           {this.state.isEditable ? <a onClick={this.handleSave}>save</a> : null}
-  //           {this.state.isEditable ? <a onClick={() => this.setState({isEditable: false})}>cancel</a> : null}
-  //         </td>
-  //       </tr>
-  //     )
-  //   })
-  // };
 
   render() {
     return (
@@ -152,7 +120,8 @@ const mapDispatchToProps = (dispatch) => {
           // Dispatch action to sagas/userMgtSaga.js
           dispatch(Actions.getUsersRequest());
       },
-      updateUsers: () => {
+      onUpdateUsers: (userid, userObj) => {
+          dispatch(Actions.updateUserRequest({userid: userid, ...userObj}));
       },
   }
 }
