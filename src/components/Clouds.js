@@ -106,8 +106,8 @@ class Clouds extends React.Component {
             let terms = [];
 
             for (var i = 0; i < data.terms.length; i++) {
-                // term.colorValue=Math.random();
-                term.colorValue=-1;
+                term.colorValue=Math.random();
+                //term.colorValue=-1;
                 term.selected=false;
                 ({ word: term._id, weight: term.value } = data.terms[i]);
                 terms.push(Object.assign({}, term));
