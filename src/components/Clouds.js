@@ -11,7 +11,7 @@ import {
     PanelBody,
     PanelContainer,
 } from '@sketchpixy/rubix';
-
+import JsonTable from 'react-json-table';
 
 var clusterData;
 
@@ -76,27 +76,19 @@ var tooltipProps = [{
     display: 'Change'
   }];
 
+  var columns = [
+    {key: 'doc', label: 'Doc'},
+    {key: 'doc', label: 'Doc', cell: function( item, columnKey ){
+        return <span style={{color: item.color}}>{ item.color }</span>;
+    }},
+    {key: 'title', label: 'Title'},
+    {key: 'title', label: 'Title', cell: function( item, columnKey ){
+        return <span style={{color: item.color}}>{ item.color }</span>;
+    }}
+];
+
   //to use variable from cloud obj to manipulate overall size depending on how many docs r present in JSON
   var percentage = '100%';
-
-function MultipleCloud(data) {
-    const result = data.map(cloud => 
-    <div style={{width: percentage + "%"}} ><hr/> 
-    <ReactBubbleChart
-      className="my-cool-chart"
-      colorLegend={colorLegend}
-      legend={ true }
-      data={cloud.terms}
-      selectedColor="#737373"
-      selectedTextColor="#d9d9d9"
-      tooltip={true}
-      tooltipProps={tooltipProps}
-      fixedDomain={{min: -10, max: 10}}/>
-      
-    </div>);
-
-    return result;
-}
 
 class Clouds extends React.Component {
     constructor(props) {
@@ -106,14 +98,14 @@ class Clouds extends React.Component {
             let terms = [];
 
             for (var i = 0; i < data.terms.length; i++) {
-                // term.colorValue=Math.random();
-                term.colorValue=-1;
+                term.colorValue=Math.random();
+                //term.colorValue=-1;
                 term.selected=false;
                 ({ word: term._id, weight: term.value } = data.terms[i]);
                 terms.push(Object.assign({}, term));
             }
 
-            let cloud = { terms: terms, label: data.label, docs: data.docs };
+            let cloud = { terms: terms, label: data.label, docs: data.docs, titles: data.titles };
 
             return cloud;
 
@@ -122,12 +114,71 @@ class Clouds extends React.Component {
         for (var i = 0; i < clusterData.length; i++){
             console.log(clusterData[i]);
         }
+
+        this.state = {
+            docs: "",
+            titles: ""
+        }
     }
+
+    MultipleCloud(data) {
+        const result = data.map(cloud => 
+        <div style={{width: percentage}} onClick={()=>this.populate(cloud)}><hr/> 
+        <ReactBubbleChart fontSizeFactor={0.5}
+          className="my-cool-chart"
+          colorLegend={colorLegend}
+          legend={ true }
+          data={cloud.terms}
+          selectedColor="#737373"
+          selectedTextColor="#d9d9d9"
+          tooltip={true}
+          tooltipProps={tooltipProps}
+          fixedDomain={{min: -10, max: 10}}/>
+          
+        </div>);
+    
+        return result;
+    }
+
+    populate(data) {
+        console.log("Docs existing inside is " + data.docs);
+        console.log("Titles existing inside is " + data.titles);
+    
+        this.setState({ docs: data.docs, titles: data.titles });
+    } 
+
+    display() {
+
+        var docString = this.state.docs.toString();
+        var titleString = this.state.titles.toString();
+
+        var docArray = docString.split(',');
+        var titleArray = titleString.split(',');
+        
+        //let overall = { docs: docArray, titles: titleArray };
+
+        var overall = [];
+
+        for (var i = 0; i < docArray.length; i++) {
+        
+            var myObj = {
+                doc : docArray[i], //cloud docs
+                title : titleArray[i] //cloud titles
+            };
+            
+           overall.push(myObj);
+        }
+
+        console.log(overall);
+        return overall;
+    } 
 
     render() {
         return (
             <div>
-                {MultipleCloud(clusterData)}
+                {this.MultipleCloud(clusterData)}
+                <hr/>
+                <JsonTable rows={this.display()} columns={ columns } className='collab-highlight'/>
             </div>
         );
     }
