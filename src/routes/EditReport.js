@@ -45,7 +45,7 @@ class EditReport extends React.Component {
         if (!this.props.params.reportid) {
             return
         }
-        axios.get(config.REPORT_BACKEND_HOST+'/reports/' + this.props.params.reportid)
+        axios.get(config.REPORT_BACKEND_HOST + '/reports/' + this.props.params.reportid)
             .then((result) => {
                 const report = result.data;
                 if (!report) {
@@ -78,25 +78,18 @@ class EditReport extends React.Component {
     }
 
     render() {
-
         console.log(`REDUX docid: ${this.props.docid} title= ${this.props.title} body= ${this.props.content} captureDatetime= ${this.props.captureDatetime} source= ${this.props.source} entities=${this.props.entities}`);
-
-        const shareUrl = (config.REPORT_BACKEND_HOST+'/reports/' + this.props.params.reportid);
+        const shareUrl = (config.REPORT_BACKEND_HOST + '/reports/' + this.props.params.reportid);
 
         return (
             <Grid>
                 <PanelContainer plain collapseBottom controls={false}>
                     <Panel horizontal>
-                        <PanelLeft>
-                            <Row>
-                                <Col xs={12}>
-                                    <ReportEdit handleTitleChange={this.handleTitleChange.bind(this)} handleContentChange={this.handleContentChange.bind(this)} handleDateChange={this.handleDateChange.bind(this)} handleSourceChange={this.handleSourceChange.bind(this)} handleEntitiesChange={this.handleEntitiesChange.bind(this)} docid={this.props.docid} title={this.props.title} content={this.props.content} captureDatetime={this.props.captureDatetime} source={this.props.source} entities={this.props.entities}/>
-                                </Col>
-                            </Row>
-                        </PanelLeft>
-                        <PanelRight className='hidden-xs' style={{ width: 350 }}>
-                            {/* <Sharebox shareUrl={this.shareUrl} title={this.props.title} /> */}
-                        </PanelRight>
+                        <Row>
+                            <Col xs={12}>
+                                <ReportEdit handleTitleChange={this.handleTitleChange.bind(this)} handleContentChange={this.handleContentChange.bind(this)} handleDateChange={this.handleDateChange.bind(this)} handleSourceChange={this.handleSourceChange.bind(this)} handleEntitiesChange={this.handleEntitiesChange.bind(this)} docid={this.props.docid} title={this.props.title} content={this.props.content} captureDatetime={this.props.captureDatetime} source={this.props.source} entities={this.props.entities} />
+                            </Col>
+                        </Row>
                     </Panel>
                 </PanelContainer>
             </Grid>
