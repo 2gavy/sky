@@ -23,18 +23,7 @@ const users = (state = initialState, action) => {
       return Object.assign({}, state, {
         users: action.payload
       });
-    case Actions.GET_USER_REQUESTED:
-      return Object.assign({}, state, {
-        profile: {
-          id: 1,
-          profilePic: "/imgs/app/avatars/avatar16.png",
-          name: "ong ting wei",
-          department: "IT",
-          accessRights: ["admin", "read", "write"],
-          isUserRemoved: false
-        }
-      });
-    case Actions.UPDATE_USERS_SUCCESS:
+    case Actions.UPDATE_USER_SUCCESS:
       return {
         ...state,
         users: action.payload
