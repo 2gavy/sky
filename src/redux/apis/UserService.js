@@ -31,11 +31,11 @@ export function getUsers(name = 'all', userid = 0, page = 1, limit = 20) {
 }
 
 export function createUser(userid, password, isAdmin = false) {
-    return instance.post('/user', {
+    return instance.post('/user', querystring.stringify({
         userid: userid,
         password: password,
         isAdmin: isAdmin,
-    });
+    }));
 }
 
 export function getSelf() {
@@ -43,11 +43,11 @@ export function getSelf() {
 }
 
 export function updateSelf(obj) {
-    return instance.put('/user', obj);
+    return instance.put('/user/' + obj.userid, querystring.stringify(obj));
 }
 
 export function updateUser(userid, obj) {
-    return instance.put('/user/' + userid, obj);
+    return instance.put('/user/' + userid, querystring.stringify(obj));
 }
 
 export function deleteUser(userid) {

@@ -36,7 +36,6 @@ class Profile extends React.Component {
     isEditable: false,
     user: {},
     showEditPWModal: false,
-    showResetPWModal: false,
     showConfirmModal: false,
     showPwdErrMsg: false,
     newPassword:'',
@@ -58,7 +57,6 @@ class Profile extends React.Component {
   close() {
     this.setState({
       showEditPWModal: false,
-      showResetPWModal: false,
       showConfirmModal: false,
       showPwdErrMsg: false,
       newPassword:'',
@@ -68,9 +66,7 @@ class Profile extends React.Component {
   openEditPW() {
     this.setState({ showEditPWModal: true });
   }
-  openResetPW() {
-    this.setState({ showResetPWModal: true });
-  }
+  
   openConfirmPW() {
     console.log("Password");
     console.log(this.state.newPassword);
@@ -133,7 +129,6 @@ class Profile extends React.Component {
 
                 <div className="profileActions">
                     <div onClick={this.openEditPW.bind(this)}>Edit Password</div>
-                    <div onClick={this.openResetPW.bind(this)}>Reset Password</div>
                 </div>
             </div>
             <Modal show={this.state.showEditPWModal} onHide={this.close.bind(this)}>
@@ -161,17 +156,7 @@ class Profile extends React.Component {
               </Modal.Footer>
             </Modal>
 
-            <Modal show={this.state.showResetPWModal} onHide={this.close.bind(this)}>
-              <Modal.Header closeButton>
-                <Modal.Title>Reset Password</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>
-                <p>Send new password to email: <input type="text"/></p>
-              </Modal.Body>
-              <Modal.Footer>
-                <Button onClick={this.close.bind(this)}>Send</Button>
-              </Modal.Footer>
-            </Modal>
+            
         </div>
 
 
