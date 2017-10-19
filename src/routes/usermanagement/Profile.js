@@ -37,7 +37,10 @@ class Profile extends React.Component {
     user: {},
     showEditPWModal: false,
     showResetPWModal: false,
-    showConfirmModal: false
+    showConfirmModal: false,
+    showPwdErrMsg: false,
+    newPassword:'',
+    confirmNewPassword:''
   };
 
   componentWillMount = () => {
@@ -56,7 +59,10 @@ class Profile extends React.Component {
     this.setState({
       showEditPWModal: false,
       showResetPWModal: false,
-      showConfirmModal: false });
+      showConfirmModal: false,
+      showPwdErrMsg: false,
+      newPassword:'',
+      confirmNewPassword:'' });
   }
 
   openEditPW() {
@@ -66,9 +72,40 @@ class Profile extends React.Component {
     this.setState({ showResetPWModal: true });
   }
   openConfirmPW() {
-    this.setState({ showEditPWModal: false });
-    this.setState({ showConfirmModal: true });
+    console.log("Password");
+    console.log(this.state.newPassword);
+    console.log(this.state.confirmNewPassword);
+    if(this.state.newPassword==this.state.confirmNewPassword) {
+      this.setState({ showEditPWModal: false });
+      this.setState({ showConfirmModal: true });
+      this.setState({ showPwdErrMsg: false });
+    }
+    else {
+      this.setState({ showPwdErrMsg: true });
+      
+    }
+
   }
+
+  handleChange = (evt) => {
+    
+    const key = evt.target.name;
+    this.setState({[key]: evt.target.value});
+  }
+
+  //handle change password
+  handleChangePwd = () => {
+    console.log(this.props.user);
+    this.props.user.password=this.state.newPassword;
+    console.log(this.props.user);
+    this.props.updateUser(this.props.user);
+    // loginUser(this.state.userid, this.state.password)
+    //     .then((res) => {
+    //         console.log(res);
+    //     })
+    //     .catch((err) => console.log(err));
+  }
+
   renderBody = () => {
     return (
       <tr>
@@ -104,8 +141,9 @@ class Profile extends React.Component {
                 <Modal.Title>Change Password</Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                <p>New Password: <input type="password"/></p>
-                <p>Confirm New Password: <input type="password"/></p>
+                <p>New Password: <input type="password" name="newPassword" onChange={this.handleChange.bind(this)} /></p>
+                <p>Confirm New Password: <input type="password" name="confirmNewPassword" onChange={this.handleChange.bind(this)}/></p>
+                <p>{this.state.showPwdErrMsg ? "Password does not match with confirm password": ""}</p>
               </Modal.Body>
               <Modal.Footer>
                 <Button bsStyle='primary' onClick={this.openConfirmPW.bind(this)}>Save</Button>
@@ -118,7 +156,7 @@ class Profile extends React.Component {
                 <Modal.Title>Confirm change password?</Modal.Title>
               </Modal.Header>
               <Modal.Footer>
-                <Button bsStyle='primary' onClick={this.close.bind(this)}>Yes</Button>
+                <Button bsStyle='primary' onClick={this.handleChangePwd.bind(this)}>Yes</Button>
                 <Button onClick={this.close.bind(this)}>No</Button>
               </Modal.Footer>
             </Modal>
@@ -160,8 +198,10 @@ const mapDispatchToProps = dispatch => {
     getUser: () => {
       dispatch(Actions.getSelfRequest({}));
     },
-    updateUser: () => {
-      dispatch(Actions.updateSelfSuccess({}));
+    updateUser: (profile) => {
+      dispatch(Actions.updateSelfRequest({
+        profile: profile
+    }));
     }
   };
 };
