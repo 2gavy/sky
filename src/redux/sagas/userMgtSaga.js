@@ -46,8 +46,11 @@ function* deleteUserRequestAsync(action) {
         console.log(res);
         // yield put(Actions.deleteUserSuccess(res.data));
     } catch (e) {
-        console.log(e.message)
+        console.log(e.response.status)
         yield put(Actions.deleteUserFailed(e.data));
+        if (e.response.status ===401){
+            alert('Not permitted to delete self.');
+        }
     } finally {
         const userList = yield call(Service.getUsers);
         yield put(Actions.getUsersSuccess(userList.data.docs));
