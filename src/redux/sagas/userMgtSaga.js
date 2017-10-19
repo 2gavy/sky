@@ -11,7 +11,7 @@ function* loginUserRequestAsync(action) {
         yield call(Service.loginUser, action.payload.username, action.payload.password);
         const user = yield call(Service.getSelf);
         yield put(Actions.loginUserSuccess(user.data));
-        yield call(browserHistory.push, '/');
+        yield call(browserHistory.push, '/home');
     } catch (e) {
         console.log(e.message);
     }

@@ -36,7 +36,7 @@ class Brand extends React.Component {
     return (
       <Navbar.Header {...this.props}>
         <Navbar.Brand tabIndex='-1'>
-          <a href='/'>
+          <a href='/home'>
             <img src='/imgs/common/logo.png' alt='rubix' width='111' height='28' />
           </a>
         </Navbar.Brand>
@@ -87,7 +87,7 @@ class TopicNavigation extends React.Component {
   render() {
     return (
       <Nav bsStyle="pills" className='nav-orange75 hidden-xs' pullLeft>
-        <DirectNavItem eventKey={1} path="/">Home</DirectNavItem>
+        <DirectNavItem eventKey={1} path="/home">Home</DirectNavItem>
         <DirectNavItem className='hidden-sm' eventKey={2} path="/report/0000000000002194">Sample Report</DirectNavItem>
       </Nav>
     );
