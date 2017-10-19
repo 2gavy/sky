@@ -28,7 +28,19 @@ function* getUsersRequestAsync(action) {
     }
 }
 
+function* deleteUserRequestAsync(action) {
+    try {
+        const res = yield call(Service.deleteUser, action.payload);
+        console.log(res);
+        yield put(Actions.deleteUserSuccess(res.data));
+    } catch (e) {
+        console.log(e.message)
+        yield put(Actions.deleteUserFailed(e.data));
+    }
+}
+
 export default function*() {
     yield takeLatest(Types.LOGIN_USER_REQUESTED, loginUserRequestAsync);
     yield takeLatest(Types.GET_USERS_REQUESTED, getUsersRequestAsync);
+    yield takeLatest(Types.DELETE_USER_REQUESTED, deleteUserRequestAsync);
 }
