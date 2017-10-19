@@ -127,7 +127,7 @@ class Clouds extends React.Component {
         <ReactBubbleChart fontSizeFactor={0.5}
           className="my-cool-chart"
           colorLegend={colorLegend}
-          legend={ true }
+          legend={ false }
           data={cloud.terms}
           selectedColor="#737373"
           selectedTextColor="#d9d9d9"

@@ -33,8 +33,15 @@
 /* Optional, but recommended - hide the text on small bubbles */
 .bubble-chart-container .bubble-chart-text .bubble-label.small {
   font-size: 0;
+  height: 450px;
+  width: 450px;
 }
 /* Make sure to unhide the text when hovering */
 .bubble-chart-container .bubble-chart-text .bubble-label.small:hover {
   font-size: 0.8em;
+}
+
+.bubble-chart-d3 {
+  height: 450px;
+  width: 450px;
 }
