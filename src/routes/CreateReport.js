@@ -1,6 +1,7 @@
 import React from 'react';
 import * as config from '../../appConfig';
 import axios from 'axios';
+import {ToastContainer} from 'react-toastify';
 import ReportCreate from '../components/ReportCreate';
 
 import {
@@ -39,7 +40,8 @@ class CreateReport extends React.Component {
                     <Panel horizontal>
                         <Row>
                             <Col xs={12}>
-                                <ReportCreate/>
+                                <ReportCreate />
+                                
                             </Col>
                         </Row>
                     </Panel>

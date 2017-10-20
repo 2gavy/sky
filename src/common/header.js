@@ -2,9 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
+<<<<<<< HEAD
 import {logoutUserRequest} from '../redux/actions/users';
+=======
+>>>>>>> 9866ee500bde4bc24cb7f60d8321c14a65d739b2
 import { Link, withRouter } from 'react-router';
-
 import l20n, { Entity } from '@sketchpixy/rubix/lib/L20n';
 
 import {

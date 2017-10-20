@@ -2,13 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import Flexbox from 'flexbox-react';
-
 import { Link, withRouter } from 'react-router';
 import {
     ShareButtons,
     generateShareIcon,
 } from 'react-share';
-import { ToastContainer, toast } from 'react-toastify';
+import {toast} from 'react-toastify';
 
 import {
     Button,
@@ -53,7 +52,6 @@ function copyTextToClipboard(text) {
     try {
         var successful = document.execCommand('copy');
         var msg = successful ? 'successful' : 'unsuccessful';
-        console.log('hi');
         toast.success('Linked copied!');
     } catch (err) {
         console.log('Oops, unable to copy link');
@@ -143,15 +141,6 @@ class Sharebox extends React.Component {
                                 </Button>
                             </PanelBody>
                         </PanelContainer>
-                        <ToastContainer
-                            position="bottom-right"
-                            type="default"
-                            autoClose={3000}
-                            hideProgressBar={false}
-                            newestOnTop={false}
-                            closeOnClick
-                            pauseOnHover
-                        />
                     </Col>
                 </Row>
             </Grid>

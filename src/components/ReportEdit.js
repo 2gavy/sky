@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, withRouter } from 'react-router';
 import { updateReport } from '../redux/apis/ReportService';
 import DatePicker from 'react-datepicker';
-import Moment from 'moment';
+import { ToastContainer, toast } from 'react-toastify';
 
 import {
   Tag,
@@ -51,8 +51,6 @@ class ReportEdit extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    alert('new capturedate: ' + this.props.content);
-
 
     updateReport({
       title: this.props.title,
@@ -63,6 +61,7 @@ class ReportEdit extends React.Component {
       docid: this.props.docid,
     }).then(value => {
       this.props.router.push("/report/" + this.props.params.reportid);
+      toast.success('Report edited and saved!');
     }, reason => {
       console.log(reason);
     });
@@ -96,7 +95,7 @@ class ReportEdit extends React.Component {
                         <controlLabel>Date:</controlLabel>
                       </Col>
                       <Col xs={10}>
-                      <DatePicker dateFormat="DD/MM/YYYY" selected={this.props.captureDatetime} onChange={this.handleDateChange.bind(this)} />
+                        <DatePicker dateFormat="DD/MM/YYYY" selected={this.props.captureDatetime} onChange={this.handleDateChange.bind(this)} />
                       </Col>
                     </formGroup>
 
@@ -142,11 +141,7 @@ class ReportEdit extends React.Component {
             <PanelFooter>
               <Grid>
                 <Row>
-                  <Col xs={4} style={{ paddingTop: 12.5, paddingBottom: 12.5 }}>
-                    {/* Commented away hashtag */}
-                  </Col>
-
-                  <Col xs={8} className='text-right' style={{ paddingTop: 12.5, paddingBottom: 12.5 }}>
+                  <Col xs={12} className='text-right' style={{ paddingTop: 12.5, paddingBottom: 12.5 }}>
                     <div style={{ display: 'inline-block', marginLeft: 25 }}>
                       <Button type="submit">Update</Button>
                       <Button onClick={() => { this.props.router.push("/report/" + this.props.params.reportid) }}>Cancel Edit</Button>

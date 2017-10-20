@@ -7,6 +7,7 @@ import Entities from '../components/Entities.js';
 import actions from '../redux/actions';
 import axios from 'axios';
 import * as config from '../../appConfig';
+import {ToastContainer} from 'react-toastify';
 
 import {
     Tag,
@@ -46,14 +47,14 @@ class Report extends React.Component {
             return
         }
 
-        axios.get(config.REPORT_BACKEND_HOST+'/reports/' + this.props.params.reportid)
+        axios.get(config.REPORT_BACKEND_HOST + '/reports/' + this.props.params.reportid)
             .then((result) => {
                 const report = result.data;
                 if (!report) {
                     this.props.router.push('/404');
                 }
                 this.setState(report[0]);
-                
+
             })
     }
 
@@ -66,7 +67,7 @@ class Report extends React.Component {
     // _getValueFromChildComponent = (res) => {
     //     alert(res);
     // }
-
+    // {<Sharebox propsInParent={this._getValueFromChildComponent} /> Don't remove. To get result from child}
     render() {
         return (
             <Grid>
@@ -75,10 +76,18 @@ class Report extends React.Component {
                         <PanelLeft>
                             <ReportDisplay report={this.state} />
                         </PanelLeft>
-                        <PanelRight className='hidden-xs' style={{ width: 350 }}>
-                            {/* <Sharebox propsInParent={this._getValueFromChildComponent} /> Don't remove. To get result from child*/}
+                        <PanelRight className='hidden-xs' style={{ width: 350 }}>  
                             <Sharebox shareUrl={this.shareUrl} title={this.state.title} reportid={this.state.reportid} />
                             <Entities entities={this.state.entities} />
+                            <ToastContainer
+                                position='bottom-right'
+                                type='default'
+                                autoClose={5000}
+                                hideProgressBar={false}
+                                newestOnTop={false}
+                                closeOnClick
+                                pauseOnHover
+                            />
                         </PanelRight>
                     </Panel>
                 </PanelContainer>
