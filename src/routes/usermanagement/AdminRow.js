@@ -1,14 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {
+  Modal,
+  Button,
+} from '@sketchpixy/rubix';
 
 class AdminRow extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             isEditable: false,
+            showDeleteUserModal:false,
+            isDelete:false,
         };
     }
-
     renderEditableRow = (key) => {
       return (
         <input
@@ -28,6 +33,8 @@ class AdminRow extends React.Component {
     }
 
     render() {
+      let close = () => this.setState({ showDeleteUserModal: false});
+      
       return (
         <tr key={this.props.id}>
           <td>{this.props.user.userid}</td>
@@ -37,11 +44,22 @@ class AdminRow extends React.Component {
           <td>{this.props.user.isAdmin ? 'Admin' : ''}</td>
           <td className="adminAction">
             {this.state.isEditable ? null : <a onClick={() => this.setState({isEditable: true})}>edit</a>}
-            {this.state.isEditable ? null : <a href="/delete">delete</a> }
-
+            {this.state.isEditable ? null : <a onClick={()=>this.setState({ showDeleteUserModal: true })}>delete</a> }
             {this.state.isEditable ? <a onClick={this.handleSave}>save</a> : null}
             {this.state.isEditable ? <a onClick={() => this.setState({isEditable: false})}>cancel</a> : null}
           </td>
+          <Modal show={this.state.showDeleteUserModal} onHide={close}>
+              <Modal.Header closeButton>
+                <Modal.Title>Warning!</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <p>Are you sure you want to delete <b>{this.props.user.username}</b>?</p>
+              </Modal.Body>
+              <Modal.Footer>
+                <Button bsStyle='primary' onClick={this.props.deleteUser(this.props.user.userid)}>Yes</Button>
+                <Button onClick={close}>No</Button>
+              </Modal.Footer>
+            </Modal>
         </tr>
       );
     }
@@ -52,6 +70,7 @@ AdminRow.propTypes = {
     id: PropTypes.number,
     user: PropTypes.object,
     updateUsers: PropTypes.func,
+    deleteUser: PropTypes.func,
 };
 
 export default AdminRow;

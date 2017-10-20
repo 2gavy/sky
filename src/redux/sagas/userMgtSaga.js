@@ -11,7 +11,7 @@ function* loginUserRequestAsync(action) {
         yield call(Service.loginUser, action.payload.username, action.payload.password);
         const user = yield call(Service.getSelf);
         yield put(Actions.loginUserSuccess(user.data));
-        yield call(browserHistory.push, '/home');
+        yield call(browserHistory.push, '/');
     } catch (e) {
         console.log(e.message);
     }
@@ -45,7 +45,7 @@ function* deleteUserRequestAsync(action) {
         console.log(res);
         // yield put(Actions.deleteUserSuccess(res.data));
     } catch (e) {
-        console.log(e.response.status)
+        console.log(e.message)
         yield put(Actions.deleteUserFailed(e.data));
     }
 }

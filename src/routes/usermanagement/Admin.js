@@ -11,7 +11,10 @@ import {
   Panel,
   PanelBody,
   PanelContainer,
-  Table
+  Table,
+  // Modal,
+  // Button,
+  
 } from '@sketchpixy/rubix';
 
 
@@ -47,8 +50,6 @@ class Admin extends React.Component {
       )
   };
 
-
-
   handleChange = (id) => (key) => (evt) => {
 
     const newUsers = {
@@ -62,8 +63,13 @@ class Admin extends React.Component {
   }
 
   updateUsers = (userid) => {
-      // console.log(this.state.users[userid]);
       this.props.onUpdateUsers(userid, this.state.users[userid]);
+  };
+
+  deleteUser = (userid) => (e) => {
+      console.log(userid);
+      this.props.onDeleteUser(userid);
+     
   };
 
   renderBody = () => {
@@ -75,6 +81,7 @@ class Admin extends React.Component {
           id={user.userid}
           user={user}
           updateUsers={this.updateUsers}
+          deleteUser={this.deleteUser}
         />
       )
     });
@@ -82,6 +89,8 @@ class Admin extends React.Component {
 
 
   render() {
+  // let close = () => this.setState({ showDeleteUserModal: false});
+
     return (
       <Grid>
         <Row>
@@ -100,9 +109,11 @@ class Admin extends React.Component {
                 </PanelBody>
               </Panel>
             </PanelContainer>
+              
           </Col>
         </Row>
       </Grid>
+      
     );
   }
 }
@@ -123,6 +134,9 @@ const mapDispatchToProps = (dispatch) => {
       onUpdateUsers: (userid, userObj) => {
           dispatch(Actions.updateUserRequest({userid: userid, ...userObj}));
       },
+      onDeleteUser: (userid) => {
+          dispatch(Actions.deleteUserRequest(userid));
+      }
   }
 }
 
