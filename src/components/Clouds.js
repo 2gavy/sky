@@ -122,7 +122,6 @@ class Clouds extends React.Component {
         for (var i = 0; i < clusterData.length; i++){
             console.log(clusterData[i]);
         }
-<<<<<<< HEAD
 
         this.state = {
             docs: "",
@@ -147,8 +146,6 @@ class Clouds extends React.Component {
         </div>);
     
         return result;
-=======
->>>>>>> 050153a4b166e3de04249daf17eabeb6bba3dbc8
     }
 
     render() {
