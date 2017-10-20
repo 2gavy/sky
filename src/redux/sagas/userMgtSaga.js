@@ -85,7 +85,6 @@ function* logoutUserRequestAsync() {
         yield call(browserHistory.push, '/login');
     }
 }
-<<<<<<< HEAD
 
 function* updateSearchPreferenceRequestAsync() {
     try {
@@ -108,7 +107,6 @@ function* getSearchPreferenceRequestAsync() {
     }
 }
 
-=======
 function* createUserRequestAsync(action) {
     try {
         console.log('createUserRequestAsync',action.payload);
@@ -122,7 +120,6 @@ function* createUserRequestAsync(action) {
         yield put(Actions.getUsersSuccess(userList.data.docs));
     }
 }
->>>>>>> f0ebfea8e45539d2db4c3f803773d12d0e665097
 export default function*() {
     yield takeLatest(Types.LOGIN_USER_REQUESTED, loginUserRequestAsync);
     yield takeLatest(Types.GET_USERS_REQUESTED, getUsersRequestAsync);
@@ -130,10 +127,7 @@ export default function*() {
     yield takeLatest(Types.DELETE_USER_REQUESTED, deleteUserRequestAsync);
     yield takeLatest(Types.UPDATE_SELF_REQUESTED, updateSelfRequestAsync);
     yield takeLatest(Types.LOGOUT_USER_REQUESTED, logoutUserRequestAsync);
-<<<<<<< HEAD
     yield takeLatest(Types.UPDATE_SEARCH_PREFERENCE_REQUESTED, updateSearchPreferenceRequestAsync);
     yield takeLatest(Types.GET_SEARCH_PREFERENCE_REQUESTED, getSearchPreferenceRequestAsync);
-=======
     yield takeLatest(Types.CREATE_USER_REQUESTED, createUserRequestAsync);
->>>>>>> f0ebfea8e45539d2db4c3f803773d12d0e665097
 }

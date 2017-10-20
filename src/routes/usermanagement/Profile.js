@@ -212,7 +212,7 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = dispatch => { 
   return {
     getUser: () => {
       dispatch(Actions.getSelfRequest({}));
