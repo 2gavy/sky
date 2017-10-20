@@ -188,3 +188,45 @@ export function getUser() {
       }
   };
 }
+
+export function updateSearchPreferenceRequest(data) {
+    return {
+        type: Actions.UPDATE_SEARCH_PREFERENCE_REQUESTED,
+        payload: data
+    };
+}
+
+export function updateSearchPreferenceSuccess(data) {
+    return {
+        type: Actions.UPDATE_SEARCH_PREFERENCE_SUCCESS,
+        payload: data
+    };
+}
+
+export function updateSearchPreferenceFailed(data) {
+    return {
+        type: Actions.UPDATE_SEARCH_PREFERENCE_FAILED,
+        payload: data
+    };
+}
+
+export function getSearchPreferenceRequest(data) {
+    return {
+        type: Actions.GET_SEARCH_PREFERENCE_REQUESTED,
+        payload: data
+    };
+}
+
+export function getSearchPreferenceSuccess(data) {
+    return {
+        type: Actions.GET_SEARCH_PREFERENCE_SUCCESS,
+        payload: data
+    };
+}
+
+export function getSearchPreferenceFailed(data) {
+    return {
+        type: Actions.GET_SEARCH_PREFERENCE_FAILED,
+        payload: data
+    };
+}

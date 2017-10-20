@@ -1,10 +1,11 @@
-import { call, put, takeLatest} from 'redux-saga/effects';
+import { call, put, takeLatest, select} from 'redux-saga/effects';
 import { browserHistory } from 'react-router';
 import * as Types from '../actions/actionTypes/users';
 import * as Actions from '../actions/users';
 import * as Service from '../apis/UserService';
 import omit from 'lodash/omit';
 import {toast} from 'react-toastify';
+import * as selectors from './selectors';
 
 function* loginUserRequestAsync(action) {
     try {
@@ -84,7 +85,44 @@ function* logoutUserRequestAsync() {
         yield call(browserHistory.push, '/login');
     }
 }
+<<<<<<< HEAD
 
+function* updateSearchPreferenceRequestAsync() {
+    try {
+        const searchPref = yield call(Service.updateSearchPreference, select(selectors.userid), omit(action.payload, ['userid']));
+        yield put(Actions.updateSearchPreferenceSuccess(searchPref));
+        toast.success('Search Preference Updated Successfully');
+    } catch (e) {
+      console.log(e.message);
+      toast.error('Update not successful : ' + e.message);
+    }
+}
+
+function* getSearchPreferenceRequestAsync() {
+    try {
+      const searchPref = yield call(Service.getSearchPreference, select(selectors.userid));
+      yield put(Actions.getSearchPreferenceSuccess(searchPref));
+      toast.success('Search Preference Retrieved Successfully');
+    } catch (e) {
+        console.log(e.message);
+    }
+}
+
+=======
+function* createUserRequestAsync(action) {
+    try {
+        console.log('createUserRequestAsync',action.payload);
+        yield call(Service.createUser, action.payload);
+        toast.success('User created successfully');
+    } catch (e) {
+        console.log(e.message);
+        toast.error('Unable to create : ' + e.message);
+    } finally {
+        const userList = yield call(Service.getUsers);
+        yield put(Actions.getUsersSuccess(userList.data.docs));
+    }
+}
+>>>>>>> f0ebfea8e45539d2db4c3f803773d12d0e665097
 export default function*() {
     yield takeLatest(Types.LOGIN_USER_REQUESTED, loginUserRequestAsync);
     yield takeLatest(Types.GET_USERS_REQUESTED, getUsersRequestAsync);
@@ -92,4 +130,10 @@ export default function*() {
     yield takeLatest(Types.DELETE_USER_REQUESTED, deleteUserRequestAsync);
     yield takeLatest(Types.UPDATE_SELF_REQUESTED, updateSelfRequestAsync);
     yield takeLatest(Types.LOGOUT_USER_REQUESTED, logoutUserRequestAsync);
+<<<<<<< HEAD
+    yield takeLatest(Types.UPDATE_SEARCH_PREFERENCE_REQUESTED, updateSearchPreferenceRequestAsync);
+    yield takeLatest(Types.GET_SEARCH_PREFERENCE_REQUESTED, getSearchPreferenceRequestAsync);
+=======
+    yield takeLatest(Types.CREATE_USER_REQUESTED, createUserRequestAsync);
+>>>>>>> f0ebfea8e45539d2db4c3f803773d12d0e665097
 }

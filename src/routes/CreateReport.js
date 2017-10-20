@@ -21,15 +21,26 @@ class CreateReport extends React.Component {
         if (!this.props.params.reportid) {
             return
         }
-        axios.get(config.REPORT_BACKEND_HOST + '/reports/' + this.props.params.reportid)
-            .then((result) => {
-                const report = result.data;
-                if (!report) {
-                    this.props.router.push('/404');
-                }
-                this.props.ReportSetFields(report[0]);
-                console.log(report[0]);
-            })
+
+        axios({
+            method: 'get',
+            withCredentials: true,
+            url: config.REPORT_BACKEND_HOST + '/reports/' + this.props.params.reportid,
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+        }).then(function(res) {
+            console.log(res);
+        })
+        // axios().get(config.REPORT_BACKEND_HOST + '/reports/' + this.props.params.reportid)
+        //     .then((result) => {
+        //         const report = result.data;
+        //         if (!report) {
+        //             this.props.router.push('/404');
+        //         }
+        //         this.props.ReportSetFields(report[0]);
+        //         console.log(report[0]);
+        //     })
     }
 
     render() {
@@ -40,7 +51,7 @@ class CreateReport extends React.Component {
                         <Row>
                             <Col xs={12}>
                                 <ReportCreate />
-                                
+
                             </Col>
                         </Row>
                     </Panel>

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, withRouter } from 'react-router';
 import { updateReport } from '../redux/apis/ReportService';
 import DatePicker from 'react-datepicker';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 import {
   Tag,
