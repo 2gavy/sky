@@ -7,7 +7,6 @@ import Entities from '../components/Entities.js';
 import actions from '../redux/actions';
 import axios from 'axios';
 import * as config from '../../appConfig';
-import {ToastContainer} from 'react-toastify';
 
 import {
     Tag,
@@ -79,15 +78,6 @@ class Report extends React.Component {
                         <PanelRight className='hidden-xs' style={{ width: 350 }}>  
                             <Sharebox shareUrl={this.shareUrl} title={this.state.title} reportid={this.state.reportid} />
                             <Entities entities={this.state.entities} />
-                            <ToastContainer
-                                position='bottom-right'
-                                type='default'
-                                autoClose={5000}
-                                hideProgressBar={false}
-                                newestOnTop={false}
-                                closeOnClick
-                                pauseOnHover
-                            />
                         </PanelRight>
                     </Panel>
                 </PanelContainer>

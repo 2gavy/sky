@@ -20,9 +20,10 @@ import CreateReport from './routes/CreateReport';
 import Login from './routes/Login';
 import UserFeedPreference from './routes/UserFeedPreference';
 import { extend } from 'lodash'
-import { SearchkitManager, SearchkitProvider} from 'searchkit'
+import { SearchkitManager, SearchkitProvider } from 'searchkit'
 import Collab from './routes/Collab';
 import * as config from '../appConfig';
+import {ToastContainer} from 'react-toastify';
 
 //Code change for ES: host
 const searchkit = new SearchkitManager(config.ELASTIC_SEARCH_HOST)
@@ -40,7 +41,17 @@ class App extends React.Component {
                 {this.props.children}
               </Row>
             </Grid>
+            <ToastContainer
+            position='bottom-right'
+            type='default'
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            pauseOnHover
+          />
           </div>
+         
           {/*<Footer />*/}
         </MainContainer>
       </SearchkitProvider>

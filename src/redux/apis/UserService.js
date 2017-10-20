@@ -55,5 +55,5 @@ export function deleteUser(userid) {
 }
 
 export function logoutUser() {
-    return instance.delete('/logout');
+    return instance.get('/logout');
 }
