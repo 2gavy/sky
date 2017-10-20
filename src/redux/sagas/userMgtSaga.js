@@ -11,7 +11,7 @@ function* loginUserRequestAsync(action) {
         yield call(Service.loginUser, action.payload.username, action.payload.password);
         const user = yield call(Service.getSelf);
         yield put(Actions.loginUserSuccess(user.data));
-        yield call(browserHistory.push, '/');
+        yield call(browserHistory.push, '/home');
     } catch (e) {
         console.log(e.message);
     }
@@ -57,9 +57,20 @@ function* updateSelfRequestAsync(action) {
         //console.log("saga - updateSelfRequestAsync");
        // console.log(user);
         yield put(Actions.updateSelfSuccess(user.data));
-        yield call(browserHistory.push, '/home'); 
+        yield call(browserHistory.push, '/home');
     } catch (e) {
         console.log(e.message);
+    }
+}
+
+function* logoutUserRequestAsync() {
+    try {
+        yield call(Service.logoutUser);
+        yield put(Actions.logoutUserSuccess());
+    } catch (e) {
+        console.log(e.message);
+    } finally {
+        yield call(browserHistory.push, '/login');
     }
 }
 
@@ -69,4 +80,5 @@ export default function*() {
     yield takeLatest(Types.UPDATE_USER_REQUESTED, updateUserRequestAsync);
     yield takeLatest(Types.DELETE_USER_REQUESTED, deleteUserRequestAsync);
     yield takeLatest(Types.UPDATE_SELF_REQUESTED, updateSelfRequestAsync);
+    yield takeLatest(Types.LOGOUT_USER_REQUESTED, logoutUserRequestAsync);
 }

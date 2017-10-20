@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
-
+import {logoutUserRequest} from '../redux/actions/users';
 import { Link, withRouter } from 'react-router';
 
 import l20n, { Entity } from '@sketchpixy/rubix/lib/L20n';
@@ -58,10 +58,10 @@ class HeaderNavigation extends React.Component {
           <NavItem className='hidden-xs' href='/CreateReport'>
             <Icon bundle='fontello' glyph='plus-circle' />
           </NavItem>
-          <ProfileMenu />
+          <ProfileMenu onLogout={this.props.onLogout} />
         </Nav>
         <Nav>
-          <NavItem className='logout' href='#'>
+          <NavItem className='logout' href='#' onClick={() => this.props.onLogout()}>
             <Icon bundle='fontello' glyph='off-1' />
           </NavItem>
         </Nav>
@@ -116,7 +116,7 @@ class ProfileMenu extends React.Component {
           Admin
         </MenuItem>
 
-        <MenuItem>
+        <MenuItem onClick={() => this.props.onLogout()}>
             Log Out
         </MenuItem>
       </NavDropdownHover>
@@ -140,7 +140,7 @@ class Header extends React.Component {
                   <TopicNavigation />
                 </Col>
                 <Col md={6} sm={8} xs={3} collapseRight className='text-right'>
-                  <HeaderNavigation />
+                  <HeaderNavigation onLogout={this.props.onLogout} />
                 </Col>
               </Row>
             </Navbar>
@@ -157,8 +157,11 @@ const mapStateToProps = (state, ownProps) => {
     };
 };
 
-const mapDispatchToProps = () => {
+const mapDispatchToProps = (dispatch) => {
     return {
+        onLogout: () => {
+            dispatch(logoutUserRequest());
+        }
     };
 };
 
