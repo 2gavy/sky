@@ -13,13 +13,27 @@
         },        {
           "word": "term3",
           "weight": "0.2"
+        }, {
+          "word": "term4",
+          "weight": "0.1"
+        },
+        {
+          "word": "term5",
+          "weight": "0.4"
+        },        {
+          "word": "term6",
+          "weight": "0.5"
         }
       ],
       "docs": [
      	"A1213",
         "B123",
         "C123"
-    ]
+    ],"titles": [
+      "Title1",
+       "Title2",
+       "Title3"
+   ]
     },
       {
       "label": "cluster2",
@@ -40,7 +54,36 @@
         "A1213",
         "B123",
         "C123"
-      ]
-    }
+      ],"titles": [
+        "Title4",
+         "Title5",
+         "Title6"
+     ]
+    },
+    {
+    "label": "cluster3",
+    "terms": [
+      {
+        "word": "term7",
+        "weight": "0.5"
+      },
+      {
+        "word": "term8",
+        "weight": "0.4"
+      },        {
+        "word": "term9",
+        "weight": "0.9"
+      }
+    ],
+    "docs": [
+      "A1213",
+      "B123",
+      "C123"
+    ],"titles": [
+      "Title7",
+       "Title8",
+       "Title9"
+   ]
+  }
   ]
 }
