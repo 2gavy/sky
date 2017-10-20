@@ -4,6 +4,7 @@ import * as Types from '../actions/actionTypes/users';
 import * as Actions from '../actions/users';
 import * as Service from '../apis/UserService';
 import omit from 'lodash/omit';
+import {toast} from 'react-toastify';
 
 function* loginUserRequestAsync(action) {
     try {
@@ -32,8 +33,10 @@ function* updateUserRequestAsync(action) {
     try {
         // console.log(omit(action.payload, ['userid']));
         yield call(Service.updateUser, action.payload.userid, omit(action.payload, ['userid']));
+        toast.success('User updated successfully');
     } catch (e) {
         console.log(e.message);
+        toast.error('Unable to update : ' + e.message);
     } finally {
         const userList = yield call(Service.getUsers);
         yield put(Actions.getUsersSuccess(userList.data.docs));
@@ -43,10 +46,15 @@ function* deleteUserRequestAsync(action) {
     try {
         const res = yield call(Service.deleteUser, action.payload);
         console.log(res);
-        // yield put(Actions.deleteUserSuccess(res.data));
+        yield put(Actions.deleteUserSuccess(res.data));
+        toast.success('User deleted successfully');
     } catch (e) {
         console.log(e.message)
         yield put(Actions.deleteUserFailed(e.data));
+        toast.error('Unable to delete : ' + e.message);
+    } finally {
+        const userList = yield call(Service.getUsers);
+        yield put(Actions.getUsersSuccess(userList.data.docs));
     }
 }
 
@@ -57,6 +65,7 @@ function* updateSelfRequestAsync(action) {
         //console.log("saga - updateSelfRequestAsync");
        // console.log(user);
         yield put(Actions.updateSelfSuccess(user.data));
+        toast.success('Updated successfully');
         yield call(browserHistory.push, '/home');
     } catch (e) {
         console.log(e.message);
@@ -67,8 +76,10 @@ function* logoutUserRequestAsync() {
     try {
         yield call(Service.logoutUser);
         yield put(Actions.logoutUserSuccess());
+        toast.info('Logout Successfully');
     } catch (e) {
         console.log(e.message);
+        toast.error('Logout not successful : ' + e.message);
     } finally {
         yield call(browserHistory.push, '/login');
     }
