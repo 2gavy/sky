@@ -2,9 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
-
 import { Link, withRouter } from 'react-router';
-
 import l20n, { Entity } from '@sketchpixy/rubix/lib/L20n';
 
 import {
