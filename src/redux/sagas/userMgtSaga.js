@@ -11,7 +11,7 @@ function* loginUserRequestAsync(action) {
         yield call(Service.loginUser, action.payload.username, action.payload.password);
         const user = yield call(Service.getSelf);
         yield put(Actions.loginUserSuccess(user.data));
-        yield call(browserHistory.push, '/');
+        yield call(browserHistory.push, '/home');
     } catch (e) {
         console.log(e.message);
     }
@@ -28,7 +28,6 @@ function* getUsersRequestAsync(action) {
         console.log(e.message);
     }
 }
-
 function* updateUserRequestAsync(action) {
     try {
         // console.log(omit(action.payload, ['userid']));
@@ -46,11 +45,20 @@ function* deleteUserRequestAsync(action) {
         console.log(res);
         // yield put(Actions.deleteUserSuccess(res.data));
     } catch (e) {
-        console.log(e.message)
+        console.log(e.response.status)
         yield put(Actions.deleteUserFailed(e.data));
-    } finally {
-        const userList = yield call(Service.getUsers);
-        yield put(Actions.getUsersSuccess(userList.data.docs));
+    }
+}
+
+function* updateSelfRequestAsync(action) {
+    try {
+        //console.log("action.payload.profile"+action.payload.profile);
+        const user = yield call(Service.updateSelf,action.payload.profile);
+        console.log("saga - updateSelfRequestAsync");
+        console.log(user);
+        yield put(Actions.updateSelfSuccess(user.data));
+    } catch (e) {
+        console.log(e.message);
     }
 }
 
@@ -59,4 +67,5 @@ export default function*() {
     yield takeLatest(Types.GET_USERS_REQUESTED, getUsersRequestAsync);
     yield takeLatest(Types.UPDATE_USER_REQUESTED, updateUserRequestAsync);
     yield takeLatest(Types.DELETE_USER_REQUESTED, deleteUserRequestAsync);
+    yield takeLatest(Types.UPDATE_SELF_REQUESTED, updateSelfRequestAsync);
 }

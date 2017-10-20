@@ -13,42 +13,13 @@
         },        {
           "word": "term3",
           "weight": "0.2"
-        },
-        {
-          "word": "term10",
-          "weight": "0.5"
-        },
-        {
-          "word": "term11",
-          "weight": "0.7"
-        },        
-        {
-          "word": "term12",
-          "weight": "0.9"
-        },
-        {
-          "word": "term13",
-          "weight": "0.1"
-        },
-        {
-          "word": "term14",
-          "weight": "0.2"
-        },        
-        {
-          "word": "term15",
-          "weight": "0.3"
         }
       ],
       "docs": [
      	"A1213",
         "B123",
         "C123"
-    ],
-    "titles": [
-     "TestTitle1",
-      "TestTitle2",
-      "TestTitle3"
-  ]
+    ]
     },
       {
       "label": "cluster2",
@@ -60,8 +31,7 @@
         {
           "word": "term5",
           "weight": "0.4"
-        },
-        {
+        },        {
           "word": "term6",
           "weight": "0.9"
         }
@@ -70,37 +40,7 @@
         "A1213",
         "B123",
         "C123"
-      ],
-      "titles": [
-       "TestTitle4",
-        "TestTitle5",
-        "TestTitle6"
-    ]
-    }, {
-      "label": "cluster3",
-      "terms": [
-        {
-          "word": "term7",
-          "weight": "0.5"
-        },
-        {
-          "word": "term8",
-          "weight": "0.2"
-        },        {
-          "word": "term9",
-          "weight": "0.1"
-        }
-      ],
-      "docs": [
-     	"A1213",
-        "B123",
-        "C123"
-    ],
-    "titles": [
-     "TestTitle7",
-      "TestTitle8",
-      "TestTitle9"
-  ]
+      ]
     }
   ]
 }

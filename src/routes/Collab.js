@@ -139,7 +139,7 @@ export default class Collab extends React.Component {
     }
 
     setDocList(docList) {
-        selectedCloudIDs = docList.map(docid => docid);
+        docList = selectedCloudIDs.map(docid => docid);
     }
 
     render() {

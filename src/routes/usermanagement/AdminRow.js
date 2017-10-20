@@ -26,10 +26,6 @@ class AdminRow extends React.Component {
         this.props.updateUsers(this.props.user.userid);
         this.setState({isEditable: false})
     }
-  //   handleDelete = (userid) => {
-  //     this.props.deleteUser(this.props.user.userid);
-  //     this.setState({isEditable: false})
-  // };
 
     render() {
       return (
@@ -41,7 +37,8 @@ class AdminRow extends React.Component {
           <td>{this.props.user.isAdmin ? 'Admin' : ''}</td>
           <td className="adminAction">
             {this.state.isEditable ? null : <a onClick={() => this.setState({isEditable: true})}>edit</a>}
-            {this.state.isEditable ? null : <a onClick={this.props.deleteUser(this.props.user.userid)}>delete</a> }
+            {this.state.isEditable ? null : <a href="/delete">delete</a> }
+
             {this.state.isEditable ? <a onClick={this.handleSave}>save</a> : null}
             {this.state.isEditable ? <a onClick={() => this.setState({isEditable: false})}>cancel</a> : null}
           </td>
@@ -55,7 +52,6 @@ AdminRow.propTypes = {
     id: PropTypes.number,
     user: PropTypes.object,
     updateUsers: PropTypes.func,
-    deleteUser: PropTypes.func,
 };
 
 export default AdminRow;

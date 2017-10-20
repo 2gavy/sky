@@ -43,7 +43,7 @@ export function getSelf() {
 }
 
 export function updateSelf(obj) {
-    return instance.put('/user', querystring.stringify(obj));
+    return instance.put('/user/' + obj.userid, querystring.stringify(obj));
 }
 
 export function updateUser(userid, obj) {

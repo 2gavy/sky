@@ -11,10 +11,7 @@ import {
   Panel,
   PanelBody,
   PanelContainer,
-  Table,
-  Modal,
-  Button,
-  
+  Table
 } from '@sketchpixy/rubix';
 
 
@@ -23,7 +20,6 @@ class Admin extends React.Component {
   state = {
     isEditable: false,
     users: {},
-    showDeleteUserModal:false,
   }
 
   componentDidMount() {
@@ -37,15 +33,7 @@ class Admin extends React.Component {
       })
     }
   }
-  close() {
-    this.setState({
-      showDeleteUserModal: false
-    });
-  }
 
-  openDeleteUserModal(userid) {
-    this.setState({ showDeleteUserModal: true });
-  }
   renderHeader = () => {
     return (
         <tr>
@@ -58,6 +46,8 @@ class Admin extends React.Component {
         </tr>
       )
   };
+
+
 
   handleChange = (id) => (key) => (evt) => {
 
@@ -76,14 +66,6 @@ class Admin extends React.Component {
       this.props.onUpdateUsers(userid, this.state.users[userid]);
   };
 
-  deleteUser = (userid) => (e) => {
-      console.log(userid);
-      // Add prompt here 
-      this.openDeleteUserModal(userid);
-      this.props.onDeleteUser(userid);
-     
-  };
-
   renderBody = () => {
     return map(this.props.users, (user) => {
       return (
@@ -93,7 +75,6 @@ class Admin extends React.Component {
           id={user.userid}
           user={user}
           updateUsers={this.updateUsers}
-          deleteUser={this.deleteUser}
         />
       )
     });
@@ -119,23 +100,9 @@ class Admin extends React.Component {
                 </PanelBody>
               </Panel>
             </PanelContainer>
-            {/* <Modal show={this.state.showDeleteUserModal} onHide={this.close.bind(this)}>
-                <Modal.Header closeButton>
-                <Modal.Title>Change Password</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>
-                <p>New Password: <input type="password"/></p>
-                <p>Confirm New Password: <input type="password"/></p>
-              </Modal.Body>
-              <Modal.Footer>
-                <Button bsStyle='primary' onClick={this.openConfirmPW.bind(this)}>Save</Button>
-                <Button onClick={this.close.bind(this)}>Close</Button>
-              </Modal.Footer>
-            </Modal>   */}
           </Col>
         </Row>
       </Grid>
-      
     );
   }
 }
@@ -156,9 +123,6 @@ const mapDispatchToProps = (dispatch) => {
       onUpdateUsers: (userid, userObj) => {
           dispatch(Actions.updateUserRequest({userid: userid, ...userObj}));
       },
-      onDeleteUser: (userid) => {
-          dispatch(Actions.deleteUserRequest(userid));
-      }
   }
 }
 
