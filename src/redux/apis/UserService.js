@@ -30,12 +30,8 @@ export function getUsers(name = 'all', userid = 0, page = 1, limit = 20) {
     });
 }
 
-export function createUser(userid, password, isAdmin = false) {
-    return instance.post('/user', querystring.stringify({
-        userid: userid,
-        password: password,
-        isAdmin: isAdmin,
-    }));
+export function createUser(obj) {
+    return instance.post('/user', querystring.stringify(obj));
 }
 
 export function getSelf() {

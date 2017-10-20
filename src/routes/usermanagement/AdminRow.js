@@ -9,9 +9,9 @@ class AdminRow extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isEditable: false,
-            showDeleteUserModal:false,
-            isDelete:false,
+          isEditable: false,
+          showDeleteUserModal:false,
+          isDelete:false,
         };
     }
     renderEditableRow = (key) => {

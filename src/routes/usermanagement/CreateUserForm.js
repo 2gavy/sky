@@ -45,12 +45,6 @@ class CreateUserForm extends React.Component {
         else if (length > 2) return 'warning';
         else if (length > 0) return 'error';
     }
-    getAccessrightsValidationState() {
-        const length = this.state.accessrightsValue.length;
-        if (length > 4) return 'success';
-        else if (length > 3) return 'warning';
-        else if (length > 0) return 'error';
-    }
     
     handleSave = () => {
         //Dispatch newly edited user object for saving
@@ -71,15 +65,15 @@ class CreateUserForm extends React.Component {
         this.setState({ departmentValue: e.target.value });
     }
     handleAccessrightsChange(e) {
-        this.setState({ accessrightsValue: e.target.value });
+        this.setState({ accessrightsValue: e.target.checked });
     }
     submitForm = () => {
         this.props.onSubmit({
             'username':this.state.usernameValue,
-            'pfid':this.state.pfidValue,
+            'userid':this.state.pfidValue,
             'password':this.state.passwordValue,
             'department':this.state.departmentValue,
-            'accessrights':this.state.accessrightsValue,
+            'isAdmin':this.state.accessrightsValue,
         });        
     }
     render() {      
@@ -135,14 +129,11 @@ class CreateUserForm extends React.Component {
                 /><FormControl.Feedback />
                 <HelpBlock>Department must be at least 10 characters.</HelpBlock>
             </FormGroup>
-            <FormGroup
-                controlId="formBasicText"
-                validationState={this.getAccessrightsValidationState()}>
+            <FormGroup>
                 <ControlLabel>Access Rights</ControlLabel>
                 <FormControl
-                type="text"
+                type="checkbox"
                 value={this.state.accessrightsValue}
-                placeholder="Enter access rights here"
                 onChange={::this.handleAccessrightsChange}
                 /><FormControl.Feedback />
                 <HelpBlock>Please indicate if it's admin</HelpBlock>

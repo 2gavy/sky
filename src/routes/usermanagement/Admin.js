@@ -77,8 +77,8 @@ class Admin extends React.Component {
 
   formSubmitHandler = (newUserObj) => {
     this.close();
-    this.props.onAddUser(newUserObj);
     console.log(newUserObj);
+    this.props.onAddUser(newUserObj);
   }
 
   renderAddUserForm =() =>{
@@ -177,7 +177,8 @@ const mapDispatchToProps = (dispatch) => {
         dispatch(Actions.deleteUserRequest(userid));
       },
       onAddUser: (newUserObj) =>{
-      }
+        dispatch(Actions.createUserRequest(newUserObj));
+      },
   }
 }
 
