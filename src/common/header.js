@@ -54,7 +54,7 @@ class HeaderNavigation extends React.Component {
             {/*<SearchBox placeholder="Search" autofocus={true} searchOnChange={true} prefixQueryFields={["actors^1", "type^2", "languages", "title^10"]} />*/}
             <SearchBox placeholder="Search" autofocus={true} searchOnChange={true} queryFields={["content","title"]} />
           </NavItem>
-          <NavItem className='hidden-xs' href='/CreateReport'>
+          <NavItem className='hidden-xs' onClick={() => this.props.router.push("/CreateReport")}>
             <Icon bundle='fontello' glyph='plus-circle' />
           </NavItem>
           <ProfileMenu onLogout={this.props.onLogout} />
