@@ -9,9 +9,9 @@ class AdminRow extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          isEditable: false,
-          showDeleteUserModal:false,
-          isDelete:false,
+            isEditable: false,
+            showDeleteUserModal:false,
+            isDelete:false,
         };
     }
 
@@ -41,7 +41,7 @@ class AdminRow extends React.Component {
       return (
         <tr key={this.props.id}>
           <td>{this.props.user.userid}</td>
-          <td><img src={this.defaultImg} width='40' height='40'/></td>
+          <td><img src={this.props.user.profilePic} width='40' height='40'/></td>
           <td>{this.state.isEditable ? this.renderEditableRow('username') : this.props.user.username}</td>
           <td>{this.state.isEditable ? this.renderEditableRow('department') : this.props.user.department}</td>
           <td>{this.props.user.isAdmin ? 'Admin' : ''}</td>
