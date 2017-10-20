@@ -84,26 +84,28 @@ class ReportCreate extends React.Component {
       "author": this.props.author,
       "source": this.props.source,
       "captureDatetime": this.props.date,
-      "body": this.props.content,
-      "docid": '12345678910',
-    }).then(function (response) {
+      "content": this.props.content,
+      "docid": '1234567891014',
+    }).then(value => {
       toast.success('Report created!');
-      console.log(response);
-      //need to clear state here
-      this.state = {
-        docid: "",
-        title: "",
-        source: "",
-        date: "",
-        body: "",
-        entities: ""
-      }
-
-    })
-      .catch(function (error) {
-        console.log(error);
-        toast.error('omg, something went wrong');
+      this.props.reportFieldsTitleCreate({
+        title: ''
       });
+      this.props.reportFieldsAuthorCreate({
+        author: ''
+      });
+      this.props.reportFieldsDateCreate({
+        date: ''
+      });
+      this.props.reportFieldsSourceCreate({
+        source: ''
+      });
+      this.props.reportFieldsContentCreate({
+        content: ''
+      });
+    }, reason => {
+      console.log(reason);
+    });
   }
 
   handleChange(e) {
