@@ -105,7 +105,7 @@ class Clouds extends React.Component {
                 terms.push(Object.assign({}, term));
             }
 
-            let cloud = { terms: terms, label: data.label, docs: data.docs, titles: data.titles };
+            let cloud = { terms: terms, label: data.label, docs: data.docs, titles: data.titles, height: data.height };
 
             return cloud;
 
@@ -120,11 +120,12 @@ class Clouds extends React.Component {
             titles: ""
         }
     }
-
+//style={{width: percentage}}
+class="bubble-chart-d3"
     MultipleCloud(data) {
         const result = data.map(cloud => 
-        <div style={{width: percentage}} onClick={()=>this.populate(cloud)}><hr/> 
-        <ReactBubbleChart fontSizeFactor={0.5}
+        <div class="bubble-chart-d3" width="300" height="300" onClick={()=>this.populate(cloud)}><hr/> 
+        <ReactBubbleChart percentage fontSizeFactor={0.5}
           className="my-cool-chart"
           colorLegend={colorLegend}
           legend={ false }
@@ -134,7 +135,6 @@ class Clouds extends React.Component {
           tooltip={true}
           tooltipProps={tooltipProps}
           fixedDomain={{min: -10, max: 10}}/>
-          
         </div>);
     
         return result;

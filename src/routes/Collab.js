@@ -25,65 +25,33 @@ const myData = require('test2.json');
 
 const rankData = [
     {
-        id: 0,
-        startDate: "yyyy/mm/dd",
-        endDate: "yyyy/mm/dd",
-        terms: [
-            "Fish",
-            "Cat",
-            "Dog"
-        ],
-        docs: [
-            "A1213",
-            "B123",
-            "C123"
-        ]
+        "Agg":"Agg_Term1",
+        "Week1Date": "wk1_Term1",
+        "Week2Date": "wk2_Term1",
+        "Week3Date": "wk3_Term1",
+        "Week4Date": "wk4_Term1"
     },
     {
-        id: 1,
-        startDate: "yyyy/mm/dd",
-        endDate: "yyyy/mm/dd",
-        terms: [
-            "Dog",
-            "Fish",
-            "Cat"
-        ],
-        docs: [
-            "A1213",
-            "B123",
-            "C123"
-        ]
+        "Agg":"Agg_Term2",
+        "Week1Date": "wk1_Term2",
+        "Week2Date": "wk2_Term2",
+        "Week3Date": "wk3_Term2",
+        "Week4Date": "wk4_Term2"
     },
     {
-        id: 2,
-        startDate: "yyyy/mm/dd",
-        endDate: "yyyy/mm/dd",
-        terms: [
-            "Cat",
-            "Fish",
-            "Dog"
-        ],
-        docs: [
-            "A1213",
-            "B123",
-            "C123"
-        ]
+        "Agg":"Agg_Term3",
+        "Week1Date": "wk1_Term3",
+        "Week2Date": "wk2_Term3",
+        "Week3Date": "wk3_Term3",
+        "Week4Date": "wk4_Term3"
     },
     {
-        id: 3,
-        startDate: "yyyy/mm/dd",
-        endDate: "yyyy/mm/dd",
-        terms: [
-            "Cat",
-            "Fish",
-            "Dog"
-        ],
-        docs: [
-            "A1213",
-            "B123",
-            "C123"
-        ]
-    }];
+        "Week1Date": "wk1_Term4",
+        "Week2Date": "wk2_Term4",
+        "Week3Date": "wk3_Term4",
+        "Week4Date": "wk4_Term4"
+    }
+];
 
 //transpose
 // var newArray = array[0].map(function(col, i) { 
@@ -96,10 +64,10 @@ const rankData = [
 //     employees : [] 
 // };
 
-for(var i in rankData) {
+for (var i in rankData) {
     var id = rankData[i].startDate;
     var name = rankData[i].name;
-    console.log(id+","+name);
+    console.log(id + "," + name);
 }
 
 const DisplayWindows = rankData.map(Element => {
@@ -144,50 +112,52 @@ export default class Collab extends React.Component {
 
     render() {
         return (
-            <PanelContainer>
-                <Panel>
-                    <PanelBody>
-                        <Grid>
-                            <Row>
-                                <Col xs={6}>
-                                <Clouds cloudData={myData} setDocList={this.setDocList.bind(this)} />
-                                </Col>
-                                <Col xs={6}>
-                                    <DocIdList docList={selectedCloudIDs} />
-                                    <JsonTable rows={rankData}  className='collab-highlight'/>
-                                    {<Table bordered={true} striped={true} className='collab-highlight'>
-                                        <thead>
-                                            <tr>
-                                                <th>Date Range 1</th>
-                                                <th>Date Range 2</th>
-                                                <th>Date Range 3</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Fish</td>
-                                                <td>Dog</td>
-                                                <td>Cat</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Cat</td>
-                                                <td>Fish</td>
-                                                <td>Fish</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Dog</td>
-                                                <td>Cat</td>
-                                                <td>Dog</td>
-                                            </tr>
-                                        </tbody>
-                                    </Table>}
-                                    {DisplayWindows}
-                                </Col>
-                            </Row>
-                        </Grid>
-                    </PanelBody>
-                </Panel>
-            </PanelContainer>
+            <Grid>
+                <PanelContainer controls={false}>
+                    <Panel>
+                        <PanelBody>
+                            <Grid>
+                                <Row>
+                                    <Col xs={6}>
+                                        <Clouds cloudData={myData} setDocList={this.setDocList.bind(this)} />
+                                    </Col>
+                                    <Col xs={6}>
+                                        <DocIdList docList={selectedCloudIDs} />
+                                        <JsonTable rows={rankData} className='collab-highlight' />
+                                        <Table bordered={true} striped={true} className='collab-highlight'>
+                                            <thead>
+                                                <tr>
+                                                    <th>Date Range 1</th>
+                                                    <th>Date Range 2</th>
+                                                    <th>Date Range 3</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Fish</td>
+                                                    <td>Dog</td>
+                                                    <td>Cat</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Cat</td>
+                                                    <td>Fish</td>
+                                                    <td>Fish</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Dog</td>
+                                                    <td>Cat</td>
+                                                    <td>Dog</td>
+                                                </tr>
+                                            </tbody>
+                                        </Table>
+                                        {DisplayWindows}
+                                    </Col>
+                                </Row>
+                            </Grid>
+                        </PanelBody>
+                    </Panel>
+                </PanelContainer>
+            </Grid>
         );
     }
 }
