@@ -1,7 +1,6 @@
 import React from 'react';
 import * as config from '../../appConfig';
 import axios from 'axios';
-import {ToastContainer} from 'react-toastify';
 import ReportCreate from '../components/ReportCreate';
 
 import {

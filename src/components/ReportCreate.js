@@ -6,7 +6,7 @@ import { Link, withRouter } from 'react-router';
 import { browserHistory } from 'react-router'
 import { createReport } from '../redux/apis/ReportService';
 import DatePicker from 'react-datepicker';
-import {ToastContainer, toast} from 'react-toastify';
+import {toast} from 'react-toastify';
 
 import {
   Row,
@@ -190,15 +190,6 @@ class ReportCreate extends React.Component {
                 </Row>
               </Grid>
             </PanelFooter>
-            <ToastContainer
-                                position='bottom-right'
-                                type='default'
-                                autoClose={5000}
-                                hideProgressBar={false}
-                                newestOnTop={false}
-                                closeOnClick
-                                pauseOnHover
-                            />
         </Panel>
       </PanelContainer>
     );
