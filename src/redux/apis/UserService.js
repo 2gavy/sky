@@ -57,3 +57,11 @@ export function deleteUser(userid) {
 export function logoutUser() {
     return instance.get('/logout');
 }
+
+export function updateSearchPreference(userid, obj) {
+    return instance.put('/userpref/' + userid, querystring.stringify(obj));
+}
+
+export function getSearchPreference(userid) {
+    return instance.get('/userpref/' + userid);
+}

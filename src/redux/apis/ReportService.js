@@ -5,10 +5,10 @@ const instance = axios.create({
     baseURL: config.REPORT_BACKEND_HOST,
     headers: {
         'Content-Type': 'application/json',
-	'Accept': 'application/json'
+	       'Accept': 'application/json'
     },
     responseType: 'json',
-    withCredentials: false
+    withCredentials: true
 });
 
 export function createReport(obj) {
@@ -31,4 +31,3 @@ export function deleteReport(id) {
 export function getReport(id) {
     return instance.post('/reports', id);
 }
-

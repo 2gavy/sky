@@ -26,7 +26,6 @@ class CreateReport extends React.Component {
             method: 'get',
             withCredentials: true,
             url: config.REPORT_BACKEND_HOST + '/reports/' + this.props.params.reportid,
-            responseType: 'json',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
@@ -52,7 +51,7 @@ class CreateReport extends React.Component {
                         <Row>
                             <Col xs={12}>
                                 <ReportCreate />
-                                
+
                             </Col>
                         </Row>
                     </Panel>

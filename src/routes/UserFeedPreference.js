@@ -55,6 +55,10 @@ class UserFeedPreference extends React.Component {
     isHoveringOverSelectedSource: false,
   };
 
+  componentDidMount() {
+      this.props.getSearchPreference();
+  }
+
   addToSource = (source) => () => {
     const selectedSources = filter(this.state.selectedSources, (src) => src.value !== source.value);
 
@@ -174,14 +178,16 @@ class UserFeedPreference extends React.Component {
 
 
 UserFeedPreference.propTypes = {
-  userFeedPreference: PropTypes.object
+  userFeedPreference: PropTypes.object,
+  getSearchPreference: PropTypes.func,
 };
 
 
 
 const mapStateToProps = state => {
   return {
-    user: state.userModule.loginUser
+    user: state.userModule.loginUser,
+    searchPref: state.userModule.searchPref
   };
 };
 
@@ -192,7 +198,10 @@ const mapDispatchToProps = dispatch => {
     },
     updateUser: () => {
       dispatch(Actions.getUser({}));
-    }
+    },
+    getSearchPreference: () => {
+        dispatch(Actions.getSearchPreferenceRequest());
+    },
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(UserFeedPreference);
