@@ -33,6 +33,11 @@ html.default(dir=dir)
     //- As a workaround, we copied the file over to public/css/theme.css
     link(rel='stylesheet', href='/css/theme.css')
     link(rel='stylesheet', href='/css/custom.css')
+    //- By right should use css-load to load these node_modules file in
+    //- https://stackoverflow.com/questions/39853646/how-to-import-a-css-file-in-a-react-component
+    //- and the import should be at the individual react components like:
+    //- import 'react-toastify/dist/ReactToastify.min.css' 
+    link(rel='stylesheet', href='/css/ReactToastify.min.css')
     link(rel='stylesheet', href='/css/react-datepicker.css')
     link(rel='stylesheet', href='/css/style.css')
     link(rel='stylesheet/less', href='/css/style.less')

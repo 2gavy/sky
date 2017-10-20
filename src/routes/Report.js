@@ -23,8 +23,6 @@ import {
     PanelContainer,
 } from '@sketchpixy/rubix';
 
-
-
 @connect((state) => state)
 class Report extends React.Component {
     constructor(props) {
@@ -79,7 +77,7 @@ class Report extends React.Component {
                         </PanelLeft>
                         <PanelRight className='hidden-xs' style={{ width: 350 }}>
                             {/* <Sharebox propsInParent={this._getValueFromChildComponent} /> Don't remove. To get result from child*/}
-                            <Sharebox shareUrl={this.shareUrl} title={this.state.title} />
+                            <Sharebox shareUrl={this.shareUrl} title={this.state.title} reportid={this.state.reportid} />
                             <Entities entities={this.state.entities} />
                         </PanelRight>
                     </Panel>
