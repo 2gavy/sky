@@ -54,7 +54,7 @@ class HeaderNavigation extends React.Component {
             {/*<SearchBox placeholder="Search" autofocus={true} searchOnChange={true} prefixQueryFields={["actors^1", "type^2", "languages", "title^10"]} />*/}
             <SearchBox placeholder="Search" autofocus={true} searchOnChange={true} queryFields={["content","title"]} />
           </NavItem>
-          <NavItem className='hidden-xs' href='/CreateReport'>
+          <NavItem className='hidden-xs' onClick={() => this.props.router.push("/CreateReport")}>
             <Icon bundle='fontello' glyph='plus-circle' />
           </NavItem>
           <ProfileMenu onLogout={this.props.onLogout} />
@@ -86,7 +86,7 @@ class TopicNavigation extends React.Component {
   render() {
     return (
       <Nav bsStyle="pills" className='nav-orange75 hidden-xs' pullLeft>
-        <DirectNavItem eventKey={1} path="/">Home</DirectNavItem>
+        <DirectNavItem eventKey={1} path="/home">Home</DirectNavItem>
         <DirectNavItem className='hidden-sm' eventKey={2} path="/report/0000000000002194">Sample</DirectNavItem>
         <DirectNavItem className='hidden-sm' eventKey={2} path="/Collab">Collab</DirectNavItem>
       </Nav>

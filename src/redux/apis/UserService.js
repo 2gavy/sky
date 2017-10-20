@@ -30,12 +30,8 @@ export function getUsers(name = 'all', userid = 0, page = 1, limit = 20) {
     });
 }
 
-export function createUser(userid, password, isAdmin = false) {
-    return instance.post('/user', querystring.stringify({
-        userid: userid,
-        password: password,
-        isAdmin: isAdmin,
-    }));
+export function createUser(obj) {
+    return instance.post('/user', querystring.stringify(obj));
 }
 
 export function getSelf() {
@@ -56,4 +52,12 @@ export function deleteUser(userid) {
 
 export function logoutUser() {
     return instance.get('/logout');
+}
+
+export function updateSearchPreference(userid, obj) {
+    return instance.put('/userpref/' + userid, querystring.stringify(obj));
+}
+
+export function getSearchPreference(userid) {
+    return instance.get('/userpref/' + userid);
 }

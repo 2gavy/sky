@@ -28,13 +28,21 @@
       "docs": [
      	"A1213",
         "B123",
-        "C123"
+        "C123",
+        "D123",
+        "E123",
+        "F123",
+        "G123"
     ],"titles": [
       "Title1",
        "Title2",
-       "Title3"
-   ],"height": [
-    "100"
+       "Title3",
+       "Title4",
+       "Title5",
+       "Title6",
+       "Title1"
+   ],"dimensions": [
+    "70%"
  ]
     },
       {
@@ -60,8 +68,8 @@
         "Title4",
          "Title5",
          "Title6"
-     ],"height": [
-      "200"
+     ],"dimensions": [
+      "30%"
    ]
     },
     {
@@ -87,8 +95,8 @@
       "Title7",
        "Title8",
        "Title9"
-   ],"height": [
-    "400"
+   ],"dimensions": [
+    "30%"
  ]
   }
   ]

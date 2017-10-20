@@ -3,6 +3,7 @@ import * as Actions from "../actions/actionTypes/users";
 const initialState = {
   loginUser: {},
   users: [],
+  searchPref: {}
   //profile: {
   //   profilePic: '/imgs/app/avatars/avatar16.png',
   //   name: 'ong ting wei',
@@ -33,6 +34,15 @@ const users = (state = initialState, action) => {
       return state;
     case Actions.LOGOUT_USER_SUCCESS:
       return initialState;
+    case Actions.GET_SEARCH_PREFERENCE_SUCCESS:
+      return {...state, searchPref: action.payload};
+    case Actions.UPDATE_SEARCH_PREFERENCE_SUCCESS:
+      return {...state,
+        searchPref: {
+          ...this.state.searchPref,
+          ...action.payload
+        }
+      };
     default:
       return state;
   }

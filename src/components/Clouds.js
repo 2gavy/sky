@@ -77,8 +77,8 @@ var tooltipProps = [{
   }];
 
   var columns = [
-    {key: 'doc', label: 'Doc'},
-    {key: 'doc', label: 'Doc', cell: function( item, columnKey ){
+    {key: 'doc', label: 'Docs'},
+    {key: 'doc', label: 'Docs', cell: function( item, columnKey ){
         return <span style={{color: item.color}}>{ item.color }</span>;
     }},
     {key: 'title', label: 'Title'},
@@ -88,7 +88,7 @@ var tooltipProps = [{
 ];
 
   //to use variable from cloud obj to manipulate overall size depending on how many docs r present in JSON
-  var percentage = '100%';
+  var percentage = '70%';
 
 class Clouds extends React.Component {
     constructor(props) {
@@ -105,7 +105,7 @@ class Clouds extends React.Component {
                 terms.push(Object.assign({}, term));
             }
 
-            let cloud = { terms: terms, label: data.label, docs: data.docs, titles: data.titles, height: data.height };
+            let cloud = { terms: terms, label: data.label, docs: data.docs, titles: data.titles, dimensions: data.dimension };
 
             return cloud;
 
@@ -120,12 +120,13 @@ class Clouds extends React.Component {
             titles: ""
         }
     }
-//style={{width: percentage}}
-class="bubble-chart-d3"
+    //style="width: 70% ; height: 70%"
+    //div style="width: 200px; height: 100%;
+//style={{width: cloud.dimensions, height: cloud.dimensions}} 
     MultipleCloud(data) {
         const result = data.map(cloud => 
-        <div class="bubble-chart-d3" width="300" height="300" onClick={()=>this.populate(cloud)}><hr/> 
-        <ReactBubbleChart percentage fontSizeFactor={0.5}
+        <div style={{"height" : "70%", "width" : "70%"}} onClick={()=>this.populate(cloud)}><hr/> 
+        <ReactBubbleChart fontSizeFactor={0.5}
           className="my-cool-chart"
           colorLegend={colorLegend}
           legend={ false }
@@ -154,23 +155,31 @@ class="bubble-chart-d3"
 
         var docArray = docString.split(',');
         var titleArray = titleString.split(',');
-        
+
         //let overall = { docs: docArray, titles: titleArray };
 
         var overall = [];
 
         for (var i = 0; i < docArray.length; i++) {
-        
+
             var myObj = {
-                doc : docArray[i], //cloud docs
-                title : titleArray[i] //cloud titles
+                doc: docArray[i], //cloud docs
+                title: titleArray[i] //cloud titles
             };
-            
-           overall.push(myObj);
+
+            overall.push(myObj);
         }
 
         console.log(overall);
         return overall;
+    }
+
+    displayCount() {
+
+        var docString = this.state.docs.toString();
+        var docArray = docString.split(',');
+
+        return docArray.length;
     } 
 
     render() {
@@ -178,6 +187,7 @@ class="bubble-chart-d3"
             <div>
                 {this.MultipleCloud(clusterData)}
                 <hr/>
+                Total Docs: {this.displayCount()}
                 <JsonTable rows={this.display()} columns={ columns } className='collab-highlight'/>
             </div>
         );
