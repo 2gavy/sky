@@ -39,7 +39,8 @@ class CreateReport extends React.Component {
                     <Panel horizontal>
                         <Row>
                             <Col xs={12}>
-                                <ReportCreate/>
+                                <ReportCreate />
+                                
                             </Col>
                         </Row>
                     </Panel>

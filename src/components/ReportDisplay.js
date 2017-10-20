@@ -29,7 +29,7 @@ class ReportDisplay extends React.Component {
                                         <Row>
                                             <Col xs={6} collapseLeft collapseRight>
                                                 <div className='fg-darkgray50'>
-                                                    <small>by {this.props.report.source} / {new Date(Number(this.props.report.captureDatetime) * 1000).toUTCString().slice(0, -7)}</small>
+                                                    <small>by {this.props.report.source} / {this.props.report.captureDatetime}</small>
                                                 </div>
                                             </Col>
                                             <Col xs={6} collapseLeft collapseRight className='text-right'>
@@ -49,11 +49,7 @@ class ReportDisplay extends React.Component {
                     <PanelFooter>
                         <Grid>
                             <Row>
-                                <Col xs={4} style={{ paddingTop: 12.5, paddingBottom: 12.5 }}>
-                                    {/* Commented away hashtag */}
-                                    {/* <div><small><Icon glyph='icon-ikons-hashtag' style={{ position: 'relative', top: 1 }} /> ENTERTAINMENT</small></div> */}
-                                </Col>
-                                <Col xs={8} className='text-right' style={{ paddingTop: 12.5, paddingBottom: 12.5 }}>
+                                <Col xs={12} className='text-right' style={{ paddingTop: 12.5, paddingBottom: 12.5 }}>
                                     <div style={{ display: 'inline-block', marginLeft: 25 }}>
                                         <Icon style={{ position: 'relative', lineHeight: 0, top: 2 }} glyph='icon-ikons-speech-3' />
                                     </div>{' '}

@@ -6,7 +6,7 @@ import { Link, withRouter } from 'react-router';
 import { browserHistory } from 'react-router'
 import { createReport } from '../redux/apis/ReportService';
 import DatePicker from 'react-datepicker';
-import moment from 'moment';
+import {toast} from 'react-toastify';
 
 import {
   Row,
@@ -84,14 +84,28 @@ class ReportCreate extends React.Component {
       "author": this.props.author,
       "source": this.props.source,
       "captureDatetime": this.props.date,
-      "body": this.props.content,
-      "docid": '12345678910',
-    }).then(function (response) {
-      console.log(response);
-    })
-      .catch(function (error) {
-        console.log(error);
+      "content": this.props.content,
+      "docid": '1234567891014',
+    }).then(value => {
+      toast.success('Report created!');
+      this.props.reportFieldsTitleCreate({
+        title: ''
       });
+      this.props.reportFieldsAuthorCreate({
+        author: ''
+      });
+      this.props.reportFieldsDateCreate({
+        date: ''
+      });
+      this.props.reportFieldsSourceCreate({
+        source: ''
+      });
+      this.props.reportFieldsContentCreate({
+        content: ''
+      });
+    }, reason => {
+      console.log(reason);
+    });
   }
 
   handleChange(e) {
@@ -162,7 +176,6 @@ class ReportCreate extends React.Component {
                       <Col xsOffset={10} xs={2}>
                       </Col>
                     </formGroup>
-
                   </Col>
                 </Row>
               </Grid>

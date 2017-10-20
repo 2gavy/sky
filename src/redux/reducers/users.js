@@ -31,6 +31,8 @@ const users = (state = initialState, action) => {
     case Actions.LOGIN_USER_REQUESTED:
       // console.log(action.payload);
       return state;
+    case Actions.LOGOUT_USER_SUCCESS:
+      return initialState;
     default:
       return state;
   }

@@ -33,7 +33,9 @@
       "Title1",
        "Title2",
        "Title3"
-   ]
+   ],"height": [
+    "100"
+ ]
     },
       {
       "label": "cluster2",
@@ -45,7 +47,7 @@
         {
           "word": "term5",
           "weight": "0.4"
-        },        {
+        },{
           "word": "term6",
           "weight": "0.9"
         }
@@ -58,7 +60,9 @@
         "Title4",
          "Title5",
          "Title6"
-     ]
+     ],"height": [
+      "200"
+   ]
     },
     {
     "label": "cluster3",
@@ -83,7 +87,9 @@
       "Title7",
        "Title8",
        "Title9"
-   ]
+   ],"height": [
+    "400"
+ ]
   }
   ]
 }
