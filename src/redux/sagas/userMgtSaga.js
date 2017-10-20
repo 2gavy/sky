@@ -62,11 +62,11 @@ function* updateSelfRequestAsync(action) {
     try {
         //console.log("action.payload.profile"+action.payload.profile);
         const user = yield call(Service.updateSelf,action.payload.profile);
-        //console.log("saga - updateSelfRequestAsync");
-       // console.log(user);
+        console.log("saga - updateSelfRequestAsync");
+        console.log(action.payload.profile);
         yield put(Actions.updateSelfSuccess(user.data));
         toast.success('Updated successfully');
-        yield call(browserHistory.push, '/home');
+        yield call(browserHistory.push, '/usermanagement/profile');
     } catch (e) {
         console.log(e.message);
     }

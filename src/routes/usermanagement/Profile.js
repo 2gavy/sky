@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import AdminRow from "./AdminRow";
 import * as Actions from "../../redux/actions";
 import map from "lodash/map";
+import FileBase64 from 'react-file-base64';
+ 
 
 import {
   Row,
@@ -39,7 +41,9 @@ class Profile extends React.Component {
     showConfirmModal: false,
     showPwdErrMsg: false,
     newPassword:'',
-    confirmNewPassword:''
+    confirmNewPassword:'',
+    files:[],
+    showUploadModal:false
   };
 
   componentWillMount = () => {
@@ -60,17 +64,19 @@ class Profile extends React.Component {
       showConfirmModal: false,
       showPwdErrMsg: false,
       newPassword:'',
-      confirmNewPassword:'' });
+      confirmNewPassword:'',
+      showUploadModal:false });
   }
 
   openEditPW() {
     this.setState({ showEditPWModal: true });
   }
+
+  openUploadImage() {
+    this.setState({ showUploadModal: true });
+  }
   
   openConfirmPW() {
-    console.log("Password");
-    console.log(this.state.newPassword);
-    console.log(this.state.confirmNewPassword);
     if(this.state.newPassword==this.state.confirmNewPassword) {
       this.setState({ showEditPWModal: false });
       this.setState({ showConfirmModal: true });
@@ -95,11 +101,23 @@ class Profile extends React.Component {
     this.props.user.password=this.state.newPassword;
     console.log(this.props.user);
     this.props.updateUser(this.props.user);
+    this.setState({ showConfirmModal: false });
+    
     // loginUser(this.state.userid, this.state.password)
     //     .then((res) => {
     //         console.log(res);
     //     })
     //     .catch((err) => console.log(err));
+  }
+  getFiles(files){
+    this.setState({ files: files });
+  }
+  saveImageToObject() {
+    this.props.user.profilePic=this.state.files[0].base64;
+    this.setState({ showUploadModal: false });
+    console.log("this.props.user");
+    console.log(this.props.user);
+    this.props.updateUser(this.props.user);
   }
 
   renderBody = () => {
@@ -113,11 +131,13 @@ class Profile extends React.Component {
   };
 
   render() {
+    console.log(this.props.user);
     return (
         <div className="profileContainer">
 
-            <div className="profileImageContainer">
-                <Image src="/imgs/app/avatars/avatar23.png" rounded />
+            <div className="profileImageContainer profileActions">
+                <Image src={this.props.user.profilePic!=null?this.props.user.profilePic:"/imgs/app/avatars/avatar23.png"}   rounded />
+                <div onClick={this.openUploadImage.bind(this)}>Upload Image</div>
             </div>
             <div className="profileDetailsContainer" >
                 <div className="profileDetail">
@@ -131,6 +151,20 @@ class Profile extends React.Component {
                     <div onClick={this.openEditPW.bind(this)}>Edit Password</div>
                 </div>
             </div>
+            <Modal show={this.state.showUploadModal} onHide={this.close.bind(this)}>
+              <Modal.Header closeButton>
+                <Modal.Title>Upload Image</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <FileBase64 multiple={ true } onDone={ this.getFiles.bind(this) } />
+              </Modal.Body>
+              <Modal.Footer>
+                <Button bsStyle='primary' onClick={this.saveImageToObject.bind(this)}>Save</Button>
+                <Button onClick={this.close.bind(this)}>Close</Button>
+              </Modal.Footer>
+            </Modal>
+
+
             <Modal show={this.state.showEditPWModal} onHide={this.close.bind(this)}>
               <Modal.Header closeButton>
                 <Modal.Title>Change Password</Modal.Title>
