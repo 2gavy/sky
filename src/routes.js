@@ -23,7 +23,7 @@ import { extend } from 'lodash'
 import { SearchkitManager, SearchkitProvider } from 'searchkit'
 import Collab from './routes/Collab';
 import * as config from '../appConfig';
-import {ToastContainer} from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 
 //Code change for ES: host
 const searchkit = new SearchkitManager(config.ELASTIC_SEARCH_HOST)
@@ -42,16 +42,16 @@ class App extends React.Component {
               </Row>
             </Grid>
             <ToastContainer
-            position='bottom-right'
-            type='default'
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            pauseOnHover
-          />
+              position='bottom-right'
+              type='default'
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              pauseOnHover
+            />
           </div>
-         
+
           {/*<Footer />*/}
         </MainContainer>
       </SearchkitProvider>
