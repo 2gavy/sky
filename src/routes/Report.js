@@ -7,6 +7,7 @@ import Entities from '../components/Entities.js';
 import actions from '../redux/actions';
 import axios from 'axios';
 import * as config from '../../appConfig';
+import { toast } from 'react-toastify';
 
 import {
     Tag,
@@ -46,15 +47,20 @@ class Report extends React.Component {
             return
         }
 
-        axios.get(config.REPORT_BACKEND_HOST + '/reports/' + this.props.params.reportid)
-            .then((result) => {
-                const report = result.data;
-                if (!report) {
-                    this.props.router.push('/404');
-                }
-                this.setState(report[0]);
-
-            })
+        axios({
+            method: 'get',
+            url: config.REPORT_BACKEND_HOST + '/reports/' + this.props.params.reportid,
+            withCredentials: true,
+        }).then((result) => {
+            const report = result.data;
+            if (!report) {
+                this.props.router.push('/404');
+            }
+            this.setState(report[0]);
+        }, reason => {
+            toast.error(reason + "");
+            console.log(reason);
+        });
     }
 
     shareUrl = config.FRONTEND_ADDR + "/report/" + this.props.params.reportid;
@@ -75,7 +81,7 @@ class Report extends React.Component {
                         <PanelLeft>
                             <ReportDisplay report={this.state} />
                         </PanelLeft>
-                        <PanelRight className='hidden-xs' style={{ width: 350 }}>  
+                        <PanelRight className='hidden-xs' style={{ width: 350 }}>
                             <Sharebox shareUrl={this.shareUrl} title={this.state.title} reportid={this.state.reportid} />
                             <Entities entities={this.state.entities} />
                         </PanelRight>

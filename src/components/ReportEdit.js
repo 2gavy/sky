@@ -63,6 +63,7 @@ class ReportEdit extends React.Component {
       this.props.router.push("/report/" + this.props.params.reportid);
       toast.success('Report edited and saved!');
     }, reason => {
+      toast.error(reason+"");
       console.log(reason);
     });
   }

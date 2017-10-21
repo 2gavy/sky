@@ -104,6 +104,7 @@ class ReportCreate extends React.Component {
         content: ''
       });
     }, reason => {
+      toast.error(reason+"");
       console.log(reason);
     });
   }

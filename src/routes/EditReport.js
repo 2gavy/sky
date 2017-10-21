@@ -10,6 +10,7 @@ import ReportEdit from '../components/ReportEdit';
 import Sharebox from '../components/Sharebox';
 import PropTypes from 'prop-types';
 import Moment from 'moment';
+import { toast } from 'react-toastify';
 
 import {
     ShareButtons,
@@ -45,16 +46,24 @@ class EditReport extends React.Component {
         if (!this.props.params.reportid) {
             return
         }
-        axios.get(config.REPORT_BACKEND_HOST + '/reports/' + this.props.params.reportid)
-            .then((result) => {
-                const report = result.data;
-                if (!report) {
-                    this.props.router.push('/404');
-                }
-                // this.setState(report[0]);
-                this.props.ReportSetFields(report[0]);
-                console.log(report[0]);
-            })
+
+        //Retrieve the latest version of the report from backend before displaying it out for editing
+        axios({
+            method: 'get',
+            url: config.REPORT_BACKEND_HOST + '/reports/' + this.props.params.reportid,
+            withCredentials: true,
+        }).then((result) => {
+            const report = result.data;
+            if (!report) {
+                this.props.router.push('/404');
+            }
+            // this.setState(report[0]);
+            this.props.ReportSetFields(report[0]);
+            console.log(report[0]);
+        }, reason => {
+            toast.error(reason + "");
+            console.log(reason);
+        });
     }
 
     handleTitleChange(title) {
