@@ -80,39 +80,35 @@ var tooltipProps = [{
   //to use variable from cloud obj to manipulate overall size depending on how many docs r present in JSON
   var percentage = '100%';
 
-function MultipleCloud(data) {
-    const result = data.map(cloud => 
-    <div style={{width: percentage + "%"}} ><hr/> 
-    <ReactBubbleChart
-      className="my-cool-chart"
-      colorLegend={colorLegend}
-      legend={ true }
-      data={cloud.terms}
-      selectedColor="#737373"
-      selectedTextColor="#d9d9d9"
-      tooltip={true}
-      tooltipProps={tooltipProps}
-      fixedDomain={{min: -1, max: 1}}/>
-    </div>);
-
-    return result;
-}
-
-class Clouds extends React.Component {
+  class Clouds extends React.Component {
     constructor(props) {
         super(props);
         clusterData = this.props.cloudData.cluster.map(data => {
             let term = {colorValue:0, selected:0};
             let terms = [];
 
+            /*
             for (var i = 0; i < data.terms.length; i++) {
                 term.colorValue=Math.random();
                 term.selected=false;
-                ({ word: term._id, weight: term.value } = data.terms[i]);
+                ({ terms: term._id } = data.terms[i]);
                 terms.push(Object.assign({}, term));
             }
+            */
 
-            let cloud = { terms: terms, label: data.label, docs: data.docs };
+            /*
+            var labelString = data.terms.toString();
+
+            var labelArray = labelString.split(',');
+
+            var overall = '';
+    
+            for (var i = 0; i < labelArray.length; i++) {
+                overall += labelArray[i] + '<br/>';
+            }
+            */
+
+            let cloud = { _id: data.label, colorValue: Math.random(), displayText: data.terms, terms: data.terms, label: data.label, value: data.weight };
 
             return cloud;
 
@@ -121,12 +117,152 @@ class Clouds extends React.Component {
         for (var i = 0; i < clusterData.length; i++){
             console.log(clusterData[i]);
         }
+
+        this.state = {
+            docs: "",
+            titles: ""
+        }
     }
+
+MultipleCloud(data) {
+    const result = <div><hr/> 
+    <ReactBubbleChart
+      className="my-cool-chart"
+      colorLegend={colorLegend}
+      legend={ false }
+      data={data}
+      onClick={()=>this.callAPI()}
+      selectedColor="#737373"
+      selectedTextColor="#d9d9d9"
+      tooltip={true}
+      tooltipProps={tooltipProps}
+      fixedDomain={{min: -1, max: 1}}/>
+    </div>;
+
+    return result;
+}
+
+callAPI() {
+
+    //call 2nd api from TDT team here
+    //const myData3 = require('test4.json');
+
+    const myData3 = {
+        "topic": [
+           {
+             "label":"D1",
+             "terms": [
+               "w1",
+               "w2",
+               "w3",
+               "w4",
+               "w5",
+               "w6",
+               "w7",
+               "w8",
+               "w9",
+               "w10",
+               "w11",
+               "w12",
+               "w13",
+               "w14",
+               "w15",
+               "w16",
+               "w17",
+               "w18",
+               "w19",
+               "w20"
+             ],
+             "docs": [
+               "Doc1",
+               "Doc2",
+               "Doc3",
+               "Doc4",
+               "Doc5",
+               "Doc6",
+               "Doc7",
+               "Doc8",
+               "Doc9",
+               "Doc10"
+             ],
+             "titles": [
+               "Title1",
+               "Title2",
+               "Title3",
+               "Title4",
+               "Title5",
+               "Title6",
+               "Title7",
+               "Title8",
+               "Title9",
+               "Title10"
+             ]
+           }
+        ]
+       }
+
+    var overall = [];
+
+    //console.log("Docs existing inside is " + data.docs);
+    //console.log("Titles existing inside is " + data.titles);
+
+    clusterData = myData3.topic.map(data => {
+
+       // var myObj = {
+       //     doc: data.docs, //cloud docs
+       //     title: data.titles //cloud titles
+       // };
+
+        //overall.push(myObj);
+
+        this.setState({ docs: data.docs, titles: data.titles });
+
+    });
+
+
+} 
+
+display() {
+
+    var docString = this.state.docs.toString();
+    var titleString = this.state.titles.toString();
+
+    var docArray = docString.split(',');
+    var titleArray = titleString.split(',');
+
+    //let overall = { docs: docArray, titles: titleArray };
+
+    var overall = [];
+
+    for (var i = 0; i < docArray.length; i++) {
+
+        var myObj = {
+            doc: docArray[i], //cloud docs
+            title: titleArray[i] //cloud titles
+        };
+
+        overall.push(myObj);
+    }
+
+    console.log(overall);
+    return overall;
+}
+
+displayCount() {
+    
+            var docString = this.state.docs.toString();
+            var docArray = docString.split(',');
+    
+            return docArray.length;
+        } 
 
     render() {
         return (
             <div>
-                {MultipleCloud(clusterData)}
+                {this.MultipleCloud(clusterData)}
+                <hr/>
+                Total Docs: {this.displayCount()}
+                {this.state.docs}
             </div>
         );
     }
