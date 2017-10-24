@@ -23,6 +23,8 @@ var selectedCloudIDs = ["doc1", "doc2"];
 
 const myData = require('test2.json');
 
+const myData2 = require('test3.json');
+
 const rankData = [
     {
         "Agg":"Agg_Term1",
@@ -119,7 +121,7 @@ export default class Collab extends React.Component {
                             <Grid>
                                 <Row>
                                     <Col xs={6}>
-                                        <Clouds cloudData={myData} setDocList={this.setDocList.bind(this)} />
+                                        <Clouds2 cloudData={myData2} setDocList={this.setDocList.bind(this)} />
                                     </Col>
                                     <Col xs={6}>
                                         <DocIdList docList={selectedCloudIDs} />

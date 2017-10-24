@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: fanout-ingress
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /api/v1/*
+        backend:
+          serviceName: user-backend
+          servicePort: 3000
+      - path: /api/*
+        backend:
+          serviceName: reportbackend-deployment
+          servicePort: 8001
+      - path: /tap_overts/*
+        backend:
+          serviceName: elastic-deployment
+          servicePort: 9200
+      - path: /*
+        backend:
+          serviceName: react-frontend
+          servicePort: 8080
