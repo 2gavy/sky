@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router';
-
+import ShareButton from './ShareButton.js';
 import {
     Button,
     Icon,
@@ -39,7 +39,7 @@ class ReportDisplay extends React.Component {
                                             </Col>
                                         </Row>
                                     </Grid>
-                                    <div dangerouslySetInnerHTML={{__html:this.props.report.content}} />
+                                    <div dangerouslySetInnerHTML={{ __html: this.props.report.content }} />
                                 </Col>
                             </Row>
                         </Grid>
@@ -50,16 +50,18 @@ class ReportDisplay extends React.Component {
                         <Grid>
                             <Row>
                                 <Col xs={12} className='text-right' style={{ paddingTop: 12.5, paddingBottom: 12.5 }}>
-                                    <div style={{ display: 'inline-block', marginLeft: 25 }}>
-                                        <Icon style={{ position: 'relative', lineHeight: 0, top: 2 }} glyph='icon-ikons-speech-3' />
-                                    </div>{' '}
-                                    <div style={{ display: 'inline-block', marginLeft: 25 }}>
-                                        <Icon style={{ position: 'relative', lineHeight: 0 }} glyph='icon-fontello-share' />
-                                    </div>
-                                    <div className='fg-pink' style={{ display: 'inline-block', marginLeft: 25 }}>
+                                    <div className='fg-pink' style={{ display: 'inline-block'}}>
                                         <Icon style={{ position: 'relative', lineHeight: 0, top: 2 }} glyph='icon-ikons-heart' /><span> 0</span>
                                     </div>
-                                    <div style={{ display: 'inline-block', marginLeft: 25 }}>
+                                    <div style={{ display: 'inline-block', marginLeft: 10 }}>
+                                        <Button bsStyle='yellow' onlyOnHover className='btn-icon'>
+                                            <Icon style={{ position: 'relative', top: 2 }} glyph='icon-ikons-speech-3' />
+                                        </Button>
+                                    </div>
+                                    <div style={{ display: 'inline-block', marginLeft: 10 }}>
+                                        <ShareButton title={this.props.report.title} reportid={this.props.report.reportid} />
+                                    </div>
+                                    <div style={{ display: 'inline-block', marginLeft: 10 }}>
                                         <Button onClick={() => { this.props.router.push("/editreport/" + this.props.params.reportid) }}>Edit Report</Button>
                                     </div>
                                 </Col>

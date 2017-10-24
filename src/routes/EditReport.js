@@ -7,7 +7,6 @@ import actions from '../redux/actions';
 import * as Actions from '../redux/actions/reportsjz';
 import axios from 'axios';
 import ReportEdit from '../components/ReportEdit';
-import Sharebox from '../components/Sharebox';
 import PropTypes from 'prop-types';
 import Moment from 'moment';
 import { toast } from 'react-toastify';

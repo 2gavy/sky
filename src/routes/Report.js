@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router';
 import ReportDisplay from '../components/ReportDisplay.js';
-import Sharebox from '../components/Sharebox.js';
+import Sidebox from '../components/Sidebox.js';
 import Entities from '../components/Entities.js';
 import actions from '../redux/actions';
 import axios from 'axios';
@@ -63,7 +63,6 @@ class Report extends React.Component {
         });
     }
 
-    shareUrl = config.FRONTEND_ADDR + "/report/" + this.props.params.reportid;
     handleClick() {
         console.log('in');
     }
@@ -72,7 +71,7 @@ class Report extends React.Component {
     // _getValueFromChildComponent = (res) => {
     //     alert(res);
     // }
-    // {<Sharebox propsInParent={this._getValueFromChildComponent} /> Don't remove. To get result from child}
+    // {<Sidebox propsInParent={this._getValueFromChildComponent} /> Don't remove. To get result from child}
     render() {
         return (
             <Grid>
@@ -82,7 +81,7 @@ class Report extends React.Component {
                             <ReportDisplay report={this.state} />
                         </PanelLeft>
                         <PanelRight className='hidden-xs' style={{ width: 350 }}>
-                            <Sharebox shareUrl={this.shareUrl} title={this.state.title} reportid={this.state.reportid} />
+                            <Sidebox report={this.state} />
                             <Entities entities={this.state.entities} />
                         </PanelRight>
                     </Panel>
