@@ -12,14 +12,37 @@ import {
 
 
 class Entities extends React.Component {
+
+    //to remove duplicates 
+    remove_duplicates(arr) {
+        var obj = {};
+        var ret_arr = [];
+        for (var i = 0; i < arr.length; i++) {
+            obj[arr[i]] = true;
+        }
+        for (var key in obj) {
+            ret_arr.push(key);
+        }
+        return ret_arr;
+    }
+
     render() {
         var entitiesTagCloud = [];
         if (!this.props.entities || this.props.entities.length == 0) {
             entitiesTagCloud.push("None found");
         } else {
-            for (var i = 0; i < this.props.entities.length; i++) {
-                entitiesTagCloud.push(<Tag key={i}>{this.props.entities[i]}</Tag>);
+            var entityString = this.props.entities.toString();
+
+            var entitiesArray = entityString.split(',');
+            var uniqueEntitiesArray = [];
+            var overall = [];
+
+            uniqueEntitiesArray = this.remove_duplicates(entitiesArray);
+
+            for (var i = 0; i < uniqueEntitiesArray.length; i++) {
+                overall.push(<Tag>{uniqueEntitiesArray[i]}</Tag>);
             }
+
         }
 
         return (
@@ -34,7 +57,7 @@ class Entities extends React.Component {
                                             <div className='text-uppercase text-left blog-sidebar-heading'>
                                                 <small>Entities</small>
                                             </div>
-                                            {entitiesTagCloud}
+                                            {overall}
                                         </Col>
                                     </Row>
                                 </Grid>

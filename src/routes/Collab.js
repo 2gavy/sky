@@ -120,6 +120,7 @@ export default class Collab extends React.Component {
                         <PanelBody>
                             <Grid>
                                 <Row>
+                                    <h1><b>Work-in-Progress! Come back in Dec!</b></h1>
                                     <Col xs={6}>
                                         <Clouds2 cloudData={myData2} setDocList={this.setDocList.bind(this)} />
                                     </Col>

@@ -12,7 +12,7 @@ import {
     PanelBody,
     PanelContainer,
 } from '@sketchpixy/rubix';
-
+import JsonTable from 'react-json-table';
 
 var clusterData;
 
@@ -76,6 +76,17 @@ var tooltipProps = [{
     prop: 'colorValue',
     display: 'Change'
   }];
+
+  var columns = [
+    {key: 'doc', label: 'Docs'},
+    {key: 'doc', label: 'Docs', cell: function( item, columnKey ){
+        return <span style={{color: item.color}}>{ item.color }</span>;
+    }},
+    {key: 'title', label: 'Title'},
+    {key: 'title', label: 'Title', cell: function( item, columnKey ){
+        return <span style={{color: item.color}}>{ item.color }</span>;
+    }}
+];
 
   //to use variable from cloud obj to manipulate overall size depending on how many docs r present in JSON
   var percentage = '100%';
@@ -227,10 +238,9 @@ display() {
     var docString = this.state.docs.toString();
     var titleString = this.state.titles.toString();
 
+    console.log("display doc string is " + docString);
     var docArray = docString.split(',');
     var titleArray = titleString.split(',');
-
-    //let overall = { docs: docArray, titles: titleArray };
 
     var overall = [];
 
@@ -254,7 +264,7 @@ displayCount() {
             var docArray = docString.split(',');
     
             return docArray.length;
-        } 
+} a
 
     render() {
         return (
@@ -262,7 +272,7 @@ displayCount() {
                 {this.MultipleCloud(clusterData)}
                 <hr/>
                 Total Docs: {this.displayCount()}
-                {this.state.docs}
+                <JsonTable rows={this.display()} columns={ columns } className='collab-highlight'/>
             </div>
         );
     }
