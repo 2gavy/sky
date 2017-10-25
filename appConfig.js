@@ -5,7 +5,7 @@
 // export const FRONTEND_ADDR = 'http://35.197.155.91:8080'
 
 //IB
-export const USER_HOST_ADDR = 'http://107.178.254.205/api/v1/';
-export const REPORT_BACKEND_HOST = 'http://107.178.254.205/api';
-export const ELASTIC_SEARCH_HOST = 'http://107.178.254.205/tap_overts';
-export const FRONTEND_ADDR = 'http://107.178.254.205'
+export const USER_HOST_ADDR = 'http://35.201.124.147/api/v1/';
+export const REPORT_BACKEND_HOST = 'http://35.201.124.147/api';
+export const ELASTIC_SEARCH_HOST = 'http://35.201.124.147/tap_overts';
+export const FRONTEND_ADDR = 'http://35.201.124.147'
