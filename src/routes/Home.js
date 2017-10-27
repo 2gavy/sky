@@ -103,6 +103,19 @@ class Home extends React.Component {
               </Panel>
             </PanelContainer>
           </Col>
+
+          <Col className='hidden-sm hidden-md hidden-lg' xs={12} >     
+            <PanelContainer controls={false} >
+              <Panel style={{paddingBottom: "25px"}}>
+                <PanelBody>
+                  <Grid>
+                  {<InputFilter id="searchBoxInputFilter" autofocus={true} title="Search Box" placeholder="Search" searchOnChange={true} queryFields={["content","title"]} />}
+                  </Grid>
+                </PanelBody>
+              </Panel>
+            </PanelContainer>
+          </Col>
+
           <Col xs={12} sm={9} md={10}>
             <ActionBar className='hidden-xs' >
               <ActionBarRow>
