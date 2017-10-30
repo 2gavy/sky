@@ -62,9 +62,9 @@ class App extends React.Component {
 
 const routes = (
   <Route path='/' component={App}>
-    <IndexRedirect to="/logmein" />
+    <IndexRoute component={Login}/>
     <Route path='/home' component={Home} />
-    <Route path='/logmein' component={Login} />
+    <Route path='/login' component={Login} />
     <Route path='/report/:reportid' component={Report} />
     <Route path='/editreport/:reportid' component={EditReport} />
     <Redirect from="/report" to="/" />
