@@ -131,9 +131,9 @@ class Profile extends React.Component {
   };
 
   render() {
-    console.log(this.props.user);
+    // console.log(this.props.user);
     return (
-        <div className="profileContainer">
+        <div className="profileContainer container">
 
             <div className="profileImageContainer profileActions">
                 <Image src={this.props.user.profilePic!=null?this.props.user.profilePic:"/imgs/app/avatars/avatar23.png"}   rounded />

@@ -123,27 +123,35 @@ class ProfileMenu extends React.Component {
   }
 }
 
+@withRouter
 class Header extends React.Component {
   render() {
     return (
-
       <Grid id='navbar' {...this.props.ownProps}>
         <Row>
           <Col md={12} sm={12} xs={12}>
             <Navbar fixedTop fluid id='rubix-nav-header'>
               <Row>
                 <Col xs={3} visible='xs'>
-                <Nav pullLeft><Nav><ProfileMenu/></Nav></Nav>
-                
-                  {/* <ul className="pull-left visible-xs-inline-block nav navbar-nav">
+                  <ul className="pull-left visible-xs-inline-block nav navbar-nav">
                     <li role="presentation" className="sidebar-btn">
-                      <a data-id="sidebar-btn">
-                        <span className="icon-fontello-th-list-5 rubix-icon">
-                          
-                        </span>
+                      <a role="button">
+                      <span className="icon-fontello-user-female rubix-icon">
+                        </span>                     
+                        <NavDropdownHover noCaret style={{paddingTop: "65px", marginTop: "-55px"}} title='' id={'mobilenav'}>
+                          <MenuItem onClick={() => { this.props.router.push("/usermanagement/profile") }} style={{background: "white"}}>
+                            Edit Profile
+                          </MenuItem>
+                          <MenuItem onClick={() => { this.props.router.push("/userFeedPreference") }} style={{background: "white"}}>
+                            Edit Feed Preference
+                          </MenuItem>
+                          <MenuItem onClick={() => { this.props.router.push("/usermanagement/list") }} style={{background: "white"}}>
+                            Admin
+                          </MenuItem>
+                        </NavDropdownHover>
                       </a>
                     </li>
-                  </ul> */}
+                  </ul>
                 </Col>
                 <Col md={6} sm={4} xs={6}>
                   <Brand />
