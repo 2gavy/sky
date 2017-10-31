@@ -27,7 +27,7 @@ import { ToastContainer } from 'react-toastify';
 
 //Code change for ES: host
 const searchkit = new SearchkitManager(config.ELASTIC_SEARCH_HOST, {
-  searchOnLoad : false
+  searchOnLoad : true
 })
 
 class App extends React.Component {

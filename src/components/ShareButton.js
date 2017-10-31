@@ -41,7 +41,7 @@ class ShareButton extends React.Component {
         }));
     }
 
-    shareUrl = config.FRONTEND_ADDR + "/report/" + this.props.docid;
+    shareUrl = config.FRONTEND_ADDR + "report/" + this.props.docid;
 
     render() {
         return (

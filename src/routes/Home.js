@@ -28,6 +28,7 @@ import {
   InputFilter, SelectedFilters,
   ActionBar, ActionBarRow
 } from 'searchkit'
+import * as config from '../../appConfig';
 
 const SelectedFilter = (props) => (
   <div className={props.bemBlocks.option()
@@ -40,12 +41,11 @@ const SelectedFilter = (props) => (
 
 const ReportHitsListItem = (props) => {
   const { bemBlocks, result } = props
-  let url = "http://localhost:8080/report/"
   const source: any = extend({}, result._source, result.highlight)
 
   return (
     <PanelContainer controls={false} style={{width: "100%"}}>
-      <a href={url + source.docid} target="_blank">
+      <a href={config.FRONTEND_ADDR + "report/" + source.docid} target="_blank">
         <Panel horizontal>
           <PanelBody>
             <TimelineView withHeader className={'border-hover-blue tl-blue'}>
