@@ -6,6 +6,7 @@ FormControl, Button} from '@sketchpixy/rubix';
 // import {loginUser} from '../redux/apis/UserService';
 import {loginUserRequest} from '../redux/actions/users';
 
+
 class Login extends React.Component {
     constructor(props) {
         super(props);
@@ -24,7 +25,11 @@ class Login extends React.Component {
         //     })
         //     .catch((err) => console.log(err));
     }
-
+    handleKeyPress = (e) => {       
+        if(e.key == 'Enter'){
+            this.props.onLoginUserRequest(this.state.userid, this.state.password);
+        }
+      }
     render() {
         return (
             <Form horizontal>
@@ -38,7 +43,7 @@ class Login extends React.Component {
                                 name="userid"
                                 value={this.state.userid}
                                 placeholder="User ID"
-                                onChange={this.handleChange} />
+                                onChange={this.handleChange} autoFocus/>
               	  </Col>
             	</FormGroup>
 
@@ -51,7 +56,7 @@ class Login extends React.Component {
                                 name="password"
                                 value={this.state.password}
                                 onChange={this.handleChange}
-                                placeholder="Password" />
+                                placeholder="Password" onKeyPress={this.handleKeyPress}/>
               	  </Col>
           	    </FormGroup>
                 <FormGroup>
