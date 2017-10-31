@@ -47,7 +47,8 @@ class App extends React.Component {
                 {this.props.children}
               </Row>
             </Grid>
-            <ToastContainer
+          </div>
+          <ToastContainer
               position='bottom-right'
               type='default'
               autoClose={5000}
@@ -56,7 +57,6 @@ class App extends React.Component {
               closeOnClick
               pauseOnHover
             />
-          </div>
 
           {/*<Footer />*/}
         </MainContainer>

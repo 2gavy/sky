@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
-import {logoutUserRequest} from '../redux/actions/users';
+import { logoutUserRequest } from '../redux/actions/users';
 import { Link, withRouter } from 'react-router';
 import l20n, { Entity } from '@sketchpixy/rubix/lib/L20n';
 
@@ -52,7 +52,7 @@ class HeaderNavigation extends React.Component {
           <NavItem>
             {/*Code change for ES: SearchBox*/}
             {/*<SearchBox placeholder="Search" autofocus={true} searchOnChange={true} prefixQueryFields={["actors^1", "type^2", "languages", "title^10"]} />*/}
-            <SearchBox placeholder="Search" autofocus={true} searchOnChange={true} queryFields={["content","title"]} />
+            <SearchBox placeholder="Search" autofocus={true} searchOnChange={true} queryFields={["content", "title"]} />
           </NavItem>
           <NavItem className='hidden-xs' onClick={() => this.props.router.push("/CreateReport")}>
             <Icon bundle='fontello' glyph='plus-circle' />
@@ -105,18 +105,18 @@ class ProfileMenu extends React.Component {
     );
     return (
       <NavDropdownHover noCaret eventKey={3} title={bullhornIcon} id='notifications-menu' className='header-menu'>
-        <MenuItem onClick={() => {this.props.router.push("/usermanagement/profile") }}>
+        <MenuItem onClick={() => { this.props.router.push("/usermanagement/profile") }}>
           Edit Profile
         </MenuItem>
-        <MenuItem onClick={() => {this.props.router.push("/userFeedPreference") }}>
+        <MenuItem onClick={() => { this.props.router.push("/userFeedPreference") }}>
           Edit Feed Preference
         </MenuItem>
-        <MenuItem onClick={() => {this.props.router.push("/usermanagement/list") }}>
+        <MenuItem onClick={() => { this.props.router.push("/usermanagement/list") }}>
           Admin
         </MenuItem>
 
         <MenuItem onClick={() => this.props.onLogout()}>
-            Log Out
+          Log Out
         </MenuItem>
       </NavDropdownHover>
     );
@@ -133,6 +133,17 @@ class Header extends React.Component {
             <Navbar fixedTop fluid id='rubix-nav-header'>
               <Row>
                 <Col xs={3} visible='xs'>
+                <Nav pullLeft><Nav><ProfileMenu/></Nav></Nav>
+                
+                  {/* <ul className="pull-left visible-xs-inline-block nav navbar-nav">
+                    <li role="presentation" className="sidebar-btn">
+                      <a data-id="sidebar-btn">
+                        <span className="icon-fontello-th-list-5 rubix-icon">
+                          
+                        </span>
+                      </a>
+                    </li>
+                  </ul> */}
                 </Col>
                 <Col md={6} sm={4} xs={6}>
                   <Brand />
@@ -151,20 +162,20 @@ class Header extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    return {
-        ownProps: ownProps,
-    };
+  return {
+    ownProps: ownProps,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-        onLogout: () => {
-            dispatch(logoutUserRequest());
-        }
-    };
+  return {
+    onLogout: () => {
+      dispatch(logoutUserRequest());
+    }
+  };
 };
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(Header);
