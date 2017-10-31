@@ -41,8 +41,6 @@ class ShareButton extends React.Component {
         }));
     }
 
-    shareUrl = config.FRONTEND_ADDR + "report/" + this.props.docid;
-
     render() {
         return (
                 <Button bsStyle='yellow' className='btn-icon' onlyOnHover onClick={this.handleClick} >
@@ -56,7 +54,7 @@ class ShareButton extends React.Component {
                 >
                     <Flexbox flexDirection="row" justifyContent="center" minHeight="3vh">
                         <FacebookShareButton className='btn-icon'
-                            url={this.shareUrl}
+                            url={config.FRONTEND_ADDR + "report/" +this.props.docid}
                             quote={this.props.title}
                             className="Facebook__share-button">
                             <FacebookIcon
@@ -65,7 +63,7 @@ class ShareButton extends React.Component {
                         </FacebookShareButton>
 
                         <TwitterShareButton
-                            url={this.shareUrl}
+                            url={config.FRONTEND_ADDR + "report/" +this.props.docid}
                             title={this.props.title}
                             className="Demo__some-network__share-button">
                             <TwitterIcon
@@ -74,14 +72,14 @@ class ShareButton extends React.Component {
                         </TwitterShareButton>
 
                         <TelegramShareButton
-                            url={this.shareUrl}
+                            url={config.FRONTEND_ADDR + "report/" +this.props.docid}
                             title={this.props.title}
                             className="Demo__some-network__share-button">
                             <TelegramIcon size={32} round />
                         </TelegramShareButton>
 
                         <WhatsappShareButton
-                            url={this.shareUrl}
+                            url={config.FRONTEND_ADDR + "report/" +this.props.docid}
                             title={this.props.title}
                             separator=":: "
                             className="Demo__some-network__share-button">
