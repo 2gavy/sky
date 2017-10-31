@@ -20,14 +20,17 @@ import {
 
 
 const sources = [{
-  text: 'Golden Village',
-  value: 'goldenVillage'
+  text: 'China Daily',
+  value: 'chinaDaily'
 }, {
-  text: 'Cathay',
-  value: 'cathay'
+  text: 'Kompas',
+  value: 'kompas'
 }, {
-  text: 'Shaw',
-  value: 'shaw'
+  text: 'Mainichi Shimbun',
+  value: 'mainichiShimbun'
+}, {
+  text: 'The Star',
+  value: 'theStar'
 }];
 
 const reportFrequencies = [{
