@@ -55,7 +55,7 @@ class SideBox extends React.Component {
                                 <Button bsStyle='blue' className='btn-icon' onlyOnHover onClick={() => { copyTextToClipboard(location.href) }} >
                                     <Icon glyph='icon-fontello-link' />
                                 </Button>{' '}
-                                <ShareButton title={this.props.report.title} reportid={this.props.report.reportid}/>
+                                <ShareButton title={this.props.report.title} docid={this.props.report.docid}/>
                                 <Button bsStyle='red' className='btn-icon' onlyOnHover onClick={() => { this.props.router.push("/editreport/" + this.props.params.reportid) }}>
                                     <Icon glyph='icon-fontello-pencil' />
                                 </Button>{' '}

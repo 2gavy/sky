@@ -59,7 +59,7 @@ class ReportDisplay extends React.Component {
                                         </Button>
                                     </div>
                                     <div style={{ display: 'inline-block', marginLeft: 10 }}>
-                                        <ShareButton title={this.props.report.title} reportid={this.props.report.reportid} />
+                                        <ShareButton title={this.props.report.title} docid={this.props.report.docid} />
                                     </div>
                                     <div style={{ display: 'inline-block', marginLeft: 10 }}>
                                         <Button onClick={() => { this.props.router.push("/editreport/" + this.props.params.reportid) }}>Edit Report</Button>
