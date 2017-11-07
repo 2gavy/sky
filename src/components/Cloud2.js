@@ -131,7 +131,8 @@ var tooltipProps = [{
 
         this.state = {
             docs: "",
-            titles: ""
+            titles: "",
+            terms: ""
         }
     }
 
@@ -226,7 +227,7 @@ callAPI() {
 
         //overall.push(myObj);
 
-        this.setState({ docs: data.docs, titles: data.titles });
+        this.setState({ docs: data.docs, titles: data.titles, terms: data.terms });
 
     });
 
@@ -258,20 +259,30 @@ display() {
     return overall;
 }
 
-displayCount() {
+displayDocsCount() {
     
             var docString = this.state.docs.toString();
             var docArray = docString.split(',');
     
             return docArray.length;
-} a
+}
+
+displayTermsCount() {
+    
+            var termString = this.state.terms.toString();
+            var termArray = termString.split(',');
+    
+            return termArray.length;
+}
 
     render() {
         return (
             <div>
                 {this.MultipleCloud(clusterData)}
                 <hr/>
-                Total Docs: {this.displayCount()}
+                Total Terms: {this.displayTermsCount()}
+                <br/>
+                Total Docs: {this.displayDocsCount()}
                 <JsonTable rows={this.display()} columns={ columns } className='collab-highlight'/>
             </div>
         );
