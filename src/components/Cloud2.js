@@ -157,61 +157,7 @@ MultipleCloud(data) {
 callAPI() {
 
     //call 2nd api from TDT team here
-    //const myData3 = require('test4.json');
-
-    const myData3 = {
-        "topic": [
-           {
-             "label":"D1",
-             "terms": [
-               "w1",
-               "w2",
-               "w3",
-               "w4",
-               "w5",
-               "w6",
-               "w7",
-               "w8",
-               "w9",
-               "w10",
-               "w11",
-               "w12",
-               "w13",
-               "w14",
-               "w15",
-               "w16",
-               "w17",
-               "w18",
-               "w19",
-               "w20"
-             ],
-             "docs": [
-               "Doc1",
-               "Doc2",
-               "Doc3",
-               "Doc4",
-               "Doc5",
-               "Doc6",
-               "Doc7",
-               "Doc8",
-               "Doc9",
-               "Doc10"
-             ],
-             "titles": [
-               "Title1",
-               "Title2",
-               "Title3",
-               "Title4",
-               "Title5",
-               "Title6",
-               "Title7",
-               "Title8",
-               "Title9",
-               "Title10"
-             ]
-           }
-        ]
-       }
+    const myData3 = require('test4.json');
 
     var overall = [];
 

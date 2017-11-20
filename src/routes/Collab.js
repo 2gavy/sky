@@ -21,8 +21,6 @@ import {
 
 var selectedCloudIDs = ["doc1", "doc2"];
 
-const myData = require('test2.json');
-
 const myData2 = require('test3.json');
 
 const rankData = [
