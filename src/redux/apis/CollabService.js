@@ -9,7 +9,7 @@ const instance = axios.create({
         'Accept': 'application/json'
     },
     responseType: 'json',
-    withCredentials: true
+    withCredentials: false
 });
 
 export function getCloud() {
