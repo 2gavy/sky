@@ -9,11 +9,12 @@ const instance = axios.create({
         'Accept': 'application/json'
     },
     responseType: 'json',
-    withCredentials: true
+    withCredentials: false
 });
 
 export function getCloud() {
-    return instance.get('/cloud/');
+    // return instance.get('/cloud/');
+    return instance.get('/getDynamicTopicsCloud');
 }
 
 export function getDocList(labelId) {
