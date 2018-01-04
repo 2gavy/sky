@@ -13,7 +13,8 @@ const instance = axios.create({
 });
 
 export function getCloud() {
-    return instance.get('getDynamicTopicsCloud/');
+    // return instance.get('/cloud/');
+    return instance.get('/getDynamicTopicsCloud');
 }
 
 export function getDocList(labelId) {
