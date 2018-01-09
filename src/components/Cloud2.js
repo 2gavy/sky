@@ -66,11 +66,12 @@ class Clouds extends React.Component {
             <ReactBubbleChart
                 className="my-cool-chart"
                 colorLegend={colorLegend}
-                legend={false}
+                legend={true}
                 data={data}
                 onClick={(selectedData) => {this.callAPI(selectedData)}}
                 selectedColor="#737373"
                 selectedTextColor="#d9d9d9"
+                duration="2000"
                 tooltip={true}
                 tooltipProps={tooltipProps}
                 fixedDomain={{ min: -1, max: 1 }} />
@@ -80,6 +81,7 @@ class Clouds extends React.Component {
     }
 
     callAPI(selectedData) {
+        console.log("selected data label is " + selectedData.label);
         Services.getDocList(selectedData.label).then((result) => {
             this.props.CollabGetDocList(result.data.topic);
         }, reason => {

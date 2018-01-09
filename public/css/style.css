@@ -30,17 +30,19 @@
   font-size: 0.8em;
 }
 
-/* Optional, but recommended - hide the text on small bubbles */
+/* Optional, but recommended - hide the text on small bubbles 
+Change here for size of bubble chart */
 .bubble-chart-container .bubble-chart-text .bubble-label.small {
   font-size: 0;
-  height: 450px;
-  width: 450px;
+  height: 750px;
+  width: 750px;
 }
 /* Make sure to unhide the text when hovering */
 .bubble-chart-container .bubble-chart-text .bubble-label.small:hover {
   font-size: 0.8em;
 }
 
+/* Change here for size of bubble chart */
 .bubble-chart-d3 {
-  height: 400px;
-  width: 400px;
+  height: 700px;
+  width: 700px;

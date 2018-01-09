@@ -13,7 +13,7 @@ const collab = (state = initialState, action) => {
         case Actions.COLLAB_GET_CLOUD: 
             return{...state, bubbleData: action.payload};
         case Actions.COLLAB_GET_DOCLIST:
-            return {...state, docs: action.payload[0].docs, titles: action.payload[0].titles};
+            return {...state, docs: action.payload.docs, titles: action.payload.titles};
         case Actions.COLAB_GET_TRENDDATA:
             return {...state, trendData: action.payload};
         default:

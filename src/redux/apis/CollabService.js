@@ -18,7 +18,7 @@ export function getCloud() {
 }
 
 export function getDocList(labelId) {
-    return instance.get('getDynamicTopicInfo/' + labelId);
+    return instance.get('/getDynamicTopicInfo/' + labelId);
 }
 
 export function getTrendData(labelId) {
