@@ -66,7 +66,7 @@ class Clouds extends React.Component {
             <ReactBubbleChart
                 className="my-cool-chart"
                 colorLegend={colorLegend}
-                legend={true}
+                legend={false}
                 data={data}
                 onClick={(selectedData) => {this.callAPI(selectedData)}}
                 selectedColor="#737373"
