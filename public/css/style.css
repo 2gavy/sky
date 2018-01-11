@@ -46,3 +46,8 @@ Change here for size of bubble chart */
 .bubble-chart-d3 {
   height: 700px;
   width: 700px;
+}
+
+.tooltip {
+   opacity: 1 !important;
+}

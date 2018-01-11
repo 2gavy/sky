@@ -2,7 +2,7 @@ import * as Actions from './actionTypes/collab.js';
 
 export function CollabGetCloud(result) {
     var cloud = result.map(data => {
-        let bubble = { _id: data.label, colorValue: Math.random(), displayText: data.label, terms: data.terms, label: data.label, value: data.weight };
+        let bubble = { _id: data.label, colorValue: Math.random(), displayText: data.terms[0], terms: data.terms, label: data.label, value: data.weight };
         return bubble;
     });
 

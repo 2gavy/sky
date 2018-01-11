@@ -155,14 +155,16 @@ class Collab extends React.Component {
                                             <Cloud2 />
                                         </div>
                                     </Col>
-                                 </Row>
+                                    </Row>
                                  <Row>
-                                    <Col xs={4}>
+                                    <Col xs={3}>
                                         <div>
                                             Total Docs: {this.displayDocsCount()}
                                             <JsonTable rows={this.display()} columns={columns} className='collab-highlight' />
                                         </div>
                                     </Col>
+                                    </Row>
+                                 <Row>
                                     <Col xs={8}>
                                          Weekly Trending
                                         <JsonTable rows={this.props.trendData} className='collab-highlight' />

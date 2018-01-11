@@ -43,15 +43,10 @@ const colorLegend = [
 var tooltipProps = [{
     css: 'symbol',
     prop: '_id'
-}, {
+  }, {
     css: 'value',
-    prop: 'value',
-    display: 'Last Value'
-}, {
-    css: 'change',
-    prop: 'colorValue',
-    display: 'Change'
-}];
+    prop: 'terms',
+  }];
 
 //to use variable from cloud obj to manipulate overall size depending on how many docs r present in JSON
 var percentage = '100%';
@@ -74,6 +69,7 @@ class Clouds extends React.Component {
                 duration="2000"
                 tooltip={true}
                 tooltipProps={tooltipProps}
+                tooltipFunc={this.callAPI2()}
                 fixedDomain={{ min: -1, max: 1 }} />
         </div>;
 
@@ -95,6 +91,10 @@ class Clouds extends React.Component {
             toast.error(reason + "");
             console.log(reason);
         });
+    }
+
+    callAPI2() {
+console.log('test');
     }
 
     render() {
