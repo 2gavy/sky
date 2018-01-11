@@ -2,7 +2,17 @@ import * as Actions from './actionTypes/collab.js';
 
 export function CollabGetCloud(result) {
     var cloud = result.map(data => {
-        let bubble = { _id: data.label, colorValue: Math.random(), displayText: data.terms[0], terms: data.terms, label: data.label, value: data.weight };
+
+        var bubbleString = data.terms.toString();
+        var bubbleArray = bubbleString.split(',');
+        var concatString = "";
+
+        for (var i = 0; i < bubbleArray.length; i++) {
+            concatString += bubbleArray[i] + "<br/>";
+        }
+
+        console.log("concatstring is " + concatString);
+        let bubble = { _id: data.label, colorValue: Math.random(), displayText: data.terms[0], terms: data.terms, tooltips: concatString, label: data.label, value: data.weight };
         return bubble;
     });
 
