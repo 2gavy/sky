@@ -148,24 +148,25 @@ class Collab extends React.Component {
                                 <Row><Col xs={12}>
                                     <div>
                                     </div>
-                                </Col></Row>
-                                <Row>
-                                    <Col xs={12}>
+                                </Col>
+                                </Row>
+                                 <Row>
+                                    <Col xs={9}>
                                         <div>
                                             <Cloud2 />
                                         </div>
                                     </Col>
-                                    </Row>
-                                 <Row>
                                     <Col xs={3}>
                                         <div>
                                             Total Docs: {this.displayDocsCount()}
                                             <JsonTable rows={this.display()} columns={columns} className='collab-highlight' />
                                         </div>
                                     </Col>
-                                    </Row>
+                                </Row>
                                  <Row>
-                                    <Col xs={8}>
+                                    <Col xs={2}>
+                                    </Col>
+                                    <Col xs={10}>
                                          Weekly Trending
                                         <JsonTable rows={this.props.trendData} className='collab-highlight' />
                                     </Col>

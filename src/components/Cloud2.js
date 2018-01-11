@@ -66,7 +66,7 @@ class Clouds extends React.Component {
                 duration="2000"
                 tooltip={true}
                 tooltipProps={tooltipProps}
-                fixedDomain={{ min: -1, max: 1 }} />
+                fixedDomain={{ min: -1, max: 1 }} /><hr />
         </div>;
 
         return result;

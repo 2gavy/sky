@@ -11,7 +11,6 @@ export function CollabGetCloud(result) {
             concatString += bubbleArray[i] + "<br/>";
         }
 
-        console.log("concatstring is " + concatString);
         let bubble = { _id: data.label, colorValue: Math.random(), displayText: data.terms[0], terms: data.terms, tooltips: concatString, label: data.label, value: data.weight };
         return bubble;
     });
