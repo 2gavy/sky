@@ -51,37 +51,6 @@ class Collab extends React.Component {
             console.log(reason);
         });
 
-        // axios({
-        //     method: 'get',
-        //     url: 'http://localhost:5000/getDynamicTopicsCloud',
-        //     withCredentials: true,
-        // }).then((result) => {
-        //     console.log("the result: " + result.data.cluster);
-        // }, reason => {
-        //     toast.error(reason + "");
-        //     console.log(reason);
-        // });
-
-        // var myData2 = require('test3.json');
-        //     axios({
-        //         method: 'get',
-        //         url: 'http://localhost:8001/api/collab/cloud',
-        //         withCredentials: true,
-        //     }).then((result) => {
-        //         var clusterData = result.data.cluster.map(data => {
-        //             let term = { colorValue: 0, selected: 0 };
-        //             let terms = [];
-        //             let bubble = { _id: data.label, colorValue: Math.random(), displayText: data.terms, terms: data.terms, label: data.label, value: data.weight };
-        //             return bubble;
-        //         });
-        //         this.setState({
-        //             bubbleData: clusterData
-        //         })
-        //     }, reason => {
-        //         toast.error(reason + "");
-        //         console.log(reason);
-        //     });
-
     }
 
     componentDidMount() {
@@ -115,16 +84,19 @@ class Collab extends React.Component {
     }
 
     display() {
+        /*
         var docString = this.props.docs.toString();
         var titleString = this.props.titles.toString();
-        console.log("display doc string is " + docString);
-        var docArray = docString.split(',');
-        var titleArray = titleString.split(',');
+        console.log("title string is " + titleString);
+        //var docArray = docString.split(',');
+        //var titleArray = titleString.split(',');
+        */
+
         var overall = [];
-        for (var i = 0; i < docArray.length; i++) {
+        for (var i = 0; i < this.props.docs.length; i++) {
             var myObj = {
-                doc: docArray[i], //cloud docs
-                title: titleArray[i] //cloud titles
+                doc: this.props.docs[i], //cloud docs
+                title: this.props.titles[i] //cloud titles
             };
             overall.push(myObj);
         }
@@ -133,9 +105,14 @@ class Collab extends React.Component {
     }
 
     displayDocsCount() {
+       /*
+        var docArray = [];
+        if (this.props.docs.toString()){
         var docString = this.props.docs.toString();
-        var docArray = docString.split(',');
-        return docArray.length;
+        docArray = docString.split(',');
+        }
+        */
+        return this.props.docs.length;
     }
 
     render() {
