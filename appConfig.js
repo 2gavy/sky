@@ -11,4 +11,4 @@ export const REPORT_BACKEND_HOST = 'http://35.201.124.147/api';
 export const ELASTIC_SEARCH_HOST = 'http://35.198.247.221:9200/tap_overts';
 export const FRONTEND_ADDR = 'http://35.201.124.147/'
 // export const COLLAB_BACKEND_HOST = 'http://localhost:8001/api/collab';
-export const COLLAB_BACKEND_HOST = 'http://192.168.1.33:5000';
+export const COLLAB_BACKEND_HOST = 'http://192.168.2.247:5000';

@@ -62,7 +62,7 @@ class Clouds extends React.Component {
                 data={data}
                 onClick={(selectedData) => {this.callAPI(selectedData)}}
                 selectedColor="#737373"
-                selectedTextColor="#d9d9d9"
+                selectedTextColor="#000000"
                 duration="2000"
                 tooltip={true}
                 tooltipProps={tooltipProps}

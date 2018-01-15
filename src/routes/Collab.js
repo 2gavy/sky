@@ -143,7 +143,7 @@ class Collab extends React.Component {
                                  <Row>
                                     <Col xs={2}>
                                     </Col>
-                                    <Col xs={10}>
+                                    <Col xs={12}>
                                          Weekly Trending
                                         <JsonTable rows={this.props.trendData} className='collab-highlight' />
                                     </Col>

@@ -11,7 +11,8 @@ export function CollabGetCloud(result) {
             concatString += bubbleArray[i] + "<br/>";
         }
 
-        let bubble = { _id: data.label, colorValue: Math.random(), displayText: data.terms[0], terms: data.terms, tooltips: concatString, label: data.label, value: data.weight };
+        
+        let bubble = { _id: data.label, colorValue: 0.8, displayText: data.terms[0] + ',' + data.terms[1], terms: data.terms, tooltips: concatString, label: data.label, value: data.weight };
         return bubble;
     });
 
